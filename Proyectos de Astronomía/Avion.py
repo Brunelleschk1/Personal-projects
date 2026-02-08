@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Parámetros físicos
-Q = 5e4            # lúmenes del avión
+Q = 6e4            # lúmenes del avión
 F_vega = 2.56e-6   # lm/m^2
 h = np.concatenate((np.linspace(0, 12000, 678), np.full(1200-678,12000)))     # altura del avión, empieza a descender a 30 km de la pista, antes de eso h es cte
 
@@ -30,7 +30,6 @@ for K in K_values:
     for i in range(len(cosZ)):
         if cosZ[i] <= 0.22:
             M[i] = m[i] + 4*K         #Corrección para evitar la divergencia de cosZ. Rústico pero ayuda
-            print(x[i])
         else:
             M[i] = m[i] + K / cosZ[i]
 
@@ -40,14 +39,14 @@ for K in K_values:
 plt.plot(x / 1000, m, 'k--', linewidth=2, label="m (sin corrección)")
 
 # Límite visual
-plt.axhline(6, linestyle=":", color="gray", label="Límite ojo humano")
+plt.axhline(6, linestyle="--", color="gray", label="Límite ojo humano")
 plt.axvline(30, linestyle=":", color="black", label="Inicio del descenso")
 plt.axvline(7.8, linestyle=":", color="red", label="Inicio de la corrección por divergencia")
 
 plt.gca().invert_yaxis()
-plt.xlabel("Distancia horizontal a la pista (km)")
+plt.xlabel("Distancia horizontal al final de la pista (km)")
 plt.ylabel("Magnitud aparente")
-plt.title("Magnitud aparente de un avión en aproximación\nCorrección M = m + K / cos(Z)")
+plt.title("Magnitud aparente de un avión en aproximación")
 plt.legend()
 plt.grid(False)
 
