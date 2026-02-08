@@ -18,27 +18,37 @@ cosZ = h / d                  # coseno del ángulo cenital
 F = Q / (4 * np.pi * d**2)
 m = -2.5 * np.log10(F / F_vega)
 
-
-# Magnitud corregida
-M = np.zeros(1200, dtype=float)
-
-for i in range(len(cosZ)):
-    if cosZ[i]<=0.23:
-        M[i] = m[i] + 4  #Corrección para evitar la divergencia del coseno de Z por Z grande
-    else:
-        M[i] = m[i] + 1/cosZ[i]
+# Valores de K
+K_values = np.linspace(0.1, 2.5, 10)  # número variable de curvas en función de K
 
 # Gráfica
 plt.figure()
-plt.plot(x / 1000, M, label="M(x) = m + 1/cos(Z)")
-plt.plot(x/1000, m, label= "M=m" )
-plt.axhline(6, linestyle="--", label="Límite ojo humano")
+
+for K in K_values:
+    M = np.zeros_like(m, dtype=float)
+
+    for i in range(len(cosZ)):
+        if cosZ[i] <= 0.22:
+            M[i] = m[i] + 4*K         #corrección para evitar la divergencia de cosZ. Rústico pero ayuda
+            print(x[i])
+        else:
+            M[i] = m[i] + K / cosZ[i]
+
+    plt.plot(x / 1000, M, label=f"K = {K:.1f}")
+
+# Curva sin corrección
+plt.plot(x / 1000, m, 'k--', linewidth=2, label="m (sin corrección)")
+
+# Límite visual
+plt.axhline(6, linestyle=":", color="gray", label="Límite ojo humano")
+plt.axvline(30, linestyle=":", color="black", label="Inicio del descenso")
+plt.axvline(7.8, linestyle=":", color="red", label="Inicio de la corrección por divergencia")
 
 plt.gca().invert_yaxis()
 plt.xlabel("Distancia horizontal a la pista (km)")
-plt.ylabel("Magnitud aparente corregida")
-plt.title("Magnitud aparente de un avión en aproximación")
+plt.ylabel("Magnitud aparente")
+plt.title("Magnitud aparente de un avión en aproximación\nCorrección M = m + K / cos(Z)")
 plt.legend()
-plt.grid(True)
+plt.grid(False)
 
 plt.show()
