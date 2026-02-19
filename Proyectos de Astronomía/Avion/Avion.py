@@ -50,6 +50,6 @@ plt.title("Magnitud aparente de un avión en aproximación")
 plt.legend()
 plt.grid(False)
 
-plt.savefig("Proyectos de Astronomía/magnitud_avion_aproximacion.png", dpi=300, bbox_inches="tight")
+plt.savefig("Proyectos de Astronomía/Avion/magnitud_avion_aproximacion.png", dpi=300, bbox_inches="tight")
 
 plt.show()
