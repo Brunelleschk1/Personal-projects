@@ -19,10 +19,7 @@ Azul = fits.getdata(ruta, ext=0)
 Rojo = fits.getdata(ruta, ext=1)
 Verde = fits.getdata(ruta, ext=2)
 
-def detectar_centroides(imagen, nombre_filtro, carpeta,
-                        min_distance=25,
-                        threshold_factor=15,
-                        box_size=7):
+def detectar_centroides(imagen, nombre_filtro, carpeta,min_distance=15,threshold_factor=15,box_size=7):
 
     mean, median, std = sigma_clipped_stats(imagen, sigma=1.5)
     imagen2 = imagen - median
