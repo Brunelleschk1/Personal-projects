@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 ruta = "Proyectos de Astronomía/Laboratorio 1/M41.fits"
 data = fits.getdata(ruta)
-
+print(fits.getheader(ruta, ext=2))
 # Calcular percentiles para eliminar extremos
 vmin, vmax = np.percentile(data, [1, 99])
 
