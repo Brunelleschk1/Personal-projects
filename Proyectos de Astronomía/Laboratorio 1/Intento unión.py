@@ -1,12 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from astropy.io import fits
+import astroalign as aa
 from astropy.io import fits
 from astropy.stats import sigma_clipped_stats
 from photutils.centroids import centroid_quadratic
 from photutils.aperture import CircularAperture, CircularAnnulus, aperture_photometry
 from skimage.feature import peak_local_max
-import astroalign as aa
+from scipy.spatial import cKDTree
 
 ruta = "Proyectos de Astronomía/Laboratorio 1/M41.fits"
 carpeta1 = "Proyectos de Astronomía/Laboratorio 1/FotosNormales/"
@@ -42,7 +42,7 @@ plt.title("RGB alineado sobre rojo (percentil 1–99)")
 plt.savefig(carpeta + "Alineamiento RGB Sobre Rojo",dpi=300, bbox_inches="tight")
 plt.close()
 
-def detectar_centroides(imagen, nombre_filtro, carpeta,min_distance=20,threshold_factor=15,box_size=7):
+def detectar_centroides(imagen, nombre_filtro,carpeta,min_distance=20,threshold_factor=15,box_size=7):
 
     mean, median, std = sigma_clipped_stats(imagen, sigma=1.5)
     imagen2 = imagen - median
@@ -64,12 +64,10 @@ def detectar_centroides(imagen, nombre_filtro, carpeta,min_distance=20,threshold
 
     for x, y in zip(x_peaks, y_peaks):
 
-        if (x-half_box < 0 or x+half_box >= nx or
-            y-half_box < 0 or y+half_box >= ny):
+        if (x-half_box < 0 or x+half_box >= nx or y-half_box < 0 or y+half_box >= ny):
             continue
 
-        sub = imagen2[y-half_box:y+half_box+1,
-                      x-half_box:x+half_box+1]
+        sub = imagen2[y-half_box:y+half_box+1,x-half_box:x+half_box+1]
 
         if np.argmax(sub) != (box_size**2)//2:
             continue
@@ -113,6 +111,41 @@ print(f"Verde: {len(x_verde)}")
 print(f"Azul:  {len(x_azul)}")
 print(f"Rojo:  {len(x_rojo)}")
 
+def match_tres_filtros(x_r, y_r, x_v, y_v, x_a, y_a, tol=2.0):
+    
+    coords_r = np.column_stack((x_r, y_r))
+    coords_v = np.column_stack((x_v, y_v))
+    coords_a = np.column_stack((x_a, y_a))
+    
+    tree_v = cKDTree(coords_v)
+    tree_a = cKDTree(coords_a)
+    
+    # Buscar vecinos más cercanos
+    dist_v, idx_v = tree_v.query(coords_r, distance_upper_bound=tol)
+    dist_a, idx_a = tree_a.query(coords_r, distance_upper_bound=tol)
+    
+    mask_match = ((dist_v < tol) &(dist_a < tol))
+    
+    # Filtrar solo las que tienen match en ambos
+    x_r_m = x_r[mask_match]
+    y_r_m = y_r[mask_match]
+    
+    x_v_m = x_v[idx_v[mask_match]]
+    y_v_m = y_v[idx_v[mask_match]]
+    
+    x_a_m = x_a[idx_a[mask_match]]
+    y_a_m = y_a[idx_a[mask_match]]
+    
+    print(f"\nMatching triple:")
+    print(f"Match en Verde: {np.sum(np.isfinite(dist_v))}")
+    print(f"Match en Azul:  {np.sum(np.isfinite(dist_a))}")
+    print(f"Rojo inicial: {len(x_r)}")
+    print(f"Final triple match: {len(x_r_m)}")
+    
+    return (x_r_m, y_r_m,x_v_m, y_v_m, x_a_m, y_a_m)
+
+(x_r_m, y_r_m,x_v_m, y_v_m,x_a_m, y_a_m) = match_tres_filtros(x_rojo, y_rojo,x_verde, y_verde,x_azul, y_azul,tol=2.0)
+
 def fotometria_apertura(imagen, x, y,r_ap=5,r_in=7,r_out=10):
     posiciones = np.transpose((x, y))
     # Apertura circular
@@ -135,22 +168,27 @@ r_ap  = 5      # radio de apertura
 r_in  = 7      # inicio anillo
 r_out = 10     # fin anillo
 
-x_ref = x_azul
-y_ref = y_azul
+flujo_rojo  = fotometria_apertura(Rojo,  x_r_m, y_r_m)
+flujo_verde = fotometria_apertura(Verdea, x_v_m, y_v_m)
+flujo_azul  = fotometria_apertura(Azula,  x_a_m, y_a_m)
 
-flujo_verde = fotometria_apertura(Verde, x_ref, y_ref)
-flujo_azul  = fotometria_apertura(Azul,  x_ref, y_ref)
-flujo_rojo  = fotometria_apertura(Rojo,  x_ref, y_ref)
+lim_r = np.percentile(flujo_rojo, 5)
+lim_v = np.percentile(flujo_verde, 5)
+lim_a = np.percentile(flujo_azul, 5)
 
-mask = (flujo_verde > 0) & (flujo_azul > 0) & (flujo_rojo > 0)
+mask = (np.isfinite(flujo_rojo) &np.isfinite(flujo_verde) &np.isfinite(flujo_azul) 
+        &(flujo_rojo > lim_r) &(flujo_verde > lim_v) & (flujo_azul > lim_a))
 
 flujo_verde = flujo_verde[mask]
 flujo_azul  = flujo_azul[mask]
 flujo_rojo  = flujo_rojo[mask]
-print(len(flujo_azul), len(flujo_verde), len(flujo_rojo))
 
-x_ref = x_ref[mask]
-y_ref = y_ref[mask]
+x_r_m = x_r_m[mask]
+y_r_m = y_r_m[mask]
+x_v_m = x_v_m[mask]
+y_v_m = y_v_m[mask]
+x_a_m = x_a_m[mask]
+y_a_m = y_a_m[mask]
 
 mag_verde = -2.5 * np.log10(flujo_verde)
 mag_azul  = -2.5 * np.log10(flujo_azul)
@@ -159,14 +197,17 @@ color_ar = mag_azul - mag_rojo
 color_av = mag_azul - mag_verde
 color_vr = mag_verde - mag_rojo
 
+print(f"Estrellas después del filtrado: {len(x_r_m)}")
+
 fig, axs = plt.subplots(1, 3, figsize=(18,6), sharey=True)
 
 axs[0].scatter(color_ar, mag_verde, s=10)
 axs[0].set_xlabel("Azul - Rojo")
-axs[0].set_ylabel("Mag Azul")
+axs[0].set_ylabel("Mag Verde")
 
 axs[1].scatter(color_av, mag_verde, s=10)
 axs[1].set_xlabel("Azul - Verde")
+axs[1].set_xlim(-0.85, 0.6)
 
 axs[2].scatter(color_vr, mag_verde, s=10)
 axs[2].set_xlabel("Verde - Rojo")
