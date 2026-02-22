@@ -6,8 +6,7 @@ from astropy.stats import sigma_clipped_stats
 from photutils.centroids import centroid_quadratic
 from photutils.aperture import CircularAperture, CircularAnnulus, aperture_photometry
 from skimage.feature import peak_local_max
-from scipy.ndimage import gaussian_filter
-from scipy.spatial import cKDTree
+import astroalign as aa
 
 ruta = "Proyectos de Astronomía/Laboratorio 1/M41.fits"
 carpeta1 = "Proyectos de Astronomía/Laboratorio 1/FotosNormales/"
@@ -19,7 +18,31 @@ Azul = fits.getdata(ruta, ext=0)
 Rojo = fits.getdata(ruta, ext=1)
 Verde = fits.getdata(ruta, ext=2)
 
-def detectar_centroides(imagen, nombre_filtro, carpeta,min_distance=15,threshold_factor=15,box_size=7):
+Azul  = np.array(Azul,  dtype=np.float64)
+Rojo  = np.array(Rojo,  dtype=np.float64)
+Verde = np.array(Verde, dtype=np.float64)
+
+Verdea, footprint_v = aa.register(Verde, Rojo)
+Azula, footprint_r  = aa.register(Azul, Rojo)
+
+def normalizar(img):
+    p1, p99 = np.percentile(img[np.isfinite(img)], (1, 99))
+    img_clip = np.clip(img, p1, p99)
+    return (img_clip - p1) / (p99 - p1)
+
+rgb = np.zeros((Rojo.shape[0], Rojo.shape[1], 3))
+
+rgb[:,:,0] = normalizar(Rojo)
+rgb[:,:,1] = normalizar(Verdea)
+rgb[:,:,2] = normalizar(Azula)
+
+plt.figure(figsize=(8,8))
+plt.imshow(rgb)
+plt.title("RGB alineado sobre rojo (percentil 1–99)")
+plt.savefig(carpeta + "Alineamiento RGB Sobre Rojo",dpi=300, bbox_inches="tight")
+plt.close()
+
+def detectar_centroides(imagen, nombre_filtro, carpeta,min_distance=20,threshold_factor=15,box_size=7):
 
     mean, median, std = sigma_clipped_stats(imagen, sigma=1.5)
     imagen2 = imagen - median
@@ -64,6 +87,7 @@ def detectar_centroides(imagen, nombre_filtro, carpeta,min_distance=15,threshold
     mask = np.isfinite(x_centroids) & np.isfinite(y_centroids)
     x_centroids = x_centroids[mask]
     y_centroids = y_centroids[mask]
+
     plt.figure(figsize=(10,10))
     plt.imshow(imagen, cmap='magma',vmin=median-std,vmax=median+5*std)
     plt.scatter(x_centroids, y_centroids,s=40, edgecolor='red', facecolor='none')
@@ -80,64 +104,14 @@ def detectar_centroides(imagen, nombre_filtro, carpeta,min_distance=15,threshold
 
     return x_centroids, y_centroids
 
-x_verde, y_verde = detectar_centroides(Verde, "Verde", carpeta)
-x_azul,  y_azul  = detectar_centroides(Azul,  "Azul",  carpeta)
+x_verde, y_verde = detectar_centroides(Verdea, "Verde", carpeta)
+x_azul,  y_azul  = detectar_centroides(Azula,  "Azul",  carpeta)
 x_rojo,  y_rojo  = detectar_centroides(Rojo,  "Rojo",  carpeta)
 
-"""def match_estrellas(x_ref, y_ref, x_mov, y_mov, max_dist=10):
-    coords_mov = np.column_stack((x_mov, y_mov))
-    coords_ref = np.column_stack((x_ref, y_ref))
-    coords_mov = coords_mov[np.all(np.isfinite(coords_mov), axis=1)]
-    coords_ref = coords_ref[np.all(np.isfinite(coords_ref), axis=1)]
-    tree = cKDTree(coords_mov)
-    dist, idx = tree.query(coords_ref, distance_upper_bound=max_dist)
-    mask = dist < max_dist
-    matched_ref = coords_ref[mask]
-    matched_mov = coords_mov[idx[mask]]
-    return matched_ref, matched_mov
-
-def estimar_transformacion(src, dst):
-    N = src.shape[0]
-    A = np.zeros((2*N, 6))
-    b = np.zeros((2*N,))
-    for i in range(N):
-        x, y = src[i]
-        xp, yp = dst[i]
-        A[2*i]   = [x, y, 1, 0, 0, 0]
-        A[2*i+1] = [0, 0, 0, x, y, 1]
-        b[2*i]   = xp
-        b[2*i+1] = yp
-    params, _, _, _ = np.linalg.lstsq(A, b, rcond=None)
-    return params
-
-def aplicar_transformacion(coords, params):
-    a, b, c, d, e, f = params
-    x = coords[:,0]
-    y = coords[:,1]
-    x_new = a*x + b*y + c
-    y_new = d*x + e*y + f
-    return np.column_stack((x_new, y_new))
-
-ref, mov = match_estrellas(x_verde, y_verde,x_azul, y_azul,max_dist=15)
-params_azul = estimar_transformacion(mov, ref)
-coords_azul = np.column_stack((x_azul, y_azul))
-coords_azul_al = aplicar_transformacion(coords_azul, params_azul)
-x_azul_al, y_azul_al = coords_azul_al[:,0], coords_azul_al[:,1]
-
-ref_r, mov_r = match_estrellas(x_verde, y_verde,x_rojo, y_rojo,max_dist=15)
-params_rojo = estimar_transformacion(mov_r, ref_r)
-coords_rojo = np.column_stack((x_rojo, y_rojo))
-coords_rojo_al = aplicar_transformacion(coords_rojo, params_rojo)
-x_rojo_al, y_rojo_al = coords_rojo_al[:,0], coords_rojo_al[:,1]
-
-plt.figure(figsize=(10,10))
-plt.imshow(Verde, cmap='gray', origin='lower')
-plt.scatter(x_verde, y_verde,s=40, edgecolor='lime', facecolor='none', label='Verde')
-plt.scatter(x_azul_al, y_azul_al,s=40, edgecolor='red', facecolor='none', label='Azul alineado')
-plt.scatter(x_rojo_al, y_rojo_al,s=40, edgecolor='cyan', facecolor='none', label='Rojo alineado')
-plt.legend()
-plt.title("Verificación de alineación")
-plt.show()"""
+print("\nResumen total:")
+print(f"Verde: {len(x_verde)}")
+print(f"Azul:  {len(x_azul)}")
+print(f"Rojo:  {len(x_rojo)}")
 
 def fotometria_apertura(imagen, x, y,r_ap=5,r_in=7,r_out=10):
     posiciones = np.transpose((x, y))
@@ -173,6 +147,7 @@ mask = (flujo_verde > 0) & (flujo_azul > 0) & (flujo_rojo > 0)
 flujo_verde = flujo_verde[mask]
 flujo_azul  = flujo_azul[mask]
 flujo_rojo  = flujo_rojo[mask]
+print(len(flujo_azul), len(flujo_verde), len(flujo_rojo))
 
 x_ref = x_ref[mask]
 y_ref = y_ref[mask]
