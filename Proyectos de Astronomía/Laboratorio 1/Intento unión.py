@@ -199,7 +199,15 @@ color_vr = mag_verde - mag_rojo
 
 print(f"Estrellas después del filtrado: {len(x_r_m)}")
 
-fig, axs = plt.subplots(1, 3, figsize=(18,6), sharey=True)
+plt.figure(figsize=(8,8))
+plt.imshow(rgb)
+plt.scatter(x_r_m, y_r_m, s=40, edgecolor='yellow', facecolor='none', linewidth=1)
+
+plt.title("RGB + Centroides Filtrados + 5% más bajo fuera")
+plt.savefig(carpeta + "RGB_CentroidesFinales_5%.png", dpi=300, bbox_inches="tight")
+plt.close()
+
+fig, axs = plt.subplots(1, 3, figsize=(15,5), sharey=True)
 
 axs[0].scatter(color_ar, mag_verde, s=10)
 axs[0].set_xlabel("Azul - Rojo")
@@ -207,7 +215,7 @@ axs[0].set_ylabel("Mag Verde")
 
 axs[1].scatter(color_av, mag_verde, s=10)
 axs[1].set_xlabel("Azul - Verde")
-axs[1].set_xlim(-0.85, 0.6)
+#axs[1].set_xlim(-0.85, 0.6)
 
 axs[2].scatter(color_vr, mag_verde, s=10)
 axs[2].set_xlabel("Verde - Rojo")
@@ -216,7 +224,7 @@ for ax in axs:
     ax.invert_yaxis()
     ax.grid(alpha=0.3)
 
-plt.suptitle("Diagramas Color–Magnitud")
+plt.suptitle("Diagramas Color–Magnitud 5%")
 plt.tight_layout()
-plt.savefig(carpeta + "CMD_TresPaneles.png", dpi=300)
-plt.show()
+plt.savefig(carpeta + "CMD_TresPaneles_5%.png", dpi=300)
+plt.close()
