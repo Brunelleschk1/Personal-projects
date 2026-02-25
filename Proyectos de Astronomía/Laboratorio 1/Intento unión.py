@@ -172,9 +172,9 @@ flujo_rojo  = fotometria_apertura(Rojo,  x_r_m, y_r_m)
 flujo_verde = fotometria_apertura(Verdea, x_v_m, y_v_m)
 flujo_azul  = fotometria_apertura(Azula,  x_a_m, y_a_m)
 
-lim_r = np.percentile(flujo_rojo, 5)
-lim_v = np.percentile(flujo_verde, 5)
-lim_a = np.percentile(flujo_azul, 5)
+lim_r = np.percentile(flujo_rojo, 75)
+lim_v = np.percentile(flujo_verde, 75)
+lim_a = np.percentile(flujo_azul, 75)
 
 mask = (np.isfinite(flujo_rojo) &np.isfinite(flujo_verde) &np.isfinite(flujo_azul) 
         &(flujo_rojo > lim_r) &(flujo_verde > lim_v) & (flujo_azul > lim_a))
@@ -203,8 +203,8 @@ plt.figure(figsize=(8,8))
 plt.imshow(rgb)
 plt.scatter(x_r_m, y_r_m, s=40, edgecolor='yellow', facecolor='none', linewidth=1)
 
-plt.title("RGB + Centroides Filtrados + 5% más bajo fuera")
-plt.savefig(carpeta + "RGB_CentroidesFinales_5%.png", dpi=300, bbox_inches="tight")
+plt.title("RGB + Centroides Filtrados + 75% más bajo fuera")
+plt.savefig(carpeta + "RGB_CentroidesFinales_75%.png", dpi=300, bbox_inches="tight")
 plt.close()
 
 fig, axs = plt.subplots(1, 3, figsize=(15,5), sharey=True)
@@ -224,7 +224,7 @@ for ax in axs:
     ax.invert_yaxis()
     ax.grid(alpha=0.3)
 
-plt.suptitle("Diagramas Color–Magnitud 5%")
+plt.suptitle("Diagramas Color–Magnitud 75%")
 plt.tight_layout()
-plt.savefig(carpeta + "CMD_TresPaneles_5%.png", dpi=300)
+plt.savefig(carpeta + "CMD_TresPaneles_75%.png", dpi=300)
 plt.close()
