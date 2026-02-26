@@ -1,0 +1,202 @@
+\documentclass[10pt,twocolumn]{article}
+
+% ------------------ PAQUETES ------------------
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{siunitx}
+\usepackage{authblk}
+\usepackage{abstract}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage{hyperref}
+
+\geometry{margin=1.8cm}
+
+% ------------------ FORMATO DE SECCIONES ------------------
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+% ------------------ TÍTULO ------------------
+\title{\textbf{Aproximación manual a la fotometría de apertura}\\Trabajo sobre el cúmulo abierto Messier 41}
+
+
+% ------------------ AUTORES ------------------
+\author[1]{Bruno Abello Laurent}
+
+\affil[1]{Universidad de Los Andes, Departamento de Física, Colombia}
+
+% Correos (puedes modificar)
+\renewcommand\Authands{, }
+\date{}
+
+\begin{document}
+
+\twocolumn[
+\maketitle
+\begin{center}
+\small
+\textit{Correo institucional:} \href{mailto:{b.abello@uniandes.edu.co}}{b.abello@uniandes.edu.co} \\
+\textit{Repositorio de GitHub: } \href{https://github.com/Brunelleschk1/Personal-projects}{Enlace}
+
+\end{center}
+
+\begin{abstract}
+\noindent
+Aquí va el resumen del informe. Debe describir brevemente el objetivo, metodología, resultados principales y conclusiones.
+\end{abstract}
+
+\noindent\textbf{Palabras clave:} palabra1, palabra2, palabra3
+\vspace{0.5cm}
+]
+
+% ------------------ CONTENIDO ------------------
+
+\section{Introducción}
+
+Este trabajo es la primera introducción del autor a la fotometría de apertura. Mediante el uso de herramientas computacionales, se buscó realizar un color-Magnitude Diagram para el cúmulo de abierto Messier 41, que contiene unas 100 estrellas CITAR WIKI. Para esto, y con el fin de tener una mejor comprensión del método, de sus particularidades y sus limitaciones, se compara el resultado obtenido "a mano" con el diagrama realizado por una herramienta profesional como TopCat
+
+\subsection{Objetivos}
+
+En particular, los objetivos que tiene este laboratorio se pueden resumir de la siguiente manera:
+\begin{itemize}
+    \item Acercar al estudiante a diversas herramientas utilizadas en astrofísica, como TopCat o documentación específica de python.
+    \item Aprender a analizar un mapa de Color y Magnitud, comparar los resultados propios con los profesionales y entender cómo tiene que verse un cmd correcto.
+    \item Entender todas las dificultades que presenta la fotometría de apertura.
+    \item Entender que la implementación de soluciones en esta área es algo personal y sujeto a la imaginación y recursividad del físico. 
+\end{itemize}
+
+
+\section{Procedimiento}
+
+El procedimiento es sujeto al ritmo del estudiante, y por lo tanto se detallará el camino que se siguió, aunque el teórico pueda variar.
+
+Para lograr los objetivos, se empezó por acercarse a la extensión que se utilizó para guardar los datos: .fits. Se entendió qué parte del archivo correspondía a cada filtro, y se entendió cómo extraer los datos de cada imagen. Acto seguido, se ploteó un histograma con los datos, y se realizó una imagen completa del cielo. Esta parte del código quedó intacta hasta el final del trabajo, ya que el físico se centró en otros aspectos del trabajo.
+
+En un archivo aparte, se empezó a trabajar sobre la extracción y el procesado de los datos. El objetivo inicial era suavizar la imagen, encontrar las estrellas en el cielo y guardar esa información para poder posteriormente aplicarle fotometría de apertura y construir los posibles CMDs. Para esto, primero se trabajó sobre el filtro azul, encontrando un método fiable, para luego extender esto a una función que trabaje para todos los filtros y datos que se le den. 
+
+Computacionalmente, esto se logra de la siguiente manera:
+
+Gracias a Astropy, se extraen los datos de la extensión del archivo .Fits, se sacan la mediana y la desviación estándar de los datos, y se resta la mediana a los datos originales. Gracias a Skimage, se le pueden encontrar picos locales a estos datos. Sin embargo, para obtener mejores datos, además de esto se aplica una búsqueda de centroides, ya que a menudo la diferencia entre el tamaño y el brillo de estrellas resulta en que Skimage detecte una estrella grande como varias estrellas. 
+
+Con esto realizado, se utiliza la librería Photutils para aplicar fotometría de apertura a estos datos filtrados y tratados. Con esto, se calculan los flujos de las estrellas detectadas, su magnitud en el filtro, y se realizan las restas para encontrar colores y realizar los CMDs. 
+
+Por último, se realizó un ajuste de los datos, ya que las imágenes no estaban alineadas correctamente(es decir, la estrella A en azul no está en las mismas coordenadas cuando se la ve en verde), y se alinearon las imágenes en función del filtro rojo. Aunque esto se ha debido realizar primero, el estudiante no conocía la documentación adecuada ni sabía si sus pares habían aplicado una solución más elegante de lo que él pensaba para realizar esto. Asimismo, si bien se tenía que trabajar primero en TopCat y luego en python, el estudiante lo hizo al contrario por temas de tiempo. Por último, se realizaron ajustes sobre los diagramas de color y magnitud para verificar que fueran correctos y estuvieran mostrando algo correcto.
+
+\section{Problemas presentados y soluciones aplicadas}
+
+\begin{enumerate}
+  \item Al querer suavizar la imagen, no existía un consenso previo entre el uso de un filtro gaussiano y el uso de la resta de la mediana. al probar ambos métodos, se comprobó que la imagen de la mediana era mucho más limpia y mejor para usar, como se puede ver comparando \ref{Azul_FondoRestado} y \ref{Azul_Gauss}
+  \item Si bien se hizo de últimas la alineación de las imágenes, el estudiante intentó implementar esto de manera más temprana, sin lograrlo satisfactoriamente. Su solución fue pedir ayuda a sus pares, preguntando qué herramientas habían utilizado para esta implementación.
+  \item Una situación similar sucedió con el conteo de estrellas detectadas, donde se implementaron varias instancias de conteo para revisar cuántos máximos se van filtrando como estrellas.
+  \item Al alinear las imágenes, se encontró que la verde y la azul estaban muy corridas entre sí. Por lo tanto, se tomó la decisión de corregir las imágenes sobre el rojo, que es un intermedio entre los tres. El resultado antes y después se observa en \ref{RGBAzul}, \ref{RGBRojo}.
+  \item Después de obtener las coordenadas correctas con la superposición de las imágenes, se encontraron problemas en los cmds, como por ejemplo que si en azul se detectaban 500 estrellas, se mostraban casi 700 en los cmds. Se tuvo que implementar un código de matching entre las coordenadas rojas, azules y verdes como un inicio, y se arreglaron problemas de falta de enmascaramiento como flujo negativo de estrellas.
+  \item El estudiante sintió que el cmd \ref{CMDs1} tenía demasiadas estrellas, por lo que buscó implementar un filtro que, en vez de considerar todos los flujos positivos, eliminaba el 5 porciento más debil, lo que resultó en unas 450 estrellas. También se intentó aplicar un filtro radial, pero debido a que es un cúmulo abierto, y se observan estrellas dispersas, se decidió no proceder con esta idea. 
+\end{enumerate}
+
+\subsection{Figuras de los problemas}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{FotosNormales/Azul_FondoRestado.png}
+    \caption{Imagen del cielo en filtro Azul con filtrado de mediana.}
+    \label{Azul_FondoRestado}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{Gauss/AzulGauss.png}
+    \caption{Imagen del cielo en filtro Azul con filtrado gaussiano.}
+    \label{Azul_Gauss}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{AlineamientoRGBSobreAzul.png}
+    \caption{Imagen de la superposición de tres imágenes según su filtro(R, G o B) con respecto al filtro azul. Se puede notar que el filtro azul y el verde están bastante separados.}
+    \label{RGBAzul}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{AlineamientoRGBSobreRojo.png}
+    \caption{Imagen de la superposición de tres imágenes según su filtro(R, G o B) con respecto al filtro Rojo. Aunque la diferencia Verde-Rojo sigue siendo notable, se nota también la aparición de nuevas estrellas en la esquina superior izquierda.}
+    \label{RGBRojo}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{CMD505.jpeg}
+    \caption{CMDs con 505 estrellas, antes de un limpiado más profundo.}
+    \label{CMDs1}
+\end{figure}
+
+\section{Resultados}
+
+Aunque la discusión que se va a presentar es, al inicio, relativa a la elección de un diagrama apropiado, ligado a los parámetros de escogencia de una estrella, y pueda parecer del dominio de los problemas presentados, esto es ante todo un debate entre el estudiante y él mismo, y no un problema a resolver. 
+
+En la imagen \ref{CMDs1}, se tenía una población de 505 estrellas con un outlier muy lejos del cúmulo en el diagrama B-V contra magnitud verde. Se nota un gran cuerpo de estrellas, pero no una tendencia concreta. Los diagramas \ref{CMD5} \ref{CMD25} \ref{CMD50} \ref{CMD75} \ref{CMD80} muestran un cuerpo más concreto después de filtrar más del 5 porciento de los flujos más bajos, sin el outlier, pero ni con un filtrado de un cuarto o de la mitad de las estrellas menos brillantes el diagrama Azul-Verde muestra una claridad correcta con respecto a lo que se ve en un CMD profesional. 
+
+Por ende, el problema es, como se dijo, escoger qué filtro nos convence más para obtener un buen set de estrellas. Por ende, además de la imagen RGB alineada, se decidió realizar una serie de imagenes RGB con los centroides resaltados CITAR IMÁGENES Y PONERLAS. De esta manera, se decidió, por un lado, conservar la distancia mínima de centroides en 20, y el threshold factor en 15, con un sigma de 1.5, ya que se encontró que, si bien un par de estrellas muy cercanas quedan resaltadas como una sola estrella, la mayoría de estrellas visibles están encerradas y se pueden analizar. Con esto, se procedió con varios filtros de flujo, eliminando el 5, el 25 y el 50 porciento de los flujos más bajos para cada color y trabajando con las estrellas restantes. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{CMD_TresPaneles_75.png}
+    \caption{CMD filtrando el 75 porciento de los flujos más bajos. Se retienen un total de 111 estrellas.}
+    \label{CMD75}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{CMD_TresPaneles_80.png}
+    \caption{CMD filtrando el 80 porciento de los flujos más bajos. Se retienen un total de 85 estrellas.}
+    \label{CMD80}
+\end{figure}
+
+Los resultados de los CMDs no fueron del todo los esperados. 
+Si bien más allá del 5 porciento de filtrado se va el outlier del diagrama Azul-Verde, el ruido que rodea la secuencia principal de los diagramas no desparece, sino que incluso sigue constante en las afueras mientras que lo más cercano al "cuerpo" del diagrama va desapareciendo. 
+De acuerdo a las fuentes básicas encontradas, es correcto que M41 posee unas cuantas gigantes rojas \nocite{wikipedia_messier41}, por lo cual nuestro diagrama muestra correctamente el comportamiento general del cúmulo, mas no podemos asegurar que esas estrellas sean, efectivamente, solo del cúmulo.
+
+\section{Conclusiones}
+Nuestro pequeño análisis de una imagen procesada del cúmulo abierto Messier 41, que es en realidad un acercamiento a los métodos utilizados para determinar qué es una estrella en una imagen del cielo y cómo extraer esta información, dio unos resultados coherentes con el nivel de finura con el que trabajamos. Es decir, nuestro método de encontrar centroides es poderoso, como lo muestran las imágenes procesadas con los centroides superpuestos, y nos puede llevar muy lejos. Sin embargo, para trabajar solo con el cúmulo necesitamos herramientas más poderosas y finas que un simple ajuste por cantidad de flujo.
+
+En palabras simples, nos quedamos cortos cuando se trata de determinar la pertenencia de un centroide a un cúmulo. Por lo tanto, a lo largo de la próxima semana se trabajará en los métodos que permiten una mejor determinación de pertenencia, pero esta vez con datos de GAIA, debido a la imposibilidad de definir movimientos propios de cuerpos celestes con una sola imagen.
+
+\section*{Referencias}
+
+\bibliographystyle{apalike}
+\bibliography{refs}
+
+\section*{Comentarios al margen}
+
+Durante la realización de este laboratorio, el estudiante se preguntó si, para el problema del avión, era necesario que viéramos al avión aterrizando. Si tenemos una frecuencia alta de aviones que pasan frente a nuestra ventana, por ejemplo, ¿podríamos realizar el ejercicio de la misma manera?
+
+Con respecto a la proper motion y al laboratorio siguiente, el estudiante se pregunta si hay una manera de traducir esos datos que se encuentren a centroides actualizados en las imágenes con las que se trabajó, de manera a tener una idea de qué tan acertado resultó ser el método de filtrado utilizado más allá de un simple: no deberia funcionar correctamente. 
+
+\section*{Imágenes adicionales}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{CMD_TresPaneles_5.png}
+    \caption{CMD filtrando el 5 porciento de los flujos más bajos. Se retienen un total de  456 estrellas.}
+    \label{CMD5}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{CMD_TresPaneles_25.png}
+    \caption{CMD filtrando el 25 porciento de los flujos más bajos. Se retienen un total de 369 estrellas.}
+    \label{CMD25}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{CMD_TresPaneles_50.png}
+    \caption{CMD filtrando el 50 porciento de los flujos más bajos. Se retienen un total de 229 estrellas.}
+    \label{CMD50}
+\end{figure}
+\end{document}
