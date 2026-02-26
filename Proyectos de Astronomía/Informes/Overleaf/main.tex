@@ -137,11 +137,19 @@ Por último, se realizó un ajuste de los datos, ya que las imágenes no estaban
 
 \section{Resultados}
 
-Aunque la discusión que se va a presentar es, al inicio, relativa a la elección de un diagrama apropiado, ligado a los parámetros de escogencia de una estrella, y pueda parecer del dominio de los problemas presentados, esto es ante todo un debate entre el estudiante y él mismo, y no un problema a resolver. 
+Aunque la discusión que se va a presentar es, al inicio, relativa a la elección de un diagrama apropiado, ligado a los parámetros de escogencia de una estrella,
+y pueda parecer del dominio de los problemas presentados, esto es ante todo un debate entre el estudiante y él mismo, y no un problema a resolver. 
 
-En la imagen \ref{CMDs1}, se tenía una población de 505 estrellas con un outlier muy lejos del cúmulo en el diagrama B-V contra magnitud verde. Se nota un gran cuerpo de estrellas, pero no una tendencia concreta. Los diagramas \ref{CMD5} \ref{CMD25} \ref{CMD50} \ref{CMD75} \ref{CMD80} muestran un cuerpo más concreto después de filtrar más del 5 porciento de los flujos más bajos, sin el outlier, pero ni con un filtrado de un cuarto o de la mitad de las estrellas menos brillantes el diagrama Azul-Verde muestra una claridad correcta con respecto a lo que se ve en un CMD profesional. 
+En la imagen \ref{CMDs1}, se tenía una población de 505 estrellas con un outlier muy lejos del cúmulo en el diagrama B-V contra magnitud verde.
+Se nota un gran cuerpo de estrellas, pero no una tendencia concreta. Los diagramas \ref{CMD5} \ref{CMD25} \ref{CMD50} \ref{CMD75} \ref{CMD80} 
+muestran un cuerpo más concreto después de filtrar más del 5 porciento de los flujos más bajos, sin el outlier, 
+pero ni con un filtrado de un cuarto o de la mitad de las estrellas menos brillantes el diagrama Azul-Verde muestra una claridad correcta con respecto a lo que se ve en un CMD profesional. 
 
-Por ende, el problema es, como se dijo, escoger qué filtro nos convence más para obtener un buen set de estrellas. Por ende, además de la imagen RGB alineada, se decidió realizar una serie de imagenes RGB con los centroides resaltados CITAR IMÁGENES Y PONERLAS. De esta manera, se decidió, por un lado, conservar la distancia mínima de centroides en 20, y el threshold factor en 15, con un sigma de 1.5, ya que se encontró que, si bien un par de estrellas muy cercanas quedan resaltadas como una sola estrella, la mayoría de estrellas visibles están encerradas y se pueden analizar. Con esto, se procedió con varios filtros de flujo, eliminando el 5, el 25 y el 50 porciento de los flujos más bajos para cada color y trabajando con las estrellas restantes. 
+Por ende, el problema es, como se dijo, escoger qué filtro nos convence más para obtener un buen set de estrellas.
+Entonces, además de la imagen RGB alineada, se decidió realizar una serie de imagenes RGB con los centroides resaltados CITAR IMÁGENES Y PONERLAS. 
+De esta manera, se decidió, por un lado, conservar la distancia mínima de centroides en 20, y el threshold factor en 15, con un sigma de 1.5, ya que se encontró que, 
+si bien un par de estrellas muy cercanas quedan resaltadas como una sola estrella, la mayoría de estrellas visibles están encerradas y se pueden analizar. 
+Con esto, se procedió con varios filtros de flujo, eliminando el 5, el 25 y el 50 porciento de los flujos más bajos para cada color y trabajando con las estrellas restantes. 
 
 \begin{figure}
     \centering
@@ -158,13 +166,42 @@ Por ende, el problema es, como se dijo, escoger qué filtro nos convence más pa
 \end{figure}
 
 Los resultados de los CMDs no fueron del todo los esperados. 
-Si bien más allá del 5 porciento de filtrado se va el outlier del diagrama Azul-Verde, el ruido que rodea la secuencia principal de los diagramas no desparece, sino que incluso sigue constante en las afueras mientras que lo más cercano al "cuerpo" del diagrama va desapareciendo. 
-De acuerdo a las fuentes básicas encontradas, es correcto que M41 posee unas cuantas gigantes rojas \nocite{wikipedia_messier41}, por lo cual nuestro diagrama muestra correctamente el comportamiento general del cúmulo, mas no podemos asegurar que esas estrellas sean, efectivamente, solo del cúmulo.
+Si bien más allá del 5 porciento de filtrado se va el outlier del diagrama Azul-Verde, el ruido que rodea la secuencia principal de los diagramas no desparece, 
+sino que incluso sigue constante en las afueras mientras que lo más cercano al "cuerpo" del diagrama va desapareciendo. 
+De acuerdo a las fuentes básicas encontradas, es correcto que M41 posee unas cuantas gigantes rojas \nocite{wikipedia_messier41}, 
+por lo cual nuestro diagrama muestra correctamente el comportamiento general del cúmulo, mas no podemos asegurar que esas estrellas sean, efectivamente, solo del cúmulo.
+
+Por último, es pertinente realizar una comparación de los resultados obtenidos con los que tiene una base de datos profesional como GAIA\nocite{GaiaDR3_2023}. 
+En la imagen \ref{CMDGAIA}, se puede observar un comportamiento distinto al del CMD obtenido. Primeramente, el de GAIA muestra una curva clara
+entre enanas blancas y la secuencia principal, mientras que el propio muestra un amasijo de estrellas que siguen eventualmente la secuencia principal.
+Es claro que tomar datos dentro de la atmósfera no es lo mismo que estar en un punto de Lagrange, entonces es más pertinente hablar de lo que sí se parece:
+La secuencia principal se ve claramente, y en ambos casos tenemos un "Piso" de estrellas recién nacidas. Ambos CMDs muestran gigantes rojas, pero GAIA parece
+detectar menos que nosotros. 
+
+Esto nos permite concluir dos cosas: Nuestra manera de definir la pertenencia al cúmulo no es tan fina como la de GAIA, y, probablemente debido a la sensibilidad
+del aparato, GAIA sabe diferenciar estrellas recién nacidas de estrellas en la secuencia principal, mientras que para nosotros esto sigue siendo problemático.
+Combinando estos dos análisis, podemos confirmar que, si bien nuestro aparato no es el más fino, nos permite observar la tendencia de un cúmulo adecuadamente gracias
+a unas herramientas computacionales básicas. Asimismo, podemos concluir que nuestra capacidad para determinar la pertenencia de un cuerpo a un cúmulo es, por ahora, poca.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{DiagramaGAIAFeo.png}
+    \caption{CMD realizado gracias a la base de datos de GAIA. 
+    Por temas de suerte, el estudiante nunca pudo bajar los datos y realizar un CMD localmente.}
+    \label{CMDGAIA}
+\end{figure}
+
 
 \section{Conclusiones}
-Nuestro pequeño análisis de una imagen procesada del cúmulo abierto Messier 41, que es en realidad un acercamiento a los métodos utilizados para determinar qué es una estrella en una imagen del cielo y cómo extraer esta información, dio unos resultados coherentes con el nivel de finura con el que trabajamos. Es decir, nuestro método de encontrar centroides es poderoso, como lo muestran las imágenes procesadas con los centroides superpuestos, y nos puede llevar muy lejos. Sin embargo, para trabajar solo con el cúmulo necesitamos herramientas más poderosas y finas que un simple ajuste por cantidad de flujo.
+Nuestro pequeño análisis de una imagen procesada del cúmulo abierto Messier 41, 
+que es en realidad un acercamiento a los métodos utilizados para determinar qué es una estrella en una imagen del cielo y cómo extraer esta información, 
+dio unos resultados coherentes con el nivel de finura con el que trabajamos. 
+Es decir, nuestro método de encontrar centroides es poderoso, como lo muestran las imágenes procesadas con los centroides superpuestos, 
+y nos puede llevar muy lejos. Sin embargo, para trabajar solo con el cúmulo necesitamos herramientas más poderosas y finas que un simple ajuste por cantidad de flujo.
 
-En palabras simples, nos quedamos cortos cuando se trata de determinar la pertenencia de un centroide a un cúmulo. Por lo tanto, a lo largo de la próxima semana se trabajará en los métodos que permiten una mejor determinación de pertenencia, pero esta vez con datos de GAIA, debido a la imposibilidad de definir movimientos propios de cuerpos celestes con una sola imagen.
+En palabras simples, nos quedamos cortos cuando se trata de determinar la pertenencia de un centroide a un cúmulo. 
+Por lo tanto, a lo largo de la próxima semana se trabajará en los métodos que permiten una mejor determinación de pertenencia,
+pero esta vez con datos de GAIA, debido a la imposibilidad de definir movimientos propios de cuerpos celestes con una sola imagen.
 
 \section*{Referencias}
 
@@ -173,9 +210,12 @@ En palabras simples, nos quedamos cortos cuando se trata de determinar la perten
 
 \section*{Comentarios al margen}
 
-Durante la realización de este laboratorio, el estudiante se preguntó si, para el problema del avión, era necesario que viéramos al avión aterrizando. Si tenemos una frecuencia alta de aviones que pasan frente a nuestra ventana, por ejemplo, ¿podríamos realizar el ejercicio de la misma manera?
+Durante la realización de este laboratorio, el estudiante se preguntó si, para el problema del avión, era necesario que viéramos al avión aterrizando.
+ Si tenemos una frecuencia alta de aviones que pasan frente a nuestra ventana, por ejemplo, ¿podríamos realizar el ejercicio de la misma manera?
 
-Con respecto a la proper motion y al laboratorio siguiente, el estudiante se pregunta si hay una manera de traducir esos datos que se encuentren a centroides actualizados en las imágenes con las que se trabajó, de manera a tener una idea de qué tan acertado resultó ser el método de filtrado utilizado más allá de un simple: no deberia funcionar correctamente. 
+Con respecto a la proper motion y al laboratorio siguiente, el estudiante se pregunta si hay una manera de traducir esos datos que se encuentren a centroides actualizados
+en las imágenes con las que se trabajó, de manera a tener una idea de qué tan acertado resultó ser el método de filtrado utilizado más allá de un simple: 
+no deberia funcionar correctamente. 
 
 \section*{Imágenes adicionales}
 
