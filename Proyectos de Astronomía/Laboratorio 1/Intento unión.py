@@ -8,11 +8,19 @@ from photutils.aperture import CircularAperture, CircularAnnulus, aperture_photo
 from skimage.feature import peak_local_max
 from scipy.spatial import cKDTree
 
+#Los comentarios del autor aparecerán tal que así.
+#Lo primero fue crear una serie de rutas para guardar todas las imágenes en carpetas. Esto es para no escribir 20 veces la misma ruta
+
 ruta = "Proyectos de Astronomía/Laboratorio 1/M41.fits"
 carpeta1 = "Proyectos de Astronomía/Laboratorio 1/FotosNormales/"
 carpeta2 = "Proyectos de Astronomía/Laboratorio 1/Centroides/"
 carpeta3 = "Proyectos de Astronomía/Laboratorio 1/CentroidesFiltrados/"
 carpeta = "Proyectos de Astronomía/Laboratorio 1/"
+
+
+#La siguiente sección extrae los datos del archivo .FITS, que, por cierto, no se puede subir a Github por su peso. 
+#Con esto se pretende convertir los datos a un tipo amigable con astroalign y alinearlos. 
+#Verdea y Azula son las coordenadas alineadas de las imagenes verde y azul. 
 
 Azul = fits.getdata(ruta, ext=0)
 Rojo = fits.getdata(ruta, ext=1)
@@ -24,6 +32,9 @@ Verde = np.array(Verde, dtype=np.float64)
 
 Verdea, footprint_v = aa.register(Verde, Rojo)
 Azula, footprint_r  = aa.register(Azul, Rojo)
+
+#Se normalizan los datos y se juntan. La idea era crear una imagen que yo pudiera ver para entender el resultado de la operación que acababa de hacer.
+#Más adelante la utilizo para verificar la veracidad de los datos entregados sobre centroides y de los filtros.
 
 def normalizar(img):
     p1, p99 = np.percentile(img[np.isfinite(img)], (1, 99))
@@ -41,6 +52,14 @@ plt.imshow(rgb)
 plt.title("RGB alineado sobre rojo (percentil 1–99)")
 plt.savefig(carpeta + "Alineamiento RGB Sobre Rojo",dpi=300, bbox_inches="tight")
 plt.close()
+
+#Esta función hace exactamente eso, recibe datos de la imagen y datos de qué tan fina quiero hacer la detección de centroides. 
+# 20 y 15 dieron resultados bastante positivos tras prueba y error. 
+#Esta función aprovecha para guardar las imágenes tratadas. No solo me gusta visualizar el resultado, 
+# sino que superponerles los centroides fue muy útil mientras construía el código.
+#Se podrá notar que esta función ya filtra un poco los datos de las imágenes, como es de esperarse.
+#De hecho, se puede notar al superponer centroides y la imagen completa que algunos sistemas muy cercanos ya no aparecen 
+# resaltados. Sin embargo, solo encontré un par de estos ejemplos.
 
 def detectar_centroides(imagen, nombre_filtro,carpeta,min_distance=20,threshold_factor=15,box_size=7):
 
@@ -106,10 +125,16 @@ x_verde, y_verde = detectar_centroides(Verdea, "Verde", carpeta)
 x_azul,  y_azul  = detectar_centroides(Azula,  "Azul",  carpeta)
 x_rojo,  y_rojo  = detectar_centroides(Rojo,  "Rojo",  carpeta)
 
+#Un pequeño print para revisar cuántos centroides se encuentran en cada imagen.
+#  El número varía de color a color.
+
 print("\nResumen total:")
 print(f"Verde: {len(x_verde)}")
 print(f"Azul:  {len(x_azul)}")
 print(f"Rojo:  {len(x_rojo)}")
+
+#Ahora propuse un matching entre los tres filtros: centroides que existieran en los tres. 
+#Un par de prints nos indican cuántos centroides retenemos. 
 
 def match_tres_filtros(x_r, y_r, x_v, y_v, x_a, y_a, tol=2.0):
     
@@ -146,6 +171,9 @@ def match_tres_filtros(x_r, y_r, x_v, y_v, x_a, y_a, tol=2.0):
 
 (x_r_m, y_r_m,x_v_m, y_v_m,x_a_m, y_a_m) = match_tres_filtros(x_rojo, y_rojo,x_verde, y_verde,x_azul, y_azul,tol=2.0)
 
+#Esta función ya está bastante bien documentada. Es la que nos permite hacer, después, los cmds.
+#Está tan bien comentada porque, tal vez, es la que menos entiendo.
+
 def fotometria_apertura(imagen, x, y,r_ap=5,r_in=7,r_out=10):
     posiciones = np.transpose((x, y))
     # Apertura circular
@@ -167,6 +195,10 @@ def fotometria_apertura(imagen, x, y,r_ap=5,r_in=7,r_out=10):
 r_ap  = 5      # radio de apertura
 r_in  = 7      # inicio anillo
 r_out = 10     # fin anillo
+
+#Esta sección pretende trabajar los flujos. Se obtienen, se filtran con percentiles y la "función" mask
+# (nótese que el 75 corresponde en el informe al filtrado de los 75% de flujos más débiles)
+#Y se obtiene un buen resultado, y se ajustan las posiciones.
 
 flujo_rojo  = fotometria_apertura(Rojo,  x_r_m, y_r_m)
 flujo_verde = fotometria_apertura(Verdea, x_v_m, y_v_m)
@@ -190,6 +222,9 @@ y_v_m = y_v_m[mask]
 x_a_m = x_a_m[mask]
 y_a_m = y_a_m[mask]
 
+#Se calculan las magnitudes y los colores, aunque solo el verde es utilizado, y se hace un print para ver cuántas estrellas quedan. 
+#También quise guardar la imagen RGB del principio superpuesta a los centroides. Me gustó comparar entre filtros qué estrellas desaparecían.
+
 mag_verde = -2.5 * np.log10(flujo_verde)
 mag_azul  = -2.5 * np.log10(flujo_azul)
 mag_rojo  = -2.5 * np.log10(flujo_rojo)
@@ -206,6 +241,10 @@ plt.scatter(x_r_m, y_r_m, s=40, edgecolor='yellow', facecolor='none', linewidth=
 plt.title("RGB + Centroides Filtrados + 75% más bajo fuera")
 plt.savefig(carpeta + "RGB_CentroidesFinales_75%.png", dpi=300, bbox_inches="tight")
 plt.close()
+
+#Por último se hacen los CMDs, en tres partes para tenerlos todos juntos.
+#Tal vez he podido recordar el A-V para analizarlo solo, pero me parece que tener los tres es más ventajoso
+#Además, esto era una exploración de los límites de nuestro conocimiento y capacidades. Tener varios es bueno.
 
 fig, axs = plt.subplots(1, 3, figsize=(15,5), sharey=True)
 
@@ -228,3 +267,6 @@ plt.suptitle("Diagramas Color–Magnitud 75%")
 plt.tight_layout()
 plt.savefig(carpeta + "CMD_TresPaneles_75%.png", dpi=300)
 plt.close()
+
+#nótese que estos no se guardan en una carpeta. Si el lector los encuentra en una carpeta, esto se hizo manualmente
+#Y al autor se le olvidó implementar las rutas correctas además de "proyectos de astronomía/Laboratorio 1"
