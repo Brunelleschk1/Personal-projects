@@ -239,7 +239,7 @@ plt.imshow(rgb)
 plt.scatter(x_r_m, y_r_m, s=40, edgecolor='yellow', facecolor='none', linewidth=1)
 
 plt.title("RGB + Centroides Filtrados + 75% más bajo fuera")
-plt.savefig(carpeta + "RGB_CentroidesFinales_75%.png", dpi=300, bbox_inches="tight")
+plt.savefig(carpeta + "CentroidesFinales/RGB_CentroidesFinales_75%.png", dpi=300, bbox_inches="tight")
 plt.close()
 
 #Por último se hacen los CMDs, en tres partes para tenerlos todos juntos.
@@ -265,7 +265,7 @@ for ax in axs:
 
 plt.suptitle("Diagramas Color–Magnitud 75%")
 plt.tight_layout()
-plt.savefig(carpeta + "CMD_TresPaneles_75%.png", dpi=300)
+plt.savefig(carpeta + "CMDs/CMD_TresPaneles_75%.png", dpi=300)
 plt.close()
 
 #nótese que estos no se guardan en una carpeta. Si el lector los encuentra en una carpeta, esto se hizo manualmente
