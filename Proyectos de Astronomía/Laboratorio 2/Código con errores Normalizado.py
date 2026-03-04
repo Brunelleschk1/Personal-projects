@@ -16,13 +16,17 @@ e_dec = df["pmdec_error"].values
 Gmag  = df["phot_g_mean_mag"].values
 color = df["bp_rp"].values
 
+ra    = df["ra"].values         
+dec   = df["dec"].values   
+
 # Máscara única para asegurar que todos los vectores tengan el mismo tamaño
 mask = np.isfinite(pmra) & np.isfinite(pmdec) & np.isfinite(e_ra) & \
-       np.isfinite(e_dec) & np.isfinite(Gmag) & np.isfinite(color)
+       np.isfinite(e_dec) & np.isfinite(Gmag) & np.isfinite(color) & np.isfinite(ra) & np.isfinite(dec)
 
 pmra, pmdec = pmra[mask], pmdec[mask]
 e_ra, e_dec = e_ra[mask], e_dec[mask]
 Gmag, color = Gmag[mask], color[mask]
+ra, dec     = ra[mask], dec[mask]    
 
 # ============================================================
 # MODELO COMPLETO CON BOUNDS Y L-BFGS-B
@@ -100,11 +104,6 @@ initial_guess = [-4.36, -1.33, 0.26, -0.74, 0.62, 5.15, 7.31, -0.28, 0.95]
 
 opt, P, result = ajuste_membresia_vpd_completo(pmra, pmdec, e_ra, e_dec, initial_guess)
 
-print("\n=========== RESULTADO FINAL ===========")
-print(f"n_cluster (modelo) = {1 - opt[8]:.4f}")
-print(f"Convergencia       = {result.success}")
-print("=======================================")
-
 mu_xc, mu_yc, sigma_c, \
 mu_xf, mu_yf, sigma_xf, sigma_yf, \
 rho, n_f = opt
@@ -127,9 +126,6 @@ print("=======================================")
 # CONTEO DE ESTRELLAS
 # ============================================================
 
-IntenoN = len(color)
-
-
 N_total = len(P)
 
 # ----- Conteo duro (threshold) -----
@@ -149,8 +145,6 @@ N_cluster_model = (1 - n_f_model) * N_total
 N_field_model = n_f_model * N_total
 
 print("\n=========== CONTEO DE ESTRELLAS ===========")
-print("Total estrella brunito          =", IntenoN)
-print("Total estrellas                 =", N_total)
 print("\n--- Conteo duro (P > 0.9) ---")
 print("Cluster (hard)                  =", N_cluster_hard)
 print("Field (hard)                    =", N_field_hard)
@@ -213,9 +207,7 @@ plt.title("CMD con Probabilidades")
 plt.legend()
 plt.savefig(carpeta + "CosasErrNorm/CMDPintadoErr")
 plt.close()
-
-print("Estrellas totales vs 5 porciento esperado")
-print(len(pmra), (1 - 0.95) * len(pmra))
+print("75, 90, 95, 99, 100 percentiles de Probabilidad")
 print(np.percentile(P, [75,90,95,99,100]))
 
 print("Estrellas con P>0.9:", np.sum(P>0.9))
@@ -231,3 +223,60 @@ plt.show()
 
 print("Máxima distancia en sigma:", np.max(r[P>0.99]))
 
+columnas_clave = ["pmra","pmdec","pmra_error","pmdec_error",
+                  "phot_g_mean_mag","bp_rp","ra","dec"]
+
+print("\n--- Conteo de NaNs por columna ---")
+for col in columnas_clave:
+    print(f"{col}: {df[col].isna().sum()}")
+
+
+mask_core = P > 0.99
+
+ra_c  = np.mean(ra[mask_core])
+dec_c = np.mean(dec[mask_core])
+
+cos_dec = np.cos(np.deg2rad(dec_c))
+
+dx = (ra - ra_c) * cos_dec
+dy = (dec - dec_c)
+
+r = np.sqrt(dx**2 + dy**2) * 60  # en arcmin
+
+bins = np.linspace(0, np.max(r), 20)
+
+N_total, _ = np.histogram(r, bins=bins)
+N_cluster, _ = np.histogram(r[P>0.9], bins=bins)
+
+area = np.pi * (bins[1:]**2 - bins[:-1]**2)
+
+density_total = N_total / area
+density_cluster = N_cluster / area
+
+bin_centers = 0.5*(bins[1:] + bins[:-1])
+
+plt.figure(figsize=(6,5))
+plt.plot(bin_centers, density_total, label="Total")
+plt.plot(bin_centers, density_cluster, label="Cluster (P>0.9)")
+plt.xlabel("Radio (arcmin)")
+plt.ylabel("Densidad (estrellas / arcmin²)")
+plt.legend()
+plt.show()
+
+# ============================================================
+# MAPA ESPACIAL  ### NUEVO ###
+# ============================================================
+
+plt.figure(figsize=(6,6))
+plt.scatter(ra, dec, s=2, alpha=0.2)
+plt.scatter(ra[P>0.99], dec[P>0.99], s=10)
+plt.gca().invert_xaxis()
+plt.xlabel("RA")
+plt.ylabel("DEC")
+plt.title("Distribución espacial")
+plt.show()
+
+print("Densidad central:", density_cluster[0])
+print("Densidad último bin:", density_cluster[-1])
+
+print("Contraste centro/fondo:", density_cluster[0] / density_cluster[-1])
