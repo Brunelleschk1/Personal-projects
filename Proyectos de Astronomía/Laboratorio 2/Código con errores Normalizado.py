@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
+
 carpeta = "Proyectos de Astronomía/Laboratorio 2/"
 
 # Carga de datos
@@ -38,9 +39,7 @@ def ajuste_membresia_vpd_completo(pmra, pmdec, e_ra, e_dec, initial_guess):
         sig_c_tot_x2 = sigma_c**2 + e_ra**2
         sig_c_tot_y2 = sigma_c**2 + e_dec**2
         
-        phi_c = (1 / (2 * np.pi * np.sqrt(sig_c_tot_x2 * sig_c_tot_y2))) * np.exp(
-            -0.5 * (((pmra - mu_xc)**2 / sig_c_tot_x2) + ((pmdec - mu_yc)**2 / sig_c_tot_y2))
-        )
+        phi_c = (1 / (2 * np.pi * np.sqrt(sig_c_tot_x2 * sig_c_tot_y2))) * np.exp(-0.5 * (((pmra - mu_xc)**2 / sig_c_tot_x2) + ((pmdec - mu_yc)**2 / sig_c_tot_y2)))
 
         # --- CAMPO CON ERROR ---
         dx, dy = pmra - mu_xf, pmdec - mu_yf
@@ -51,7 +50,7 @@ def ajuste_membresia_vpd_completo(pmra, pmdec, e_ra, e_dec, initial_guess):
         exponent_f = (
             (dx**2 / s_xf_tot2) + (dy**2 / s_yf_tot2) - 
             (2 * rho * dx * dy / (s_xf_tot * s_yf_tot))
-        ) / (2)
+        ) / (2*(1 - rho**2))
 
         phi_f = norm_f * np.exp(-exponent_f)
         
@@ -85,7 +84,7 @@ def ajuste_membresia_vpd_completo(pmra, pmdec, e_ra, e_dec, initial_guess):
     sxf, syf = np.sqrt(sx_f2), np.sqrt(sy_f2)
     
     norm_f = 1 / (2 * np.pi * sxf * syf * np.sqrt(1 - p[7]**2))
-    exp_f = ((dx_f**2/sx_f2) + (dy_f**2/sy_f2) - (2*p[7]*dx_f*dy_f/(sxf*syf))) / (2*(1-p[7]**2))
+    exp_f = ((dx_f**2/sx_f2) + (dy_f**2/sy_f2) - (2*p[7]*dx_f*dy_f/(sxf*syf))) / (2*(1 - p[7]**2))
     phi_f_final = norm_f * np.exp(-exp_f)
 
     # Fórmula Bayesiana: P = (Nc * Phic) / (Nc * Phic + Nf * Phif)
@@ -124,6 +123,46 @@ print("n_cluster      =", 1 - opt[8])
 print("Convergencia   =", result.success)
 print("=======================================")
 
+# ============================================================
+# CONTEO DE ESTRELLAS
+# ============================================================
+
+IntenoN = len(color)
+
+
+N_total = len(P)
+
+# ----- Conteo duro (threshold) -----
+threshold = 0.9
+mask_cluster = P > threshold
+N_cluster_hard = np.sum(mask_cluster)
+N_field_hard = N_total - N_cluster_hard
+# ----- Conteo suave (Bayesiano real) -----
+# La suma de probabilidades es el estimador esperado del número de miembros
+N_cluster_soft = np.sum(P)
+N_field_soft = N_total - N_cluster_soft
+
+# ----- Conteo esperado del modelo -----
+# Según el parámetro ajustado
+n_f_model = opt[8]
+N_cluster_model = (1 - n_f_model) * N_total
+N_field_model = n_f_model * N_total
+
+print("\n=========== CONTEO DE ESTRELLAS ===========")
+print("Total estrella brunito          =", IntenoN)
+print("Total estrellas                 =", N_total)
+print("\n--- Conteo duro (P > 0.9) ---")
+print("Cluster (hard)                  =", N_cluster_hard)
+print("Field (hard)                    =", N_field_hard)
+
+print("\n--- Conteo suave (Σ P_i) ---")
+print("Cluster (soft esperado)         =", N_cluster_soft)
+print("Field (soft esperado)           =", N_field_soft)
+
+print("\n--- Según parámetro n_f ---")
+print("Cluster (modelo)                =", N_cluster_model)
+print("Field (modelo)                  =", N_field_model)
+print("============================================")
 
 # ============================================================
 # VPD CON LÍMITES PEDIDOS
@@ -144,28 +183,55 @@ for i in range(3):
     if xlims[i]: axs[i].set_xlim(xlims[i])
     if ylims[i]: axs[i].set_ylim(ylims[i])
     axs[i].grid(alpha=0.3)
+    circle = plt.Circle((mu_xc, mu_yc), 3*sigma_c, fill=False)
+    plt.gca().add_artist(circle)
 
 plt.colorbar(sc, ax=axs[2], label='Probabilidad Membresía')
 plt.tight_layout()
-plt.show()
+plt.savefig(carpeta + "CosasErrNorm/VPDColoreado")
+plt.close()
 
 # Histograma de Probabilidades
 plt.figure(figsize=(6, 4))
-plt.hist(P, bins=20, color='skyblue', edgecolor='black')
+plt.hist(P, bins=10, color='skyblue', edgecolor='black')
 plt.xlabel("Probabilidad de pertenencia")
 plt.ylabel("N° Estrellas")
 plt.title("Distribución de Probabilidades (Bayesiana)")
-plt.yscale('log') # Escala log para ver mejor el cúmulo frente al campo
-plt.show()
+#plt.yscale('log') # Escala log para ver mejor el cúmulo frente al campo
+plt.savefig(carpeta + "CosasErrNorm/ProbPertU")
+plt.close()
 
 # CMD
 plt.figure(figsize=(6, 8))
-mask_c = P > 0.7
+mask_c = P > 0.9
 plt.scatter(color[~mask_c], Gmag[~mask_c], s=2, alpha=0.2, c='gray', label='Campo')
-plt.scatter(color[mask_c], Gmag[mask_c], s=10, c=P[mask_c], cmap='viridis', label='Cluster')
+plt.scatter(color[mask_c], Gmag[mask_c], s=2, c=P[mask_c], cmap='viridis', label='Cluster')
 plt.gca().invert_yaxis()
 plt.xlabel("BP - RP")
 plt.ylabel("G")
 plt.title("CMD con Probabilidades")
 plt.legend()
+plt.savefig(carpeta + "CosasErrNorm/CMDPintadoErr")
+plt.close()
+
+print(len(pmra), (1 - 0.95) * len(pmra))
+print(np.percentile(P, [0,10,25,50,75,90,95,99,100]))
+
+print("Estrellas con P>0.9:", np.sum(P>0.9))
+print("Estrellas con P>0.99:", np.sum(P>0.99))
+print("Max P:", np.max(P))
+
+r2 = ((pmra - mu_xc)**2 + (pmdec - mu_yc)**2) / sigma_c**2
+r = np.sqrt(r2)
+
+plt.hist(r[P>0.99], bins=50)
+plt.xlabel("Distancia en unidades de sigma")
+plt.show()
+
+print("Máxima distancia en sigma:", np.max(r[P>0.99]))
+
+plt.figure(figsize=(6,6))
+plt.scatter(pmra, pmdec, s=2, alpha=0.2)
+circle = plt.Circle((mu_xc, mu_yc), 3*sigma_c, fill=False)
+plt.gca().add_artist(circle)
 plt.show()
