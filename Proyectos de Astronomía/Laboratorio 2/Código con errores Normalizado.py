@@ -202,7 +202,7 @@ plt.savefig(carpeta + "CosasErrNorm/ProbPertU")
 plt.close()
 
 # CMD
-plt.figure(figsize=(6, 8))
+plt.figure(figsize=(10, 10))
 mask_c = P > 0.9
 plt.scatter(color[~mask_c], Gmag[~mask_c], s=2, alpha=0.2, c='gray', label='Campo')
 plt.scatter(color[mask_c], Gmag[mask_c], s=2, c=P[mask_c], cmap='viridis', label='Cluster')
@@ -214,8 +214,9 @@ plt.legend()
 plt.savefig(carpeta + "CosasErrNorm/CMDPintadoErr")
 plt.close()
 
+print("Estrellas totales vs 5 porciento esperado")
 print(len(pmra), (1 - 0.95) * len(pmra))
-print(np.percentile(P, [0,10,25,50,75,90,95,99,100]))
+print(np.percentile(P, [75,90,95,99,100]))
 
 print("Estrellas con P>0.9:", np.sum(P>0.9))
 print("Estrellas con P>0.99:", np.sum(P>0.99))
@@ -230,8 +231,3 @@ plt.show()
 
 print("Máxima distancia en sigma:", np.max(r[P>0.99]))
 
-plt.figure(figsize=(6,6))
-plt.scatter(pmra, pmdec, s=2, alpha=0.2)
-circle = plt.Circle((mu_xc, mu_yc), 3*sigma_c, fill=False)
-plt.gca().add_artist(circle)
-plt.show()
