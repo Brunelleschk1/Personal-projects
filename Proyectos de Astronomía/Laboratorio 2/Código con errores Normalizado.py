@@ -159,10 +159,6 @@ print("Field (modelo)                  =", N_field_model)
 print("============================================")
 
 # ============================================================
-# VPD CON LÍMITES PEDIDOS
-# ============================================================
-
-# ============================================================
 # VPD CON PROBABILIDADES (3 ZOOMS)
 # ============================================================
 
@@ -207,6 +203,7 @@ plt.title("CMD con Probabilidades")
 plt.legend()
 plt.savefig(carpeta + "CosasErrNorm/CMDPintadoErr")
 plt.close()
+
 print("75, 90, 95, 99, 100 percentiles de Probabilidad")
 print(np.percentile(P, [75,90,95,99,100]))
 
@@ -276,7 +273,8 @@ plt.ylabel("DEC")
 plt.title("Distribución espacial")
 plt.show()
 
-print("Densidad central:", density_cluster[0])
+#no entiendo para qué sirve esto último 
+print("Densidad central:", density_cluster[0]) 
 print("Densidad último bin:", density_cluster[-1])
 
 print("Contraste centro/fondo:", density_cluster[0] / density_cluster[-1])

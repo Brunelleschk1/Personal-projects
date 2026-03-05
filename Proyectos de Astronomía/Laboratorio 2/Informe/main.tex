@@ -1,0 +1,147 @@
+\documentclass[10pt,twocolumn]{article}
+
+% ------------------ PAQUETES ------------------
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{siunitx}
+\usepackage{authblk}
+\usepackage{abstract}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage{hyperref}
+
+\geometry{margin=1.8cm}
+
+% ------------------ FORMATO DE SECCIONES ------------------
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+% ------------------ TÍTULO ------------------
+\title{\textbf{Aproximación manual a la fotometría de apertura}\\Trabajo sobre el cúmulo abierto Messier 41}
+
+
+% ------------------ AUTORES ------------------
+\author[1]{Bruno Abello Laurent}
+
+\affil[1]{Universidad de Los Andes, Departamento de Física, Colombia}
+
+% Correos (puedes modificar)
+\renewcommand\Authands{, }
+\date{}
+
+\begin{document}
+
+\twocolumn[
+\maketitle
+\begin{center}
+\small
+\textit{Correo institucional:} \href{mailto:{b.abello@uniandes.edu.co}}{b.abello@uniandes.edu.co} \\
+\textit{Repositorio de GitHub: } \href{https://github.com/Brunelleschk1/Personal-projects}{Enlace}
+
+\end{center}
+
+\begin{abstract}
+\noindent
+Aquí va el resumen del informe. Debe describir brevemente el objetivo, metodología, resultados principales y conclusiones.
+\end{abstract}
+
+\noindent\textbf{Palabras clave:} palabra1, palabra2, palabra3
+\vspace{0.5cm}
+]
+
+% ------------------ CONTENIDO ------------------
+
+\section{Introducción}
+
+''En palabras simples, nos quedamos cortos cuando se trata de determinar la pertenencia de un centroide a un cúmulo. 
+Por lo tanto, a lo largo de la próxima semana se trabajará en los métodos que permiten una mejor determinación de pertenencia, 
+pero esta vez con datos de GAIA, debido a la imposibilidad de definir movimientos propios de cuerpos celestes con una sola imagen.''
+
+Con estas palabras se terminó el trabajo de la semana pasada. Efectivamente, nuestro método de estudio del cúmulo Messier 41 es bastante anticuado y, 
+como observamos, muy bueno para detectar estrellas pero muy malo para decidir cuáles son efectivamente parte del cúmulo. 
+
+El día de hoy, por ende, decidimos avanzar en nuestros conocimientos y nuestros métodos. Ahora, con dos mil estrellas cuyos datos se descargaron de GAIA dr3,
+vamos a interesarnos a un nuevo tipo de diagrama, el VPD(Vector Point Diagram). Este nos permite visualizar un cluster de una manera mucho más clara,
+y esto se debe a la particularidad que los astrofísicos detectaron sobre los cúmulos después de la segunda guerra mundial, y es que los movimientos propios
+de sus estrellas son supremamente similares entre sí. Claro, esto es normal ya que todas esas estrellas nacieron al tiempo y están muy juntas, en la 
+escala astronómica. 
+
+Mediante el estudio de los movimientos propios de las estrellas, junto con un ajuste de optimización de parámetros gaussianos, es posible determinar
+con una alta precisión qué estrellas pertenecen al cúmulo y qué estrellas pertenecen al campo. Este documento es un informe sobre los problemas que 
+presentó la implementación del método, sus limitaciones y sus poderosas fortalezas. 
+
+
+\subsection{Objetivos}
+
+Los objetivos que tenemos, en términos simples, son los siguientes:
+\begin{itemize}
+    \item Acercarnos a funciones computacionales cada vez más cercanas a lo que se utiliza en la astrofísica moderna.
+    \item Empezar a familiarizarnos con las particularidades de los algoritmos de aprendizaje automático e iterativo.
+    \item Aprender a leer un Vector Point Diagram y a interpretarlo.
+    \item Aprender a interpretar los resultados probabilísticos del método de optimización de parámetros.
+    \item Aprender a determinar qué es un problema en la programación y qué es un problema de los datos utiizados.
+\end{itemize}
+
+
+\section{Procedimiento}
+
+Similarmente al laboratorio anterior, el procedimiento fue, al igual que el método, iterativo. A través de la prueba y error, 
+se fue implementando una función de optimización de parámetros cada vez más ajustada a lo que se solía utilizar en la
+astrofísica. Esto se logró mediante la descarga de datos de GAIA en el área próxima a Messier 41 en un CSV, formato
+de fácil lectura en python. Para los valores iniciales que toma la función se utilizaron unos valores encontrados por
+otro estudiante del curso, por lo cual se esperaban valores similares a estos. 
+
+Una vez estos valores obtenidos, se imprimen y se realizan varias gráficas: un nuevo VPD con el cúmulo resaltado, 
+un histograma de probabilidades de pertenencia al cúmulo según cada estrella, y un CMD con las estrellas del 
+cúmulo resaltadas. 
+
+El proceso se puede describir como iterativo, ya que, como era de esperarse, estuvo lleno de inconvenientes y
+de revisiones.
+
+\section{Problemas presentados y soluciones aplicadas}
+
+\begin{enumerate}
+  \item Por la cantidad de dudas que generan los parámetros ajustados, el código se hizo en tres documentos separados. 
+  El primero fue bastante sencillo, con errores de normalización y de cálculos. El siguiente arregló muchas cosas, pero no la normalización, 
+  y el último normalizó la gaussiana(por fin) y fue donde empezó a ser importante hablar de los demás problemas importantes.
+  \item El método no convergió a los valores esperados para la dispersión del cluster(0.2633 esperado vs 0.1637 obtenido),
+   mu x y y del campo(esperados -0.7410 y 0.6275 vs -0.5297 y 0.3883 obtenidos), 
+   sigma y del campo(7.3140 vs 6.6971) y n del campo(0.9455 vs 0.6798).
+   \item Debido a esto, se empezaron a aplicar una serie de controles y de maneras de ver si el método computacional estaba fallando. 
+   \begin{enumerate}
+    \item No tenía un problema con el orden de interpretación y asimilación de los parámetros de las gaussianas, la función recibía todo en orden.
+    \item La normalización de la función no jugó un papel importante en devolver los parámetros a lo esperado, es más disminuyó el nf en dos puntos.
+    \item La coloración por probabilidad de pertenencia del VPD no mostró estrellas alejadas del "cúmulo" con probabilidades remotamente altas de pertenecer. 
+    \item Los conteos con threshold de 0.9 o más de probabilidad de pertenecer muestran una cantidad de estrellas supremamente cercana a la encontrada por nf y por demás métodos.
+    \item El histograma de probabilidades, si bien en escala logarítmica no parece tan drástico, es supremamente binario en escala normal en cuanto a pertenecer o no.
+    \item los percentiles más altos(>75) de la distribución de probabilidad son todos superiores a 0.9.
+    \item 529 estrellas tienen una probabilidad de 99 porciento de pertenecer al cúmulo.
+    \item La distancia en unidades de sigma entre estas 529 estrellas no supera los 2.7 sigmas, por lo que no se tratan de un montón de outliers que la optimización no detectó.
+    \item La densidad de estrellas en el cúmulo decrece con la distancia en minutos de arco, lo que es esperable.
+    \item La distribución de estrellas pertenecientes en un diagrama de declinación recta contra declinación disminuye conforme nos vamos alejando del centro, como se espera. 
+   \end{enumerate}
+\end{enumerate}
+
+\subsection{Figuras de los problemas}
+
+\section{Resultados}
+
+
+\section{Conclusiones}
+
+\section*{Referencias}
+
+\bibliographystyle{apalike}
+\bibliography{refs}
+
+\section*{Comentarios al margen}
+
+
+\section*{Imágenes adicionales}
+
+\end{document}
