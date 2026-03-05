@@ -66,7 +66,7 @@ def ajuste_membresia_vpd_completo(pmra, pmdec, e_ra, e_dec, initial_guess):
     bounds = [
         (-20, 20), (-30, 30), (1e-3, 5),     # Cluster
         (-20, 20), (-30, 30), (1e-3, 20),    # Field pos/sigma
-        (1e-3, 20), (-0.99, 0.99),           # Sigma_y_f, rho
+        (1e-3, 10), (-0.99, 0.99),           # Sigma_y_f, rho
         (1e-4, 0.9999)                       # n_f
     ]
 
@@ -92,7 +92,8 @@ def ajuste_membresia_vpd_completo(pmra, pmdec, e_ra, e_dec, initial_guess):
     phi_f_final = norm_f * np.exp(-exp_f)
 
     # Fórmula Bayesiana: P = (Nc * Phic) / (Nc * Phic + Nf * Phif)
-    P_cluster = ((1 - n_f_opt) * phi_c_final) / ((1 - n_f_opt) * phi_c_final + n_f_opt * phi_f_final)
+    den = (1 - n_f_opt) * phi_c_final + n_f_opt * phi_f_final + 1e-15
+    P_cluster = ((1 - n_f_opt) * phi_c_final) / den
 
     return result.x, P_cluster, result
 
@@ -174,7 +175,7 @@ for i in range(3):
     if ylims[i]: axs[i].set_ylim(ylims[i])
     axs[i].grid(alpha=0.3)
     circle = plt.Circle((mu_xc, mu_yc), 3*sigma_c, fill=False)
-    plt.gca().add_artist(circle)
+    axs[i].add_artist(circle)
 
 plt.colorbar(sc, ax=axs[2], label='Probabilidad Membresía')
 plt.tight_layout()
@@ -278,3 +279,37 @@ print("Densidad central:", density_cluster[0])
 print("Densidad último bin:", density_cluster[-1])
 
 print("Contraste centro/fondo:", density_cluster[0] / density_cluster[-1])
+
+def plot_vpd_prob_nonzero(pmra, pmdec, P, mu_xc, mu_yc, sigma_c):
+
+    mask = P > 0.85
+
+    plt.figure(figsize=(8,10))
+
+    sc = plt.scatter(
+        pmra[mask],
+        pmdec[mask],
+        c=P[mask],
+        s=5,
+        cmap='viridis',
+        alpha=0.7
+    )
+
+    #plt.xlim(-10, 10)
+    #plt.ylim(-10, 10)
+
+    plt.grid(alpha=0.3)
+    plt.xlabel("pmRA (mas/yr)")
+    plt.ylabel("pmDEC (mas/yr)")
+    plt.title("VPD (P > 0)")
+
+    circle = plt.Circle((mu_xc, mu_yc), 3*sigma_c, fill=False)
+    plt.gca().add_artist(circle)
+
+    plt.colorbar(sc, label="Probabilidad de membresía")
+
+    plt.tight_layout()
+    plt.savefig(carpeta + "CosasErrNorm/VPD_Pmayor0_zoomcluster")
+    plt.close()
+    
+plot_vpd_prob_nonzero(pmra, pmdec, P, mu_xc, mu_yc, sigma_c)
