@@ -41,7 +41,7 @@
 \begin{center}
 \small
 \textit{Correo institucional:} \href{mailto:{b.abello@uniandes.edu.co}}{b.abello@uniandes.edu.co} \\
-\textit{Repositorio de GitHub: } \href{https://github.com/Brunelleschk1/Personal-projects}{Enlace}
+\textit{Repositorio de GitHub: } \href{https://github.com/Brunelleschk1/Proyectos de Astronomía/Laboratorio 2}{Enlace}
 
 \end{center}
 
@@ -124,13 +124,51 @@ de revisiones.
     \item La distancia en unidades de sigma entre estas 529 estrellas no supera los 2.7 sigmas, por lo que no se tratan de un montón de outliers que la optimización no detectó.
     \item La densidad de estrellas en el cúmulo decrece con la distancia en minutos de arco, lo que es esperable.
     \item La distribución de estrellas pertenecientes en un diagrama de declinación recta contra declinación disminuye conforme nos vamos alejando del centro, como se espera. 
+    \item Se hizo un VPD especial para las estrellas con probabilidades altas de pertenecer al cúmulo y el resultado estuvo bien definido en los límites. 
    \end{enumerate}
 \end{enumerate}
 
+Con esto dicho, se considera que la mejor manera de presentar lo que siguió a continuación es en la sección de análisis de resultados. 
 \subsection{Figuras de los problemas}
 
 \section{Resultados}
 
+
+Evidentemente, el set de datos presentaba algún problema:  El cluster se ve perfectamente y está extrañamente bien definido, con unas probabilidades altísimas para muchas estrellas.
+Después de tantas pruebas, la única respuesta lógica era que el set de datos tenía algo extraño. Gracias al archivo de datos de otro compañero, se hicieron las mismas pruebas, 
+corriendo el mismo código, para el nuevo archivo. El resultado fue flagrante: 5 porciento de pertenencia al cúmulo por parte de la población, valores de optimización tales y como
+se esperaban, unas 100 estrellas en el cúmulo contra las más de 500 encontradas anteriormente, pocas estrellas con una probabilidad tan alta de pertenecer al cúmulo, 
+pero una buena población por encima de 0.7. Entonces, se aplicó un test directamente a los archivos .csv para determinar su correlación. Resultado, una sola estrella 
+presente entre los dos archivos. Todo el análisis inicial, que duró varios días, se había hecho sobre una región del cielo que, sí, efectivamente, posee un cúmulo, 
+pero que claramente no es Messier 41. Las semejanzas son, sin embargo, impresionantes, ya que ambos cúmulos se encuentran más o menos en la misma región de sus respectivos
+VPD, y algunos de sus datos de optimización son muy similares. 
+
+Ya con el set de datos correcto, se puede empezar a hablar mejor de lo que encuentra el código. Para simplificar las cosas, y no tener que buscar manualmente en un VPD 
+cada una de las estrellas coloreadas, se realizó un VPD que tome las estrellas con probabilidad superior a un threshold y las muestre. De esta manera, 
+se obtiene un VPD de buena calidad que muestra correctamente el cluster y sus alrededores. Se ven claramente las estrellas que pertenecen y las que pueden pertenecer, 
+y el CMD ya presenta resultados en una región aceptable y esperada. Un par de preguntas resultan de la distribución de probabilidades, ya que es cierto que no es
+una distribución tan binaria como se espera. Sin embargo, se obtiene en el VPD un resultado coherente y que parece un cúmulo bien definido. 
+
+Otro problema notable es el gráfico de ascención recta contra declinación de este set de datos. Lo que empezó como una manera de asegurarse de que el ''cúmulo''
+de 500 estrellas era de verdad un cúmulo terminó siendo una herramienta útil para dudar del cúmulo M41. Se supone que, en este gráfico, los valores correspondientes
+a las estrellas pertenecientes al cúmulo deberían estar en una región cercana, y cercana al centro del gráfico. Sin embargo, lo que presenta este caso es que no hay
+tanta claridad en cuanto a dónde está el cúmulo en este mismo. Algunas estrellas están muy arriba, otras muy abajo, otras en el medio, casi como una diagonal 
+ancha que atraviesa el diagrama de abajo a la izquierda a arriba a la derecha. También se realizó un estudio de la distancia en sigmas entre la población con 
+más de 0.7 de probabilidad de pertenecer al cúmulo en cuanto a sus proper motions, y se encontraron un par de estrellas por encima de los 5 sigmas, lo que indica
+que el cúmulo ya se está extendiendo un poco por encima de lo que se ve normalmente. 
+
+Por último, solamente 3 estrellas pertenecen con más de 99 porciento de confianza, y solo 79 con más del 70. Estos números son bastante contrariantes,
+ya que se esperarían unos 100 miembros en el cluster. Sin embargo, el CMD muestra muchos miembros en la zona de enanas blancas,
+antes de entrar a la secuencia principal, y pocos miembros en la misma, lo que es de esperarse en un estudio como este. 
+Es decir, el resultado obtenido, si bien es poco satisfactorio, es lo que se esperaba obtener, y posiblemente los miembros de la secuencia principal
+que no aparecen en nuestro CMD son precisamente los que faltan en nuestro conteo probabilístico. 
+
+Si el informe se refiere a este análisis como exactamente lo que se esperaba, es porque es exactamente lo que se esperaba: un cúmulo con miembros 
+faltantes, dando lugar a la necesidad de un nuevo método de análisis de cuerpos celestes para poder determinar su presencia a un cúmulo. 
+Es, sin embargo, más interesante en el caso particular de este informe, hablar de lo extraño del caso: un cúmulo de más de 500 estrellas 
+en una región del cielo que supuestamente es cercana a la dirección de Messier 41, pero que solo comparte una estrella con la región de
+dicho cúmulo. ¿Qué causa que una región del cielo tenga tal densidad de estrellas con tanta probabilidad de pertenencia? 
+¿O será simplemente una coincidencia en los parámetros de PM? 
 
 \section{Conclusiones}
 

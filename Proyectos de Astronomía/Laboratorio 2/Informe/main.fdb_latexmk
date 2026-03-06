@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1772680673.54487 "main.aux" "main.bbl" "main" 1772682227.524 0
+["bibtex main"] 1772769064.01001 "main.aux" "main.bbl" "main" 1772769065.48873 0
   "./refs.bib" 1772678789 285 36ea42fefa4d20fdc0c44706c0f71ee7 ""
   "C:/Users/Bruno Abello/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/apalike.bst" 1291972791 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "main.aux" 1772682226 1220 5f7f850d762256ded766f1be630ba356 "pdflatex"
+  "main.aux" 1772769064 1220 e3c59ac301f1e689940f7a2d455a52a6 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1772682226.24294 "c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 2/Informe/main.tex" "main.pdf" "main" 1772682227.52456 0
+["pdflatex"] 1772769064.23305 "c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 2/Informe/main.tex" "main.pdf" "main" 1772769065.48942 0
   "C:/Users/Bruno Abello/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1772148772 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Bruno Abello/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx0900.pk" 1772072797 22504 fbaaf10e1bdb092a1c81b6132fe10c79 ""
   "C:/Users/Bruno Abello/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1000.pk" 1772072796 25420 66cc0c35af24db263f1119579c5a9d8e ""
@@ -117,11 +117,11 @@
   "C:/Users/Bruno Abello/AppData/Local/Programs/MiKTeX/tex/latex/translations/dicts/translations-basic-dictionary-spanish.trsl" 1644048522 5850 2ef40dd7b6b9ada125cd1d90b7f7b307 ""
   "C:/Users/Bruno Abello/AppData/Local/Programs/MiKTeX/tex/latex/translations/translations.sty" 1644048522 44247 2188b95d0ee74e31eca4d316263c58a7 ""
   "C:/Users/Bruno Abello/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 2/Informe/main.tex" 1772682225 7615 c3c7466657ee4be9c9dbd0318a1ff853 ""
-  "main.aux" 1772682226 1220 5f7f850d762256ded766f1be630ba356 "pdflatex"
-  "main.bbl" 1772680673 52 0eba253fc001332e731e8aba3f23127b "bibtex main"
-  "main.out" 1772682226 973 41876a0c0e2e1f380cdec7bae10637bf "pdflatex"
-  "main.tex" 1772682225 7615 c3c7466657ee4be9c9dbd0318a1ff853 ""
+  "c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 2/Informe/main.tex" 1772769062 12538 763e5b27009a521292702607200bc030 ""
+  "main.aux" 1772769064 1220 e3c59ac301f1e689940f7a2d455a52a6 "pdflatex"
+  "main.bbl" 1772769064 52 0eba253fc001332e731e8aba3f23127b "bibtex main"
+  "main.out" 1772769064 973 41876a0c0e2e1f380cdec7bae10637bf "pdflatex"
+  "main.tex" 1772769062 12538 763e5b27009a521292702607200bc030 ""
   (generated)
   "main.aux"
   "main.log"
