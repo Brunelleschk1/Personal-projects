@@ -15,6 +15,7 @@
 \usepackage{multicol}
 \usepackage{hyperref}
 \usepackage{currfile}
+\usepackage{float}
 
 \geometry{margin=1.8cm}
 
@@ -58,7 +59,7 @@ Aquí va el resumen del informe. Debe describir brevemente el objetivo, metodolo
 
 \section{Introducción}
 
-''En palabras simples, nos quedamos cortos cuando se trata de determinar la pertenencia de un centroide a un cúmulo. 
+``En palabras simples, nos quedamos cortos cuando se trata de determinar la pertenencia de un centroide a un cúmulo. 
 Por lo tanto, a lo largo de la próxima semana se trabajará en los métodos que permiten una mejor determinación de pertenencia, 
 pero esta vez con datos de GAIA, debido a la imposibilidad de definir movimientos propios de cuerpos celestes con una sola imagen.''
 
@@ -115,14 +116,14 @@ de revisiones.
    \begin{enumerate}
     \item No tenía un problema con el orden de interpretación y asimilación de los parámetros de las gaussianas, la función recibía todo en orden.
     \item La normalización de la función no jugó un papel importante en devolver los parámetros a lo esperado, es más disminuyó el nf en dos puntos.
-    \item La coloración por probabilidad de pertenencia del VPD no mostró estrellas alejadas del "cúmulo" con probabilidades remotamente altas de pertenecer\ref{VPDViejoZOOM}. 
+    \item La coloración por probabilidad de pertenencia del VPD no mostró estrellas alejadas del "cúmulo" con probabilidades remotamente altas de pertenecer(Fig.~\ref{VPDViejoZOOM}). 
     \item Los conteos con threshold de 0.9 o más de probabilidad de pertenecer muestran una cantidad de estrellas supremamente cercana a la encontrada por nf y por demás métodos.
-    \item El histograma de probabilidades, si bien en escala logarítmica no parece tan drástico, es supremamente binario en escala normal en cuanto a pertenecer o no \ref{ProbPertViejo}.
+    \item El histograma de probabilidades, si bien en escala logarítmica no parece tan drástico, es supremamente binario en escala normal en cuanto a pertenecer o no (Fig.~\ref{ProbPertViejo}).
     \item los percentiles más altos(>75) de la distribución de probabilidad dieron todos superiores a 0.9, confirmando la binariedad de la probabilidad de pertenencia.
     \item 529 estrellas tienen una probabilidad de 99 porciento de pertenecer al cúmulo.
-    \item La distancia en unidades de sigma entre estas 529 estrellas no supera los 2.7 sigmas, por lo que no se tratan de un montón de outliers que la optimización no detectó \ref{DistSigmViejo}.
+    \item La distancia en unidades de sigma entre estas 529 estrellas no supera los 2.7 sigmas, por lo que no se tratan de un montón de outliers que la optimización no detectó (Fig.~\ref{DistSigmViejo}).
     \item La densidad de estrellas en el cúmulo decrece con la distancia en minutos de arco, lo que es esperable.
-    \item La distribución de estrellas pertenecientes en un diagrama de declinación recta contra declinación disminuye conforme nos vamos alejando del centro, como se espera. \ref{RADecViejo} 
+    \item La distribución de estrellas pertenecientes en un diagrama de declinación recta contra declinación disminuye conforme nos vamos alejando del centro, como se espera. (Fig.~\ref{RADecViejo}) 
    \end{enumerate}
 \end{enumerate}
 
@@ -130,7 +131,7 @@ Con esto dicho, se considera que la mejor manera de presentar lo que siguió a c
 
 \subsection{Figuras de los problemas}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{../CosasErrNorm/VPD_Pmayor0_zoomcluster.png}
     \caption{VPD del primer set de datos utilizado. Se puede observar una gran densidad de estrellas en el cúmulo, con muy poquitas por fuera 
@@ -138,14 +139,14 @@ Con esto dicho, se considera que la mejor manera de presentar lo que siguió a c
     \label{VPDViejoZOOM}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{../CosasErrNorm/ProbPertU.png}
     \caption{Gráfico de probabilidad de pertenencia en función de cada estrella. Se aprecia que la distribución es supremamente binaria. }
     \label{ProbPertViejo}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{../CosasErrNorm/Distancia_en_sigmas.png}
     \caption{Distancia, en sigmas de la distribución, entre las estrellas encontradas por la función de optimización de parámetros. 
@@ -153,7 +154,7 @@ Con esto dicho, se considera que la mejor manera de presentar lo que siguió a c
     \label{DistSigmViejo}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{../CosasErrNorm/Distribución_espacial_RA_Dec.png}
     \caption{Mapa de la ascención recta contra la declinación de cada elemento analizado. En anaranjado se muestran los pertenecientes 
@@ -180,35 +181,68 @@ Después de tantas pruebas, la única respuesta lógica era que el set de datos 
 corriendo el mismo código, para el nuevo archivo. Estas pruebas están en la ruta Laboratorio 2/Lab 2 Otro csv.
 El resultado fue flagrante: 5 porciento de pertenencia al cúmulo por parte de la población, valores de optimización tales y como
 se esperaban, unas 100 estrellas en el cúmulo contra las más de 500 encontradas anteriormente, pocas estrellas con una probabilidad tan alta de pertenecer al cúmulo, 
-pero una buena población por encima de 0.7.AQUI VA EL DIAGRAMA EN U NUEVO. Entonces, se aplicó un test directamente a los archivos .csv para determinar su correlación. 
+pero una buena población por encima de 0.7. (Fig.~\ref{PertUNuevoLog}) Entonces, se aplicó un test directamente a los archivos .csv para determinar su correlación. 
 Resultado, una sola estrella presente entre los dos archivos. Todo el análisis inicial, que duró varios días, se había hecho sobre una región del cielo que, 
 sí, efectivamente, posee un cúmulo, pero que claramente no es Messier 41. Las semejanzas son, sin embargo, impresionantes, 
 ya que ambos cúmulos se encuentran más o menos en la misma región de sus respectivos VPD, y algunos de sus datos de optimización son muy similares. 
 
-\begin{figure}[h]
+Ya con el set de datos correcto, se puede empezar a hablar mejor de lo que encuentra el código. Para simplificar las cosas, y no tener que buscar manualmente en un VPD 
+cada una de las estrellas coloreadas, se realizó un VPD que tome las estrellas con probabilidad superior a un threshold y las muestre. De esta manera, 
+se obtiene un VPD de buena calidad que muestra correctamente el cluster y sus alrededores. (Fig.~\ref{VPDNuevoZOOM}). Se ven claramente las estrellas que pertenecen y las que pueden pertenecer, 
+y el CMD ya presenta resultados en una región aceptable y esperada. (Fig.~\ref{CMDNuevo}). Un par de preguntas resultan de la distribución de probabilidades, ya que es cierto que no es
+una distribución tan binaria como se espera.(Fig.~\ref{PertUNuevoLog}). Sin embargo, se obtiene en el VPD un resultado coherente y que parece un cúmulo bien definido. 
+
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{../Lab 2 Otro csv/CosasErrNorm/ProbPertU}
+    \includegraphics[width=0.8\linewidth]{../Lab2Otrocsv/CosasErrNorm/ProbPertU.png}
     \caption{Diagrama de probabilidad de pertenencia en función de cada estrella para el nuevo set de datos en escala logarítmica.
-    Una comparación al histograma sin esta escala se encuentra en el anexo. }
+    Una comparación al histograma sin esta escala se encuentra en el anexo. \ref{PertUNuevo}}
     \label{PertUNuevoLog}
 \end{figure}
 
-Ya con el set de datos correcto, se puede empezar a hablar mejor de lo que encuentra el código. Para simplificar las cosas, y no tener que buscar manualmente en un VPD 
-cada una de las estrellas coloreadas, se realizó un VPD que tome las estrellas con probabilidad superior a un threshold y las muestre. De esta manera, 
-se obtiene un VPD de buena calidad que muestra correctamente el cluster y sus alrededores. VPD NUEVO ZOOMEADO. Se ven claramente las estrellas que pertenecen y las que pueden pertenecer, 
-y el CMD ya presenta resultados en una región aceptable y esperada. CMD NUEVO VS CMD VIEJO. Un par de preguntas resultan de la distribución de probabilidades, ya que es cierto que no es
-una distribución tan binaria como se espera.DIAGRAMA EN U REFERENCIADO DE NUEVO. Sin embargo, se obtiene en el VPD un resultado coherente y que parece un cúmulo bien definido. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../Lab2Otrocsv/CosasErrNorm/VPD_Pmayor0_zoomcluster.png}
+    \caption{VPD de los miembros con P>0.7 de pertenecer al cúmulo. Se oberva una densidad mucho menor de estrellas que en (Fig.~\ref{VPDViejoZOOM}).
+    Asimismo, se ve que ciertas estrellas dentro de la zona resaltada no tienen una probabilidad tan alta de pertenecer al cúmulo.}
+    \label{VPDNuevoZOOM}
+\end{figure}
 
-Otro problema notable es el gráfico de ascención recta contra declinación de este set de datos. OBVIAMENTE RA VS DEC NUEVO. Lo que empezó como una manera de asegurarse de que el ''cúmulo''
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../Lab2Otrocsv/CosasErrNorm/CMDPintadoErr.png}
+    \caption{CMD del nuevo set de datos. Se observa una población mayoritariamente en la parte inicial de la secuencia principal, tal y como se esperaba
+    al iniciar este laboratorio. Comparado al CMD viejo, se nota que los resultados cuadran con lo esperado. (Fig.~\ref{CMDViejo}) }
+    \label{CMDNuevo}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../Lab2Otrocsv/CosasErrNorm/RADEC.png}
+    \caption{Diagrama de declinación contra ascención recta. Comparado a (Fig.~\ref{RADecViejo}), se observa una zona diagonal dibujada, 
+    a comparación de la densidad central que se diluye hacia los bordes. Esto significa que nuestro cúmulo es ahora mucho más pequeño
+    y menos definido. }
+    \label{RADECNuevo}
+\end{figure}
+
+Otro problema notable es el gráfico de ascención recta contra declinación de este set de datos. (Fig.~\ref{RADECNuevo}). Lo que empezó como una manera de asegurarse de que el ''cúmulo''
 de 500 estrellas era de verdad un cúmulo terminó siendo una herramienta útil para dudar del cúmulo M41. Se supone que, en este gráfico, los valores correspondientes
 a las estrellas pertenecientes al cúmulo deberían estar en una región cercana, y cercana al centro del gráfico. Sin embargo, lo que presenta este caso es que no hay
 tanta claridad en cuanto a dónde está el cúmulo en este mismo. Algunas estrellas están muy arriba, otras muy abajo, otras en el medio, casi como una diagonal 
 ancha que atraviesa el diagrama de abajo a la izquierda a arriba a la derecha. También se realizó un estudio de la distancia en sigmas entre la población con 
 más de 0.7 de probabilidad de pertenecer al cúmulo en cuanto a sus proper motions, y se encontraron un par de estrellas por encima de los 5 sigmas, lo que indica
-que el cúmulo ya se está extendiendo un poco por encima de lo que se ve normalmente. REFERENCIAR ELSIGMAS.
+que el cúmulo ya se está extendiendo un poco por encima de lo que se ve normalmente. (Fig.~\ref{SIGMANuevo}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../Lab2Otrocsv/CosasErrNorm/Sigmas.png}
+    \caption{Histograma de la distancia en sigmas entre las estrellas con P>0.7 de pertenecer a M41. Se observan distancias más grandes que en el anterior, (Fig.~\ref{DistSigmViejo}) pero se siguen teniendo muchas 
+    estrellas cercanas a lo esperado y solo unas cuantas por encima de los 5 sigmas, lo que significa que, a pesar de estar más diluido que el anterior, sigue siendo un cúmulo bien definido.}
+    \label{SIGMANuevo}
+\end{figure}
 
 Por último, solamente 3 estrellas pertenecen con más de 99 porciento de confianza, y solo 79 con más del 70. Estos números son bastante contrariantes,
-ya que se esperarían unos 100 miembros en el cluster. Sin embargo, el CMD muestra muchos miembros en la zona de enanas blancas,
+ya que se esperarían unos 100 miembros en el cluster\cite{wikipedia_messier41}. Sin embargo, el CMD muestra muchos miembros en la zona de enanas blancas,
 antes de entrar a la secuencia principal, y pocos miembros en la misma, lo que es de esperarse en un estudio como este. 
 Es decir, el resultado obtenido, si bien es poco satisfactorio, es lo que se esperaba obtener, y posiblemente los miembros de la secuencia principal
 que no aparecen en nuestro CMD son precisamente los que faltan en nuestro conteo probabilístico. 
@@ -236,12 +270,20 @@ de los métodos de Machine Learning, que podremos importar miles de datos y aún
 
 \section*{Imágenes adicionales}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{../Lab 2 Otro csv/CosasErrNorm/ProbPertUNoLog}
+    \includegraphics[width=0.8\linewidth]{../Lab2Otrocsv/CosasErrNorm/ProbPertUNoLog.png}
     \caption{Diagrama de probabilidad de pertenencia en función de cada estrella para el nuevo set de datos.
     Se observa a duras penas la diferencia entre la pertenencia más alta al cúmulo y las probabilidades inferiores. }
-    \label{PertUNuevoLog}
+    \label{PertUNuevo}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../CosasErrNorm/CMDPintadoErr.png}
+    \caption{CMD del primer set de datos estudiado. Se puede evidenciar una población perteneciene casi exclusivamente perteneciente a 
+    La secuencia principal, algo que no es lo esperado cuando se trabaja con este método de optimización de parámetros.}
+    \label{CMDViejo}
 \end{figure}
 
 \end{document}
