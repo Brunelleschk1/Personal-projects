@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-carpeta = "Proyectos de Astronomía/Lab 2 Otro csv/"
+carpeta = "Proyectos de Astronomía/Laboratorio 2/Lab 2 Otro csv/"
 
 df1 = pd.read_csv(carpeta + "DatosM41Lab2")
 df2 = pd.read_csv(carpeta + "M41_pm_lab2.csv")

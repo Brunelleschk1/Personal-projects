@@ -14,6 +14,7 @@
 \usepackage{titlesec}
 \usepackage{multicol}
 \usepackage{hyperref}
+\usepackage{currfile}
 
 \geometry{margin=1.8cm}
 
@@ -41,8 +42,7 @@
 \begin{center}
 \small
 \textit{Correo institucional:} \href{mailto:{b.abello@uniandes.edu.co}}{b.abello@uniandes.edu.co} \\
-\textit{Repositorio de GitHub: } \href{https://github.com/Brunelleschk1/Proyectos de Astronomía/Laboratorio 2}{Enlace}
-
+\textit{Repositorio de GitHub: } \href{https://github.com/Brunelleschk1/Personal-projects/tree/main/Proyectos\%20de\%20Astronom\%C3\%ADa/Laboratorio\%202}{Repositorio del laboratorio}
 \end{center}
 
 \begin{abstract}
@@ -110,52 +110,102 @@ de revisiones.
   El primero fue bastante sencillo, con errores de normalización y de cálculos. El siguiente arregló muchas cosas, pero no la normalización, 
   y el último normalizó la gaussiana(por fin) y fue donde empezó a ser importante hablar de los demás problemas importantes.
   \item El método no convergió a los valores esperados para la dispersión del cluster(0.2633 esperado vs 0.1637 obtenido),
-   mu x y y del campo(esperados -0.7410 y 0.6275 vs -0.5297 y 0.3883 obtenidos), 
-   sigma y del campo(7.3140 vs 6.6971) y n del campo(0.9455 vs 0.6798).
+   mu x y y del campo(esperados -0.7410 y 0.6275 vs -0.5297 y 0.3883 obtenidos), sigma y del campo(7.3140 vs 6.6971) y n del campo(0.9455 vs 0.6798).
    \item Debido a esto, se empezaron a aplicar una serie de controles y de maneras de ver si el método computacional estaba fallando. 
    \begin{enumerate}
     \item No tenía un problema con el orden de interpretación y asimilación de los parámetros de las gaussianas, la función recibía todo en orden.
     \item La normalización de la función no jugó un papel importante en devolver los parámetros a lo esperado, es más disminuyó el nf en dos puntos.
-    \item La coloración por probabilidad de pertenencia del VPD no mostró estrellas alejadas del "cúmulo" con probabilidades remotamente altas de pertenecer. 
+    \item La coloración por probabilidad de pertenencia del VPD no mostró estrellas alejadas del "cúmulo" con probabilidades remotamente altas de pertenecer\ref{VPDViejoZOOM}. 
     \item Los conteos con threshold de 0.9 o más de probabilidad de pertenecer muestran una cantidad de estrellas supremamente cercana a la encontrada por nf y por demás métodos.
-    \item El histograma de probabilidades, si bien en escala logarítmica no parece tan drástico, es supremamente binario en escala normal en cuanto a pertenecer o no.
-    \item los percentiles más altos(>75) de la distribución de probabilidad son todos superiores a 0.9.
+    \item El histograma de probabilidades, si bien en escala logarítmica no parece tan drástico, es supremamente binario en escala normal en cuanto a pertenecer o no \ref{ProbPertViejo}.
+    \item los percentiles más altos(>75) de la distribución de probabilidad dieron todos superiores a 0.9, confirmando la binariedad de la probabilidad de pertenencia.
     \item 529 estrellas tienen una probabilidad de 99 porciento de pertenecer al cúmulo.
-    \item La distancia en unidades de sigma entre estas 529 estrellas no supera los 2.7 sigmas, por lo que no se tratan de un montón de outliers que la optimización no detectó.
+    \item La distancia en unidades de sigma entre estas 529 estrellas no supera los 2.7 sigmas, por lo que no se tratan de un montón de outliers que la optimización no detectó \ref{DistSigmViejo}.
     \item La densidad de estrellas en el cúmulo decrece con la distancia en minutos de arco, lo que es esperable.
-    \item La distribución de estrellas pertenecientes en un diagrama de declinación recta contra declinación disminuye conforme nos vamos alejando del centro, como se espera. 
-    \item Se hizo un VPD especial para las estrellas con probabilidades altas de pertenecer al cúmulo y el resultado estuvo bien definido en los límites. 
+    \item La distribución de estrellas pertenecientes en un diagrama de declinación recta contra declinación disminuye conforme nos vamos alejando del centro, como se espera. \ref{RADecViejo} 
    \end{enumerate}
 \end{enumerate}
 
 Con esto dicho, se considera que la mejor manera de presentar lo que siguió a continuación es en la sección de análisis de resultados. 
+
 \subsection{Figuras de los problemas}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../CosasErrNorm/VPD_Pmayor0_zoomcluster.png}
+    \caption{VPD del primer set de datos utilizado. Se puede observar una gran densidad de estrellas en el cúmulo, con muy poquitas por fuera 
+    con probabilidades de pertenencia mucho más bajas}
+    \label{VPDViejoZOOM}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../CosasErrNorm/ProbPertU.png}
+    \caption{Gráfico de probabilidad de pertenencia en función de cada estrella. Se aprecia que la distribución es supremamente binaria. }
+    \label{ProbPertViejo}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../CosasErrNorm/Distancia_en_sigmas.png}
+    \caption{Distancia, en sigmas de la distribución, entre las estrellas encontradas por la función de optimización de parámetros. 
+    Una distancia tan baja supone que los elementos sí pertenecen todos al cúmulo, sin excepciones reales.}
+    \label{DistSigmViejo}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../CosasErrNorm/Distribución_espacial_RA_Dec.png}
+    \caption{Mapa de la ascención recta contra la declinación de cada elemento analizado. En anaranjado se muestran los pertenecientes 
+    al cúmulo, mostrando que, efectivamente, la mayoría se encuentran en una zona de alta densidad hacia el centro de la agrupación. }
+    \label{RADecViejo}
+\end{figure}
+
+Otros resultados mencionados incluyen: 
+
+75, 90, 95, 99, 100 percentiles de Probabilidad
+
+[0.99345065 0.9981174  0.99854258 0.99877663 0.99882815]
+
+Estrellas con P>0.9: 599
+
+Estrellas con P>0.99: 529
+
+Tal y como los imprime el código: "Código con errores Normalizado.py", disponible en la ruta Laboratorio 2/Código con errores Normalizado.py 
 
 \section{Resultados}
 
-
 Evidentemente, el set de datos presentaba algún problema:  El cluster se ve perfectamente y está extrañamente bien definido, con unas probabilidades altísimas para muchas estrellas.
 Después de tantas pruebas, la única respuesta lógica era que el set de datos tenía algo extraño. Gracias al archivo de datos de otro compañero, se hicieron las mismas pruebas, 
-corriendo el mismo código, para el nuevo archivo. El resultado fue flagrante: 5 porciento de pertenencia al cúmulo por parte de la población, valores de optimización tales y como
+corriendo el mismo código, para el nuevo archivo. Estas pruebas están en la ruta Laboratorio 2/Lab 2 Otro csv.
+El resultado fue flagrante: 5 porciento de pertenencia al cúmulo por parte de la población, valores de optimización tales y como
 se esperaban, unas 100 estrellas en el cúmulo contra las más de 500 encontradas anteriormente, pocas estrellas con una probabilidad tan alta de pertenecer al cúmulo, 
-pero una buena población por encima de 0.7. Entonces, se aplicó un test directamente a los archivos .csv para determinar su correlación. Resultado, una sola estrella 
-presente entre los dos archivos. Todo el análisis inicial, que duró varios días, se había hecho sobre una región del cielo que, sí, efectivamente, posee un cúmulo, 
-pero que claramente no es Messier 41. Las semejanzas son, sin embargo, impresionantes, ya que ambos cúmulos se encuentran más o menos en la misma región de sus respectivos
-VPD, y algunos de sus datos de optimización son muy similares. 
+pero una buena población por encima de 0.7.AQUI VA EL DIAGRAMA EN U NUEVO. Entonces, se aplicó un test directamente a los archivos .csv para determinar su correlación. 
+Resultado, una sola estrella presente entre los dos archivos. Todo el análisis inicial, que duró varios días, se había hecho sobre una región del cielo que, 
+sí, efectivamente, posee un cúmulo, pero que claramente no es Messier 41. Las semejanzas son, sin embargo, impresionantes, 
+ya que ambos cúmulos se encuentran más o menos en la misma región de sus respectivos VPD, y algunos de sus datos de optimización son muy similares. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../Lab 2 Otro csv/CosasErrNorm/ProbPertU}
+    \caption{Diagrama de probabilidad de pertenencia en función de cada estrella para el nuevo set de datos en escala logarítmica.
+    Una comparación al histograma sin esta escala se encuentra en el anexo. }
+    \label{PertUNuevoLog}
+\end{figure}
 
 Ya con el set de datos correcto, se puede empezar a hablar mejor de lo que encuentra el código. Para simplificar las cosas, y no tener que buscar manualmente en un VPD 
 cada una de las estrellas coloreadas, se realizó un VPD que tome las estrellas con probabilidad superior a un threshold y las muestre. De esta manera, 
-se obtiene un VPD de buena calidad que muestra correctamente el cluster y sus alrededores. Se ven claramente las estrellas que pertenecen y las que pueden pertenecer, 
-y el CMD ya presenta resultados en una región aceptable y esperada. Un par de preguntas resultan de la distribución de probabilidades, ya que es cierto que no es
-una distribución tan binaria como se espera. Sin embargo, se obtiene en el VPD un resultado coherente y que parece un cúmulo bien definido. 
+se obtiene un VPD de buena calidad que muestra correctamente el cluster y sus alrededores. VPD NUEVO ZOOMEADO. Se ven claramente las estrellas que pertenecen y las que pueden pertenecer, 
+y el CMD ya presenta resultados en una región aceptable y esperada. CMD NUEVO VS CMD VIEJO. Un par de preguntas resultan de la distribución de probabilidades, ya que es cierto que no es
+una distribución tan binaria como se espera.DIAGRAMA EN U REFERENCIADO DE NUEVO. Sin embargo, se obtiene en el VPD un resultado coherente y que parece un cúmulo bien definido. 
 
-Otro problema notable es el gráfico de ascención recta contra declinación de este set de datos. Lo que empezó como una manera de asegurarse de que el ''cúmulo''
+Otro problema notable es el gráfico de ascención recta contra declinación de este set de datos. OBVIAMENTE RA VS DEC NUEVO. Lo que empezó como una manera de asegurarse de que el ''cúmulo''
 de 500 estrellas era de verdad un cúmulo terminó siendo una herramienta útil para dudar del cúmulo M41. Se supone que, en este gráfico, los valores correspondientes
 a las estrellas pertenecientes al cúmulo deberían estar en una región cercana, y cercana al centro del gráfico. Sin embargo, lo que presenta este caso es que no hay
 tanta claridad en cuanto a dónde está el cúmulo en este mismo. Algunas estrellas están muy arriba, otras muy abajo, otras en el medio, casi como una diagonal 
 ancha que atraviesa el diagrama de abajo a la izquierda a arriba a la derecha. También se realizó un estudio de la distancia en sigmas entre la población con 
 más de 0.7 de probabilidad de pertenecer al cúmulo en cuanto a sus proper motions, y se encontraron un par de estrellas por encima de los 5 sigmas, lo que indica
-que el cúmulo ya se está extendiendo un poco por encima de lo que se ve normalmente. 
+que el cúmulo ya se está extendiendo un poco por encima de lo que se ve normalmente. REFERENCIAR ELSIGMAS.
 
 Por último, solamente 3 estrellas pertenecen con más de 99 porciento de confianza, y solo 79 con más del 70. Estos números son bastante contrariantes,
 ya que se esperarían unos 100 miembros en el cluster. Sin embargo, el CMD muestra muchos miembros en la zona de enanas blancas,
@@ -171,7 +221,10 @@ se sabe que está el cluster. Sin embargo, es el método que implementamos lo qu
 aunque muchos menos que el de hace una semana. Asimismo, presenta un bias en los miembros encontrados hacia la base de la secuencia principal, 
 lo que conocemos como incorrecto ya que el cúmulo M41, bien estudiado, presenta miembros a lo largo de la secuencia principal. 
 
-Gracias a solo dos semanas de implementación computacional, encontramos las razones por las 
+Gracias a solo dos semanas de implementación computacional, encontramos las razones por las cuales ningún método tradicional de computación resulta ser
+suficiente para estudiar cúmulos galácticos. A partir de la próxima semana, por ende, optamos por iniciar nuestra investigación en el territorio 
+del Machine Learning. Para permitirnos un estudio a profundidad, descargaremos un nuevo set de datos con muchísimos más datos. Nótese la robustez
+de los métodos de Machine Learning, que podremos importar miles de datos y aún así encontrar nuestro cúmulo bien definido. Eso esperamos, al menos. 
 
 \section*{Referencias}
 
@@ -182,5 +235,13 @@ Gracias a solo dos semanas de implementación computacional, encontramos las raz
 
 
 \section*{Imágenes adicionales}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../Lab 2 Otro csv/CosasErrNorm/ProbPertUNoLog}
+    \caption{Diagrama de probabilidad de pertenencia en función de cada estrella para el nuevo set de datos.
+    Se observa a duras penas la diferencia entre la pertenencia más alta al cúmulo y las probabilidades inferiores. }
+    \label{PertUNuevoLog}
+\end{figure}
 
 \end{document}

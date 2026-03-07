@@ -217,7 +217,8 @@ r = np.sqrt(r2)
 
 plt.hist(r[P>0.99], bins=50)
 plt.xlabel("Distancia en unidades de sigma")
-plt.show()
+plt.savefig(carpeta + "CosasErrNorm/Distancia_en_sigmas")
+plt.close()
 
 print("Máxima distancia en sigma:", np.max(r[P>0.99]))
 
@@ -272,7 +273,8 @@ plt.gca().invert_xaxis()
 plt.xlabel("RA")
 plt.ylabel("DEC")
 plt.title("Distribución espacial")
-plt.show()
+plt.savefig(carpeta + "CosasErrNorm/Distribución_espacial_RA_Dec")
+plt.close()
 
 #no entiendo para qué sirve esto último 
 print("Densidad central:", density_cluster[0]) 

@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
 
-carpeta = "Proyectos de Astronomía/Lab 2 Otro csv/"
+carpeta = "Proyectos de Astronomía/Laboratorio 2/Lab 2 Otro csv/"
 
 # Carga de datos
 df = pd.read_csv(carpeta + "M41_pm_lab2.csv")
@@ -188,8 +188,8 @@ plt.hist(P, bins=10, color='skyblue', edgecolor='black')
 plt.xlabel("Probabilidad de pertenencia")
 plt.ylabel("N° Estrellas")
 plt.title("Distribución de Probabilidades (Bayesiana)")
-plt.yscale('log') # Escala log para ver mejor el cúmulo frente al campo
-plt.savefig(carpeta + "CosasErrNorm/ProbPertU")
+#plt.yscale('log') # Escala log para ver mejor el cúmulo frente al campo
+plt.savefig(carpeta + "CosasErrNorm/ProbPertUNoLog")
 plt.close()
 
 # CMD
@@ -218,7 +218,8 @@ r = np.sqrt(r2)
 
 plt.hist(r[P>0.7], bins=50)
 plt.xlabel("Distancia en unidades de sigma")
-plt.show()
+plt.savefig(carpeta + "CosasErrNorm/Sigmas")
+plt.close()
 
 print("Máxima distancia en sigma:", np.max(r[P>0.7]))
 
@@ -273,7 +274,8 @@ plt.gca().invert_xaxis()
 plt.xlabel("RA")
 plt.ylabel("DEC")
 plt.title("Distribución espacial")
-plt.show()
+plt.savefig(carpeta + "CosasErrNorm/RADEC")
+plt.close()
 
 print("Densidad central:", density_cluster[0]) 
 print("Densidad último bin:", density_cluster[-1])

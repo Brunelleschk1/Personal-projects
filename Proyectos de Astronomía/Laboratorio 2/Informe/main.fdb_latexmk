@@ -1,14 +1,18 @@
 # Fdb version 4
-["bibtex main"] 1772839539.64852 "main.aux" "main.bbl" "main" 1772840196.89102 0
+["bibtex main"] 1772904880.93855 "main.aux" "main.bbl" "main" 1772904883.58317 0
   "./refs.bib" 1772743297 291 36ea42fefa4d20fdc0c44706c0f71ee7 ""
   "C:/Users/Bruno/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/apalike.bst" 1291972791 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "main.aux" 1772840196 1220 e3c59ac301f1e689940f7a2d455a52a6 "pdflatex"
+  "main.aux" 1772904882 3551 317a381ce6a618780a6e3ba75b88c4a4 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1772840194.25895 "c:/Users/Bruno/Desktop/Personal-projects-1/Proyectos de Astronomía/Laboratorio 2/Informe/main.tex" "main.pdf" "main" 1772840196.89183 0
-  "C:/Users/Bruno/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1772839521 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
+["pdflatex"] 1772904881.19732 "c:/Users/Bruno/Desktop/Personal-projects-1/Proyectos de Astronomía/Laboratorio 2/Informe/main.tex" "main.pdf" "main" 1772904883.58377 0
+  "../CosasErrNorm/Distancia_en_sigmas.png" 1772904452 9456 07c5ca731e7800570473f260c291cef9 ""
+  "../CosasErrNorm/Distribución_espacial_RA_Dec.png" 1772904643 63643 c6872e9025add734c083f9bf5feb695c ""
+  "../CosasErrNorm/ProbPertU.png" 1772904640 17545 d535a32c77610659b7c664cba6b14f44 ""
+  "../CosasErrNorm/VPD_Pmayor0_zoomcluster.png" 1772904643 93319 8c38cd2a808081e9418e96584654d72d ""
+  "C:/Users/Bruno/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1772842313 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Bruno/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx0900.pk" 1772839530 22504 75f44596ac56c8d68ae2c9544ffa3a65 ""
   "C:/Users/Bruno/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1000.pk" 1772839528 25420 8a50ef718de816aef947a8192dcf6f80 ""
   "C:/Users/Bruno/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1200.pk" 1772839526 31952 a9242557512cfcbf0cbce00f2dc1dfe0 ""
@@ -85,8 +89,11 @@
   "C:/Users/Bruno/AppData/Local/Programs/MiKTeX/tex/latex/base/size10.clo" 1761900684 8448 686612a86f0e04f41ea577f5ec7e83d8 ""
   "C:/Users/Bruno/AppData/Local/Programs/MiKTeX/tex/latex/caption/caption.sty" 1696169587 56128 c2ccf1a29d78c33bc553880402e4fb9a ""
   "C:/Users/Bruno/AppData/Local/Programs/MiKTeX/tex/latex/caption/caption3.sty" 1696169587 72619 ee90b6612147680fd73c3b1406a74245 ""
+  "C:/Users/Bruno/AppData/Local/Programs/MiKTeX/tex/latex/currfile/currfile.sty" 1710669165 11079 d0660dd7678e4c3c56d9890bce94a3e5 ""
   "C:/Users/Bruno/AppData/Local/Programs/MiKTeX/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1623003186 13886 d1306dcf79a944f6988e688c1785f9ce ""
   "C:/Users/Bruno/AppData/Local/Programs/MiKTeX/tex/latex/etoolbox/etoolbox.sty" 1759409308 46885 8953c67ffba03252c6090aa19568b8ba ""
+  "C:/Users/Bruno/AppData/Local/Programs/MiKTeX/tex/latex/filehook/filehook-2020.sty" 1667300759 9005 c47d9138e4a690658bcefab0dd0af8d7 ""
+  "C:/Users/Bruno/AppData/Local/Programs/MiKTeX/tex/latex/filehook/filehook.sty" 1667300759 1210 95c2d0abf75beadf7e7547b73b345c24 ""
   "C:/Users/Bruno/AppData/Local/Programs/MiKTeX/tex/latex/geometry/geometry.cfg" 1578053545 1104 7ac475a4e3466b0b43e138e9356bda83 ""
   "C:/Users/Bruno/AppData/Local/Programs/MiKTeX/tex/latex/geometry/geometry.sty" 1578053545 42759 9cf6c5257b1bc7af01a58859749dd37a ""
   "C:/Users/Bruno/AppData/Local/Programs/MiKTeX/tex/latex/graphics-cfg/color.cfg" 1465894292 1213 620bba36b25224fa9b7e1ccb4ecb76fd ""
@@ -117,11 +124,11 @@
   "C:/Users/Bruno/AppData/Local/Programs/MiKTeX/tex/latex/translations/dicts/translations-basic-dictionary-spanish.trsl" 1644048522 5850 2ef40dd7b6b9ada125cd1d90b7f7b307 ""
   "C:/Users/Bruno/AppData/Local/Programs/MiKTeX/tex/latex/translations/translations.sty" 1644048522 44247 2188b95d0ee74e31eca4d316263c58a7 ""
   "C:/Users/Bruno/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "c:/Users/Bruno/Desktop/Personal-projects-1/Proyectos de Astronomía/Laboratorio 2/Informe/main.tex" 1772840193 12817 3fcc50467b056818096c8b34d60286e8 ""
-  "main.aux" 1772840196 1220 e3c59ac301f1e689940f7a2d455a52a6 "pdflatex"
-  "main.bbl" 1772839539 52 0eba253fc001332e731e8aba3f23127b "bibtex main"
-  "main.out" 1772840196 973 41876a0c0e2e1f380cdec7bae10637bf "pdflatex"
-  "main.tex" 1772840193 12817 3fcc50467b056818096c8b34d60286e8 ""
+  "c:/Users/Bruno/Desktop/Personal-projects-1/Proyectos de Astronomía/Laboratorio 2/Informe/main.tex" 1772904877 15276 79a5f3088995b112803c251ae5a712db ""
+  "main.aux" 1772904882 3551 317a381ce6a618780a6e3ba75b88c4a4 "pdflatex"
+  "main.bbl" 1772904881 52 0eba253fc001332e731e8aba3f23127b "bibtex main"
+  "main.out" 1772904882 973 41876a0c0e2e1f380cdec7bae10637bf "pdflatex"
+  "main.tex" 1772904877 15276 79a5f3088995b112803c251ae5a712db ""
   (generated)
   "main.aux"
   "main.log"
