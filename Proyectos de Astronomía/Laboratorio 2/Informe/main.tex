@@ -24,7 +24,7 @@
 \titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
 
 % ------------------ TÍTULO ------------------
-\title{\textbf{Aproximación manual a la fotometría de apertura}\\Trabajo sobre el cúmulo abierto Messier 41}
+\title{\textbf{Aproximación manual a la fotometría de apertura}\\Trabajo sobre el cúmulo abierto Messier 41\\Segunda parte: Optimización de parámetros de proper motions}
 
 
 % ------------------ AUTORES ------------------
@@ -48,10 +48,14 @@
 
 \begin{abstract}
 \noindent
-Aquí va el resumen del informe. Debe describir brevemente el objetivo, metodología, resultados principales y conclusiones.
+Este informe es el segundo en una lista semanal cuyo objetivo es el acercamiento del autor a los métodos computacionales que se utilizan a menudo en el dominio de la astrofísica 
+para definir la pertenencia de una estrella a un cúmulo abierto. El presente se enfoca en la determinación de pertenencia mediante un método de optimización de parámetros gaussianos
+a los movimientos propios de un grupo de estrellas estudiado por GAIA en su entrega de datos dr3. A raíz de esto, y siguiendo con el primer estudio que se hizo, 
+se plantea una discusión sobre la pertinencia del método y la necesidad de profundizar el conocimiento del astrofísico en el dominio de los métodos computacionales y el machine learning, 
+no como una herramienta útil pero como una necesidad para el avance de esta rama. 
 \end{abstract}
 
-\noindent\textbf{Palabras clave:} palabra1, palabra2, palabra3
+\noindent\textbf{Palabras clave:} Messier 41, Optimización, Vector Point Diagram, Probabilidad de pertenencia. 
 \vspace{0.5cm}
 ]
 
@@ -129,14 +133,14 @@ de revisiones.
 
 Con esto dicho, se considera que la mejor manera de presentar lo que siguió a continuación es en la sección de análisis de resultados. 
 
-\subsection{Figuras de los problemas}
+\subsection{Figuras de los problemas} 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{../CosasErrNorm/VPD_Pmayor0_zoomcluster.png}
-    \caption{VPD del primer set de datos utilizado. Se puede observar una gran densidad de estrellas en el cúmulo, con muy poquitas por fuera 
-    con probabilidades de pertenencia mucho más bajas}
-    \label{VPDViejoZOOM}
+    \includegraphics[width=0.7\linewidth]{../CosasErrNorm/Distancia_en_sigmas.png}
+    \caption{Distancia, en sigmas de la distribución, entre las estrellas encontradas por la función de optimización de parámetros. 
+    Una distancia tan baja supone que los elementos sí pertenecen todos al cúmulo, sin excepciones reales.}
+    \label{DistSigmViejo}
 \end{figure}
 
 \begin{figure}[H]
@@ -148,15 +152,15 @@ Con esto dicho, se considera que la mejor manera de presentar lo que siguió a c
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{../CosasErrNorm/Distancia_en_sigmas.png}
-    \caption{Distancia, en sigmas de la distribución, entre las estrellas encontradas por la función de optimización de parámetros. 
-    Una distancia tan baja supone que los elementos sí pertenecen todos al cúmulo, sin excepciones reales.}
-    \label{DistSigmViejo}
+    \includegraphics[width=1\linewidth]{../CosasErrNorm/VPD_Pmayor0_zoomcluster.png}
+    \caption{VPD del primer set de datos utilizado. Se puede observar una gran densidad de estrellas en el cúmulo, con muy poquitas por fuera 
+    con probabilidades de pertenencia mucho más bajas}
+    \label{VPDViejoZOOM}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{../CosasErrNorm/Distribución_espacial_RA_Dec.png}
+    \includegraphics[width=0.8\linewidth]{../CosasErrNorm/Distribucion_espacial_RA_Dec.png}
     \caption{Mapa de la ascención recta contra la declinación de cada elemento analizado. En anaranjado se muestran los pertenecientes 
     al cúmulo, mostrando que, efectivamente, la mayoría se encuentran en una zona de alta densidad hacia el centro de la agrupación. }
     \label{RADecViejo}
@@ -172,7 +176,7 @@ Estrellas con P>0.9: 599
 
 Estrellas con P>0.99: 529
 
-Tal y como los imprime el código: "Código con errores Normalizado.py", disponible en la ruta Laboratorio 2/Código con errores Normalizado.py 
+Tal y como los imprime el código: "Código con errores Normalizado.py", disponible en la ruta Laboratorio 2/Código con errores Normalizado.py
 
 \section{Resultados}
 
@@ -186,12 +190,6 @@ Resultado, una sola estrella presente entre los dos archivos. Todo el análisis 
 sí, efectivamente, posee un cúmulo, pero que claramente no es Messier 41. Las semejanzas son, sin embargo, impresionantes, 
 ya que ambos cúmulos se encuentran más o menos en la misma región de sus respectivos VPD, y algunos de sus datos de optimización son muy similares. 
 
-Ya con el set de datos correcto, se puede empezar a hablar mejor de lo que encuentra el código. Para simplificar las cosas, y no tener que buscar manualmente en un VPD 
-cada una de las estrellas coloreadas, se realizó un VPD que tome las estrellas con probabilidad superior a un threshold y las muestre. De esta manera, 
-se obtiene un VPD de buena calidad que muestra correctamente el cluster y sus alrededores. (Fig.~\ref{VPDNuevoZOOM}). Se ven claramente las estrellas que pertenecen y las que pueden pertenecer, 
-y el CMD ya presenta resultados en una región aceptable y esperada. (Fig.~\ref{CMDNuevo}). Un par de preguntas resultan de la distribución de probabilidades, ya que es cierto que no es
-una distribución tan binaria como se espera.(Fig.~\ref{PertUNuevoLog}). Sin embargo, se obtiene en el VPD un resultado coherente y que parece un cúmulo bien definido. 
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{../Lab2Otrocsv/CosasErrNorm/ProbPertU.png}
@@ -199,6 +197,12 @@ una distribución tan binaria como se espera.(Fig.~\ref{PertUNuevoLog}). Sin emb
     Una comparación al histograma sin esta escala se encuentra en el anexo. \ref{PertUNuevo}}
     \label{PertUNuevoLog}
 \end{figure}
+
+Ya con el set de datos correcto, se puede empezar a hablar mejor de lo que encuentra el código. Para simplificar las cosas, y no tener que buscar manualmente en un VPD 
+cada una de las estrellas coloreadas, se realizó un VPD que tome las estrellas con probabilidad superior a un threshold y las muestre. De esta manera, 
+se obtiene un VPD de buena calidad que muestra correctamente el cluster y sus alrededores. (Fig.~\ref{VPDNuevoZOOM}). Se ven claramente las estrellas que pertenecen y las que pueden pertenecer, 
+y el CMD ya presenta resultados en una región aceptable y esperada. (Fig.~\ref{CMDNuevo}). Un par de preguntas resultan de la distribución de probabilidades, ya que es cierto que no es
+una distribución tan binaria como se espera.(Fig.~\ref{PertUNuevoLog}). Sin embargo, se obtiene en el VPD un resultado coherente y que parece un cúmulo bien definido. 
 
 \begin{figure}[H]
     \centering
@@ -208,9 +212,17 @@ una distribución tan binaria como se espera.(Fig.~\ref{PertUNuevoLog}). Sin emb
     \label{VPDNuevoZOOM}
 \end{figure}
 
+Otro problema notable es el gráfico de ascención recta contra declinación de este set de datos. (Fig.~\ref{RADECNuevo}). Lo que empezó como una manera de asegurarse de que el ''cúmulo''
+de 500 estrellas era de verdad un cúmulo terminó siendo una herramienta útil para dudar del cúmulo M41. Se supone que, en este gráfico, los valores correspondientes
+a las estrellas pertenecientes al cúmulo deberían estar en una región cercana, y cercana al centro del gráfico. Sin embargo, lo que presenta este caso es que no hay
+tanta claridad en cuanto a dónde está el cúmulo en este mismo. Algunas estrellas están muy arriba, otras muy abajo, otras en el medio, casi como una diagonal 
+ancha que atraviesa el diagrama de abajo a la izquierda a arriba a la derecha. También se realizó un estudio de la distancia en sigmas entre la población con 
+más de 0.7 de probabilidad de pertenecer al cúmulo en cuanto a sus proper motions, y se encontraron un par de estrellas por encima de los 5 sigmas, lo que indica
+que el cúmulo ya se está extendiendo un poco por encima de lo que se ve normalmente. (Fig.~\ref{SIGMANuevo}).
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{../Lab2Otrocsv/CosasErrNorm/CMDPintadoErr.png}
+    \includegraphics[width=1\linewidth]{../Lab2Otrocsv/CosasErrNorm/CMDPintadoErr.png}
     \caption{CMD del nuevo set de datos. Se observa una población mayoritariamente en la parte inicial de la secuencia principal, tal y como se esperaba
     al iniciar este laboratorio. Comparado al CMD viejo, se nota que los resultados cuadran con lo esperado. (Fig.~\ref{CMDViejo}) }
     \label{CMDNuevo}
@@ -225,13 +237,11 @@ una distribución tan binaria como se espera.(Fig.~\ref{PertUNuevoLog}). Sin emb
     \label{RADECNuevo}
 \end{figure}
 
-Otro problema notable es el gráfico de ascención recta contra declinación de este set de datos. (Fig.~\ref{RADECNuevo}). Lo que empezó como una manera de asegurarse de que el ''cúmulo''
-de 500 estrellas era de verdad un cúmulo terminó siendo una herramienta útil para dudar del cúmulo M41. Se supone que, en este gráfico, los valores correspondientes
-a las estrellas pertenecientes al cúmulo deberían estar en una región cercana, y cercana al centro del gráfico. Sin embargo, lo que presenta este caso es que no hay
-tanta claridad en cuanto a dónde está el cúmulo en este mismo. Algunas estrellas están muy arriba, otras muy abajo, otras en el medio, casi como una diagonal 
-ancha que atraviesa el diagrama de abajo a la izquierda a arriba a la derecha. También se realizó un estudio de la distancia en sigmas entre la población con 
-más de 0.7 de probabilidad de pertenecer al cúmulo en cuanto a sus proper motions, y se encontraron un par de estrellas por encima de los 5 sigmas, lo que indica
-que el cúmulo ya se está extendiendo un poco por encima de lo que se ve normalmente. (Fig.~\ref{SIGMANuevo}).
+Por último, solamente 3 estrellas pertenecen con más de 99 porciento de confianza, y solo 79 con más del 70. Estos números son bastante contrariantes,
+ya que se esperarían unos 100 miembros en el cluster entre lo reportado en la literatura \cite{wiki} y el número, bastante rudimientario, encontrado en el estudio anterior de 111 centroides. 
+Sin embargo, el CMD muestra muchos miembros en la zona de enanas blancas, antes de entrar a la secuencia principal, y pocos miembros en la misma, lo que es de esperarse en un estudio como este. 
+Es decir, el resultado obtenido, si bien es poco satisfactorio, es lo que se esperaba obtener, y posiblemente los miembros de la secuencia principal
+que no aparecen en nuestro CMD son precisamente los que faltan en nuestro conteo probabilístico. 
 
 \begin{figure}[H]
     \centering
@@ -240,12 +250,6 @@ que el cúmulo ya se está extendiendo un poco por encima de lo que se ve normal
     estrellas cercanas a lo esperado y solo unas cuantas por encima de los 5 sigmas, lo que significa que, a pesar de estar más diluido que el anterior, sigue siendo un cúmulo bien definido.}
     \label{SIGMANuevo}
 \end{figure}
-
-Por último, solamente 3 estrellas pertenecen con más de 99 porciento de confianza, y solo 79 con más del 70. Estos números son bastante contrariantes,
-ya que se esperarían unos 100 miembros en el cluster\cite{wikipedia_messier41}. Sin embargo, el CMD muestra muchos miembros en la zona de enanas blancas,
-antes de entrar a la secuencia principal, y pocos miembros en la misma, lo que es de esperarse en un estudio como este. 
-Es decir, el resultado obtenido, si bien es poco satisfactorio, es lo que se esperaba obtener, y posiblemente los miembros de la secuencia principal
-que no aparecen en nuestro CMD son precisamente los que faltan en nuestro conteo probabilístico. 
 
 \section{Conclusiones}
 
@@ -260,13 +264,21 @@ suficiente para estudiar cúmulos galácticos. A partir de la próxima semana, p
 del Machine Learning. Para permitirnos un estudio a profundidad, descargaremos un nuevo set de datos con muchísimos más datos. Nótese la robustez
 de los métodos de Machine Learning, que podremos importar miles de datos y aún así encontrar nuestro cúmulo bien definido. Eso esperamos, al menos. 
 
-\section*{Referencias}
-
 \bibliographystyle{apalike}
 \bibliography{refs}
 
 \section*{Comentarios al margen}
 
+Aunque no sea del todo necesario hablarlo, es cierto que es bueno mirar a las razones de por qué el autor trabajó por tanto tiempo con un set de datos
+equivocado sin saber que no eran datos correctos. El ejemplo estrella es la comparación de (Fig~\ref{VPDcompleto cluster viejo}) y (Fig~\ref{VPDcompleto cluster nuevo}), 
+donde la similitud en la región de los VPD pudo inducir un falso sentido de seguridad con respecto a los datos en el autor. Además, es cierto que el autor
+nunca pensó haber descargado datos erróneos, por lo que podía sentirse seguro del contenido de su archivo. 
+
+El leve retraso en la entrega de este documento se debe en parte a que esta confusión de datos generó la necesidad de comparar los archivos uno a uno. 
+El archivo Laboratorio 2/Lab2Otrocsv/comparacióncsv.py contiene todas las pruebas que se realizaron para determinar la similitud de ambos documentos. 
+Es también importante mencionar que, debido a la magnitud de estos informes, el autor tuvo que migrar su medio de trabajo a uno local para poder 
+tratar la cantidad de imágenes que se ponen en este documento. Temas de documentación, citación y rutas en formato LaTeX causaron retrasos 
+significantes en el trabajo del autor. 
 
 \section*{Imágenes adicionales}
 
@@ -280,10 +292,24 @@ de los métodos de Machine Learning, que podremos importar miles de datos y aún
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{../CosasErrNorm/CMDPintadoErr.png}
+    \includegraphics[width=1\linewidth]{../CosasErrNorm/CMDPintadoErr.png}
     \caption{CMD del primer set de datos estudiado. Se puede evidenciar una población perteneciene casi exclusivamente perteneciente a 
     La secuencia principal, algo que no es lo esperado cuando se trabaja con este método de optimización de parámetros.}
     \label{CMDViejo}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{../CosasErrNorm/VPDColoreado.png}
+    \caption{VPD coloreado con el cluster del primer set de datos estudiado. }
+    \label{VPDcompleto cluster viejo}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{../Lab2Otrocsv/CosasErrNorm/VPDColoreado.png}
+    \caption{VPD coloreado con el cluster del segundo set de datos estudiado. }
+    \label{VPDcompleto cluster nuevo}
 \end{figure}
 
 \end{document}

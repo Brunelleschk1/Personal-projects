@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
 
-carpeta = "Proyectos de Astronomía/Laboratorio 2/Lab 2 Otro csv/"
+carpeta = "Proyectos de Astronomía/Laboratorio 2/Lab2Otrocsv/"
 
 # Carga de datos
 df = pd.read_csv(carpeta + "M41_pm_lab2.csv")
@@ -187,21 +187,75 @@ plt.figure(figsize=(6, 4))
 plt.hist(P, bins=10, color='skyblue', edgecolor='black')
 plt.xlabel("Probabilidad de pertenencia")
 plt.ylabel("N° Estrellas")
-plt.title("Distribución de Probabilidades (Bayesiana)")
+plt.title("Distribucion de Probabilidades (Bayesiana)")
 #plt.yscale('log') # Escala log para ver mejor el cúmulo frente al campo
 plt.savefig(carpeta + "CosasErrNorm/ProbPertUNoLog")
 plt.close()
 
-# CMD
-plt.figure(figsize=(10, 10))
-mask_c = P > 0.7
-plt.scatter(color[~mask_c], Gmag[~mask_c], s=2, alpha=0.2, c='gray', label='Campo')
-plt.scatter(color[mask_c], Gmag[mask_c], s=7, c=P[mask_c], cmap='viridis', label='Cluster')
+# ============================================================
+# CMD CON BINS DE PROBABILIDAD (COLORES + FIGURAS)
+# ============================================================
+
+plt.figure(figsize=(10,10))
+
+# Definir bins de probabilidad
+mask_field   = P < 0.3
+mask_low     = (P >= 0.3) & (P < 0.7)
+mask_mid     = (P >= 0.7) & (P < 0.9)
+mask_high    = P >= 0.9
+
+# Campo
+plt.scatter(
+    color[mask_field],
+    Gmag[mask_field],
+    s=10,
+    c='lightgray',
+    marker='.',
+    alpha=0.4,
+    label='Campo (P < 0.3)'
+)
+
+# Probabilidad baja
+plt.scatter(
+    color[mask_low],
+    Gmag[mask_low],
+    s=40,
+    c='royalblue',
+    marker='^',
+    alpha=0.7,
+    label='0.3 ≤ P < 0.7'
+)
+
+# Probabilidad media
+plt.scatter(
+    color[mask_mid],
+    Gmag[mask_mid],
+    s=60,
+    c='orange',
+    marker='s',
+    alpha=0.8,
+    label='0.7 ≤ P < 0.9'
+)
+
+# Probabilidad alta
+plt.scatter(
+    color[mask_high],
+    Gmag[mask_high],
+    s=90,
+    c='green',
+    marker='o',
+    edgecolor='black',
+    label='P ≥ 0.9'
+)
+
 plt.gca().invert_yaxis()
-plt.xlabel("BP - RP")
+plt.xlabel("BP − RP")
 plt.ylabel("G")
-plt.title("CMD con Probabilidades")
+plt.title("CMD con Probabilidad de Membresía")
+
 plt.legend()
+plt.grid(alpha=0.3)
+
 plt.savefig(carpeta + "CosasErrNorm/CMDPintadoErr")
 plt.close()
 
@@ -273,7 +327,7 @@ plt.scatter(ra[P>0.7], dec[P>0.7], s=10)
 plt.gca().invert_xaxis()
 plt.xlabel("RA")
 plt.ylabel("DEC")
-plt.title("Distribución espacial")
+plt.title("Distribucion espacial")
 plt.savefig(carpeta + "CosasErrNorm/RADEC")
 plt.close()
 
