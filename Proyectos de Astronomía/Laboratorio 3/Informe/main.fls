@@ -147,6 +147,9 @@ INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex\latex\graphics\mat
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex\latex\graphics\mathcolor.ltx
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
+INPUT .\main.aux
+INPUT .\main.aux
+INPUT main.aux
 OUTPUT main.aux
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
@@ -159,8 +162,14 @@ INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\eps
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex\latex\translations\dicts\translations-basic-dictionary-spanish.trsl
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex\latex\translations\dicts\translations-basic-dictionary-spanish.trsl
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex\latex\translations\dicts\translations-basic-dictionary-spanish.trsl
-OUTPUT main.out
+INPUT .\main.out
+INPUT .\main.out
+INPUT main.out
+INPUT main.out
 OUTPUT main.pdf
+INPUT .\main.out
+INPUT .\main.out
+OUTPUT main.out
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm1728.tfm
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecbx1728.tfm
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm1200.tfm
@@ -195,13 +204,62 @@ INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecbx1000.tfm
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecbx1200.tfm
 INPUT C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
+INPUT ..\Resultados_completos.png
+INPUT ..\Resultados_completos.png
+INPUT ..\Resultados_completos.png
+INPUT ..\Resultados_completos.png
+INPUT ..\Resultados_completos.png
+INPUT ..\Resultados_completos.png
+INPUT ..\Resultados_completos.png
+INPUT ..\paneles\VPD_cluster_1.png
+INPUT ..\paneles\VPD_cluster_1.png
+INPUT ..\paneles\VPD_cluster_1.png
+INPUT ..\paneles\VPD_cluster_1.png
+INPUT ..\paneles\VPD_cluster_1.png
+INPUT ..\paneles\VPD_cluster_1.png
+INPUT ..\paneles\VPD_cluster_1.png
+INPUT ..\paneles\CMD_cluster_1.png
+INPUT ..\paneles\CMD_cluster_1.png
+INPUT ..\paneles\CMD_cluster_1.png
+INPUT ..\paneles\CMD_cluster_1.png
+INPUT ..\paneles\CMD_cluster_1.png
+INPUT ..\paneles\CMD_cluster_1.png
+INPUT ..\paneles\CMD_cluster_1.png
+INPUT ..\paneles\CMD_silhouette.png
+INPUT ..\paneles\CMD_silhouette.png
+INPUT ..\paneles\CMD_silhouette.png
+INPUT ..\paneles\CMD_silhouette.png
+INPUT ..\paneles\CMD_silhouette.png
+INPUT ..\paneles\CMD_silhouette.png
+INPUT ..\paneles\CMD_silhouette.png
+INPUT ..\CMDPintadoErr.png
+INPUT ..\CMDPintadoErr.png
+INPUT ..\CMDPintadoErr.png
+INPUT ..\CMDPintadoErr.png
+INPUT ..\CMDPintadoErr.png
+INPUT ..\CMDPintadoErr.png
+INPUT ..\CMDPintadoErr.png
+INPUT ..\ProbPertU.png
+INPUT ..\ProbPertU.png
+INPUT ..\ProbPertU.png
+INPUT ..\ProbPertU.png
+INPUT ..\ProbPertU.png
+INPUT ..\ProbPertU.png
+INPUT ..\ProbPertU.png
+INPUT ..\VPDColoreado.png
+INPUT ..\VPDColoreado.png
+INPUT ..\VPDColoreado.png
+INPUT ..\VPDColoreado.png
+INPUT ..\VPDColoreado.png
+INPUT ..\VPDColoreado.png
+INPUT ..\VPDColoreado.png
+INPUT .\main.bbl
+INPUT .\main.bbl
+INPUT main.bbl
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecti1000.tfm
-INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ectt1000.tfm
 INPUT main.aux
 INPUT .\main.out
 INPUT .\main.out
-INPUT C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk
-INPUT C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk
 INPUT C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1000.pk
 INPUT C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1000.pk
 INPUT C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk

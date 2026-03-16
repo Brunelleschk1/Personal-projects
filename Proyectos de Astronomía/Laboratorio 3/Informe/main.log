@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.25)  14 MAR 2026 23:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.25)  16 MAR 2026 18:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -455,8 +455,12 @@ Package color Info: Driver file: pdftex.def on input line 149.
  (C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)) (C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count345
+) (main.aux
+LaTeX Info: Redefining \. on input line 11.
+LaTeX Info: Redefining \% on input line 11.
+Package babel Info: 'spanish' activates 'spanish' shorthands.
+(babel)             Reported on input line 11.
 )
-No file main.aux.
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
@@ -479,8 +483,7 @@ LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 39.
 LaTeX Font Info:    ... okay on input line 39.
 LaTeX Info: Redefining \. on input line 39.
 LaTeX Info: Redefining \% on input line 39.
-Package babel Info: 'spanish' activates 'spanish' shorthands.
-(babel)             Reported on input line 39.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -542,315 +545,101 @@ Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package hyperref Info: Link coloring OFF on input line 39.
+ (main.out) (main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 58.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 59.
  (C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 58.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 59.
  (C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1{C:/Users/Bruno Abello/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}
 
 
 ]
-Underfull \hbox (badness 2635) in paragraph at lines 109--109
+Underfull \hbox (badness 2635) in paragraph at lines 110--110
 |[]\T1/cmr/bx/n/12 Problemas pre-sen-ta-dos y so-lu-cio-nes
  []
 
+<../Resultados_completos.png, id=45, 1011.78pt x 1011.78pt>
+File: ../Resultados_completos.png Graphic file (type png)
+<use ../Resultados_completos.png>
+Package pdftex.def Info: ../Resultados_completos.png  used on input line 142.
+(pdftex.def)             Requested size: 200.74672pt x 200.74681pt.
+[2 <../Resultados_completos.png>]
+<../paneles/VPD_cluster_1.png, id=63, 433.62pt x 433.62pt>
+File: ../paneles/VPD_cluster_1.png Graphic file (type png)
+<use ../paneles/VPD_cluster_1.png>
+Package pdftex.def Info: ../paneles/VPD_cluster_1.png  used on input line 161.
+(pdftex.def)             Requested size: 200.74672pt x 200.7446pt.
+<../paneles/CMD_cluster_1.png, id=64, 433.62pt x 433.62pt>
+File: ../paneles/CMD_cluster_1.png Graphic file (type png)
+<use ../paneles/CMD_cluster_1.png>
+Package pdftex.def Info: ../paneles/CMD_cluster_1.png  used on input line 168.
+(pdftex.def)             Requested size: 200.74672pt x 200.7446pt.
+<../paneles/CMD_silhouette.png, id=70, 433.62pt x 433.62pt>
+File: ../paneles/CMD_silhouette.png Graphic file (type png)
+<use ../paneles/CMD_silhouette.png>
+Package pdftex.def Info: ../paneles/CMD_silhouette.png  used on input line 190.
+(pdftex.def)             Requested size: 200.74672pt x 200.7446pt.
 
-LaTeX Warning: Reference `VPDViejoZOOM' on page 2 undefined on input line 121.
-
-
-LaTeX Warning: Reference `ProbPertViejo' on page 2 undefined on input line 123.
-
-
-LaTeX Warning: Reference `DistSigmViejo' on page 2 undefined on input line 126.
-
-
-LaTeX Warning: Reference `RADecViejo' on page 2 undefined on input line 128.
-
-
-LaTeX Warning: File `../CosasErrNorm/Distancia_en_sigmas.png' not found on input line 138.
-
-
-c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 3/Informe/main.tex:138: Package pdftex.def Error: File `../CosasErrNorm/Distancia_en_sigmas.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.138 ...{../CosasErrNorm/Distancia_en_sigmas.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `../CosasErrNorm/ProbPertU.png' not found on input line 146.
-
-
-c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 3/Informe/main.tex:146: Package pdftex.def Error: File `../CosasErrNorm/ProbPertU.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.146 ...linewidth]{../CosasErrNorm/ProbPertU.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [2]
-
-LaTeX Warning: File `../CosasErrNorm/VPD_Pmayor0_zoomcluster.png' not found on input line 153.
-
-
-c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 3/Informe/main.tex:153: Package pdftex.def Error: File `../CosasErrNorm/VPD_Pmayor0_zoomcluster.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.153 ...CosasErrNorm/VPD_Pmayor0_zoomcluster.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `../CosasErrNorm/Distribucion_espacial_RA_Dec.png' not found on input line 161.
-
-
-c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 3/Informe/main.tex:161: Package pdftex.def Error: File `../CosasErrNorm/Distribucion_espacial_RA_Dec.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.161 ...ErrNorm/Distribucion_espacial_RA_Dec.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 171--172
-[]\T1/cmr/m/n/10 [0.99345065 0.9981174 0.99854258 0.99877663
+Underfull \hbox (badness 2326) in paragraph at lines 197--206
+[]\T1/cmr/m/n/10 Los re-sul-ta-dos del n�-me-ro de miem-bros per-te-ne-
  []
 
 
-LaTeX Warning: Reference `PertUNuevoLog' on page 3 undefined on input line 186.
-
-[3]
-
-LaTeX Warning: File `../Lab2Otrocsv/CosasErrNorm/ProbPertU.png' not found on input line 193.
+Underfull \hbox (badness 2237) in paragraph at lines 197--206
+\T1/cmr/m/n/10 De 300 miem-bros en 2013([[]]),
+ []
 
 
-c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 3/Informe/main.tex:193: Package pdftex.def Error: File `../Lab2Otrocsv/CosasErrNorm/ProbPertU.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.193 ..../Lab2Otrocsv/CosasErrNorm/ProbPertU.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+Underfull \hbox (badness 4726) in paragraph at lines 197--206
+\T1/cmr/m/n/10 pa-san-do por 714 en 2018 ([[]]), 625
+ []
 
 
-LaTeX Warning: Reference `PertUNuevo' on page 4 undefined on input line 195.
+Underfull \hbox (badness 10000) in paragraph at lines 197--206
+\T1/cmr/m/n/10 y 660 en 2020([[]]) y
+ []
 
 
-LaTeX Warning: Reference `PertUNuevo' on page 4 undefined on input line 195.
+Underfull \hbox (badness 2443) in paragraph at lines 197--206
+\T1/cmr/m/n/10 2022([[]]), pa-ra lle-gar a 849 miem-
+ []
 
 
-LaTeX Warning: Reference `VPDNuevoZOOM' on page 4 undefined on input line 201.
+Underfull \hbox (badness 10000) in paragraph at lines 197--206
+\T1/cmr/m/n/10 bros en 2023([[]]). Des-de
+ []
 
 
-LaTeX Warning: Reference `CMDNuevo' on page 4 undefined on input line 202.
+Underfull \hbox (badness 1033) in paragraph at lines 197--206
+\T1/cmr/m/n/10 es-tre-llas sue-na bas-tan-te ra-zo-na-ble. Po-dr�a-mos pen-sar
+ []
 
-
-LaTeX Warning: Reference `PertUNuevoLog' on page 4 undefined on input line 203.
-
-
-LaTeX Warning: File `../Lab2Otrocsv/CosasErrNorm/VPD_Pmayor0_zoomcluster.png' not found on input line 207.
-
-
-c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 3/Informe/main.tex:207: Package pdftex.def Error: File `../Lab2Otrocsv/CosasErrNorm/VPD_Pmayor0_zoomcluster.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.207 ...CosasErrNorm/VPD_Pmayor0_zoomcluster.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: Reference `VPDViejoZOOM' on page 4 undefined on input line 209.
-
-
-LaTeX Warning: Reference `VPDViejoZOOM' on page 4 undefined on input line 209.
-
+[3 <../paneles/VPD_cluster_1.png> <../paneles/CMD_cluster_1.png> <../paneles/CMD_silhouette.png>]
+<../CMDPintadoErr.png, id=93, 722.7pt x 722.7pt>
+File: ../CMDPintadoErr.png Graphic file (type png)
+<use ../CMDPintadoErr.png>
+Package pdftex.def Info: ../CMDPintadoErr.png  used on input line 209.
+(pdftex.def)             Requested size: 200.74672pt x 200.7446pt.
+<../ProbPertU.png, id=94, 433.62pt x 289.08pt>
+File: ../ProbPertU.png Graphic file (type png)
+<use ../ProbPertU.png>
+Package pdftex.def Info: ../ProbPertU.png  used on input line 217.
+(pdftex.def)             Requested size: 200.74672pt x 133.82973pt.
+<../VPDColoreado.png, id=95, 1300.86pt x 361.35pt>
+File: ../VPDColoreado.png Graphic file (type png)
+<use ../VPDColoreado.png>
+Package pdftex.def Info: ../VPDColoreado.png  used on input line 224.
+(pdftex.def)             Requested size: 200.74672pt x 55.76054pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-
-LaTeX Warning: Reference `RADECNuevo' on page 4 undefined on input line 213.
-
-
-LaTeX Warning: Reference `SIGMANuevo' on page 4 undefined on input line 219.
-
-
-LaTeX Warning: File `../Lab2Otrocsv/CosasErrNorm/CMDPintadoErr.png' not found on input line 223.
-
-
-c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 3/Informe/main.tex:223: Package pdftex.def Error: File `../Lab2Otrocsv/CosasErrNorm/CMDPintadoErr.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.223 ...b2Otrocsv/CosasErrNorm/CMDPintadoErr.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: Reference `CMDViejo' on page 4 undefined on input line 225.
-
-
-LaTeX Warning: Reference `CMDViejo' on page 4 undefined on input line 225.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [4]
-
-LaTeX Warning: File `../Lab2Otrocsv/CosasErrNorm/RADEC.png' not found on input line 231.
-
-
-c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 3/Informe/main.tex:231: Package pdftex.def Error: File `../Lab2Otrocsv/CosasErrNorm/RADEC.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.231 ...h]{../Lab2Otrocsv/CosasErrNorm/RADEC.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: Reference `RADecViejo' on page 5 undefined on input line 234.
-
-
-LaTeX Warning: Reference `RADecViejo' on page 5 undefined on input line 234.
-
-
-LaTeX Warning: Citation `wiki' on page 5 undefined on input line 239.
-
-
-LaTeX Warning: File `../Lab2Otrocsv/CosasErrNorm/Sigmas.png' not found on input line 246.
-
-
-c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 3/Informe/main.tex:246: Package pdftex.def Error: File `../Lab2Otrocsv/CosasErrNorm/Sigmas.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.246 ...]{../Lab2Otrocsv/CosasErrNorm/Sigmas.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: Reference `DistSigmViejo' on page 5 undefined on input line 248.
-
-
-LaTeX Warning: Reference `DistSigmViejo' on page 5 undefined on input line 248.
-
-[5]
-No file main.bbl.
-
-LaTeX Warning: Reference `VPDcompleto cluster viejo' on page 6 undefined on input line 271.
-
-
-LaTeX Warning: Reference `VPDcompleto cluster nuevo' on page 6 undefined on input line 271.
-
-
-LaTeX Warning: File `../Lab2Otrocsv/CosasErrNorm/ProbPertUNoLog.png' not found on input line 285.
-
-
-c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 3/Informe/main.tex:285: Package pdftex.def Error: File `../Lab2Otrocsv/CosasErrNorm/ProbPertUNoLog.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.285 ...2Otrocsv/CosasErrNorm/ProbPertUNoLog.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `../CosasErrNorm/CMDPintadoErr.png' not found on input line 293.
-
-
-c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 3/Informe/main.tex:293: Package pdftex.def Error: File `../CosasErrNorm/CMDPintadoErr.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.293 ...width]{../CosasErrNorm/CMDPintadoErr.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `../CosasErrNorm/VPDColoreado.png' not found on input line 301.
-
-
-c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 3/Informe/main.tex:301: Package pdftex.def Error: File `../CosasErrNorm/VPDColoreado.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.301 ...ewidth]{../CosasErrNorm/VPDColoreado.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `../Lab2Otrocsv/CosasErrNorm/VPDColoreado.png' not found on input line 308.
-
-
-c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 3/Informe/main.tex:308: Package pdftex.def Error: File `../Lab2Otrocsv/CosasErrNorm/VPDColoreado.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.308 ...ab2Otrocsv/CosasErrNorm/VPDColoreado.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [6] [7
+ (main.bbl [4 <../CMDPintadoErr.png> <../ProbPertU.png> <../VPDColoreado.png>]) [5
 
 ] (main.aux
 LaTeX Info: Redefining \. on input line 11.
@@ -860,34 +649,21 @@ LaTeX Info: Redefining \% on input line 11.
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  41876A0C0E2E1F380CDEC7BAE10637BF;973.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 7A431F9AD558F1756F3DDC5BBDE70FAD;787.
  ) 
 Here is how much of TeX's memory you used:
- 18409 strings out of 467871
- 368108 string characters out of 5414952
- 754572 words of memory out of 5000000
- 47053 multiletter control sequences out of 15000+600000
- 640980 words of font info for 70 fonts, out of 8000000 for 9000
+ 18066 strings out of 467871
+ 350175 string characters out of 5414952
+ 758719 words of memory out of 5000000
+ 46715 multiletter control sequences out of 15000+600000
+ 640667 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,6n,80p,639b,1052s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0900.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk>
-Output written on main.pdf (7 pages, 136156 bytes).
+ 75i,6n,80p,696b,1144s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0900.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk>
+Output written on main.pdf (5 pages, 1608701 bytes).
 PDF statistics:
- 445 PDF objects out of 1000 (max. 8388607)
- 41 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 432 PDF objects out of 1000 (max. 8388607)
+ 28 named destinations out of 1000 (max. 500000)
+ 84 words of extra memory for PDF output out of 10000 (max. 10000000)
 
