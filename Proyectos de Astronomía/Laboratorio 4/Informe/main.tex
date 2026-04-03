@@ -1,0 +1,151 @@
+\documentclass[10pt,twocolumn]{article}
+
+% ------------------ PAQUETES ------------------
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{siunitx}
+\usepackage{authblk}
+\usepackage{abstract}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{currfile}
+\usepackage{float}
+
+\geometry{margin=1.8cm}
+
+% ------------------ FORMATO DE SECCIONES ------------------
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+% ------------------ TÍTULO ------------------
+\title{\textbf{Aproximación manual a la fotometría de apertura}\\Trabajo sobre el cúmulo abierto Messier 41\\Tercera parte: Introducción al machine learning}
+
+
+% ------------------ AUTORES ------------------
+\author[1]{Bruno Abello Laurent}
+
+\affil[1]{Universidad de Los Andes, Departamento de Física, Colombia}
+
+% Correos (puedes modificar)
+\renewcommand\Authands{, }
+\date{}
+
+\begin{document}
+
+\twocolumn[
+\maketitle
+\begin{center}
+\small
+\textit{Correo institucional:} \href{mailto:{b.abello@uniandes.edu.co}}{b.abello@uniandes.edu.co} \\
+\textit{Repositorio de GitHub: } \href{https://github.com/Brunelleschk1/Personal-projects/tree/main/Proyectos\%20de\%20Astronom\%C3\%ADa/Laboratorio\%203}{Repositorio del laboratorio}
+\end{center}
+
+\begin{abstract}
+\noindent
+
+\end{abstract}
+
+\noindent\textbf{Palabras clave:} Messier 41, HDBSCAN, Vector Point Diagram, Color Magnitude Diagram. 
+\vspace{0.5cm}
+]
+
+% ------------------ CONTENIDO ------------------
+
+\section{Introducción}
+
+El presente informe se puede ver como la culminación de varias semanas de trabajo sobre los métodos computacionales
+que se utilizaron históricamente en el estudio de los cúmulos abiertos. A través de métodos cada vez más refinados, 
+nos hemos acercado al uso del machine learning para identificar cúmulos abiertos entre los datos que obtienen 
+las herramientas más poderosas de la humanidad para detectar y catalogar cuerpos celestes en el universo. 
+
+Como una prueba de lo poderoso pero poco comprendido que puede ser un método de machine learning, trabajamos
+con todos los cuerpos a 100 pársecs alrededor de nuestro sol, con el fin de encontrar clusters en este espacio.
+Lo interesante de este estudio es que la humanidad ya ha estudiado bien esta región, y ha encontrado dos 
+cúmulos, Coma y Hyades. Nosotros no queremos limitarnos a estos dos, y buscaremos cualquier indicio de que 
+un tercero o más cúmulos se encuentran en esta región. Es decir, por primera vez nos interesamos a un 
+trabajo de exploración y no a uno de encontrar algo que sabemos que está ahí. 
+
+Las explicaciones del método que se utiliza, HDBSCAN, ya se dieron en semanas anteriores, por lo que, 
+para esta ocasión, podemos ser más directos con nuestros resultados y otros detalles. 
+\subsection{Objetivos}
+
+Los objetivos que tenemos, en términos simples, son los siguientes:
+\begin{itemize}
+    \item Implementar una manera de analizar cientos de miles de datos de GAIA
+    \item Implementar formas, simples o avanzadas, de determinar qué es un cluster real
+    \item Entender las limitaciones que tiene el Machine Learning 
+    \item Realizar un análisis manual que de un paso más allá de lo que hace un computador.
+\end{itemize}
+
+\section{Procedimiento}
+
+Teniendo en cuenta estos objetivos, proceder fue bastante directo: al hablar con la clase, se determinó 
+que se podía cortar el cielo en 64 porciones iguales y analizar cada una por separado. Resulta que
+HDBSCAN tiene un crecimiento altísimo en tiempo con la cantidad de datos que se le proporcionan, por lo que
+analizar pequeñas celdas de 5000-10000 estrellas es mucho mejor que analizar todo el cielo al tiempo. 
+
+Acto seguido, se empezaron a implementar cortes y restricciones a la función de análisis, de manera que 
+no se tuviera que graficar todo el cielo por un falso cúmulo de 30000 estrellas. Además, se realizó a posteriori
+una gráfica de todo el cielo, en ascención recta contra declinación, para ver en dónde y qué forma tienen los 
+cúmulos detectados. 
+
+El como se llegó a la función final y el cómo se resolvió hacer todo esto pertenece a la sección siguiente.
+
+\section{Problemas presentados y soluciones aplicadas}
+
+\begin{enumerate}
+  \item  Uno de los primeros problemas encontrados fue qué presentar como resultado. 
+  Se resolvió que lo mejor era presentar dos CMDs y dos VPDs, unos sin silueta y otros dos con ella, 
+  además de un histograma con la distribución de miembros por cluster encontrado sobre la distancia. 
+  \item El segundo problema fue darse cuenta de que hay muchos cúmulos encontrados por HDBSCAN que son, 
+  de alguna manera, basura. Tienen 60, o 20000 miembros, y están muy lejos de ser un cúmulo real. 
+  La solución, sencilla, es cortar cúmulos con menos de 90 miembros o más de unos 1050 miembros, 
+  para conservar los que, al menos, tienen un semblante real. 
+  \item Posteriormente, se encuentra el siguiente problema, y es que muchos cúmulos encontrados
+  no se comportan, en su extensión, como un cúmulo real: son enormes. Por ende, se elimina un cúmulo
+  que tenga más de 34 pársecs de extensión. 
+  \item Además de los problemas anteriores, un problema más elusivo se puede encontrar en la forma de la distribución 
+  del cúmulo. Se espera que sea gaussiano, pero la mayoría del tiempo se obtiene una pendiente creciente, que asumimos
+  infinita en el espacio más allá de los 100 clusters: un cono de estrellas hacia el infinito. Para eliminar estos cúmulos, 
+  se implementó un corte un poco curioso: calcular la pendiente de los datos y, si supera un threshold, eliminar el cúmulo. 
+  \item El lector podrá comprender que esto no elimina todos los cúmulos como se quiere, y se siguen obteniendo datos. 
+  Sin embargo, resultó que, para el estudiante, implementar cortes automáticos correctos empezó a resultar complicado
+  y poco fructífero. Por ende, decidió que iba a realizar un ajuste gaussiano a cada cúmulo restante, para luego revisar 
+  manualmente qué tan convincente era el ajuste. 
+  \item Por aparte, también hay que notar algo muy importante, y es que los datos que se utilizaron no incluían las regiones
+  de Coma y Hyades. Por ende, estos datos se volvieron a añadir gracias a un código de python, y se sumaron al análisis. 
+  De esta manera, se sabe cómo debería lucir un cúmulo real con la presentación que se instauró para hacer el análisis. 
+\end{enumerate}
+
+Nótese, primeramente, que el volver a añadir los datos de Hyades y Coma resultó en la superposición de regiones en el mapa.
+Por ende, se ven en el mapa dos regiones especiales, lo que no es muy grave pero si amerita una explicación previa al análisis
+serio de los datos. 
+Por otro lado, y como dato o consejo para el lector, se ha de entender que los pasos propuestos en la lista anterior están aplicados 
+en el código en ese orden exactamente. Esto es debido a que los cortes fuertes eliminan lo realmente innecesario, y lo difícil de procesar, 
+como un cúmulo muy extenso o un cúmulo con 20000 miembros, dejando así los métodos más exigentes, como el cálculo de pendiente o el 
+ajuste de gaussiana, a una serie reducida, y más real, de cúmulos. Así, el código es mucho más rápido. 
+
+\section{Resultados}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../Resultados_completos.png}
+    \caption{Compilación de los CMDs obtenidos con el estudio de los datos mediante HDBSCAN. El cluster Messier 41 es,
+    se espera, el cluster 1 tal y como lo marca el método.}
+    \label{resultadosCompletos}
+\end{figure}
+
+\section{Conclusiones}
+
+\section*{Comentarios al margen}
+
+\bibliographystyle{apalike}
+\bibliography{refs}
+\end{document}
