@@ -1,0 +1,217 @@
+\documentclass[10pt,twocolumn]{article}
+
+% ------------------ PAQUETES ------------------
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{siunitx}
+\usepackage{authblk}
+\usepackage{abstract}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{currfile}
+\usepackage{float}
+
+\geometry{margin=1.8cm}
+
+% ------------------ FORMATO DE SECCIONES ------------------
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+% ------------------ TÍTULO ------------------
+\title{\textbf{Aproximación inicial a las estrellas variables}\\Estudio del atlas de curvas lúminicas de estrellas variables elaborado por Igor Soszynski\\Entre otros}
+
+
+% ------------------ AUTORES ------------------
+\author[1]{Bruno Abello Laurent}
+
+\affil[1]{Universidad de Los Andes, Departamento de Física, Colombia}
+
+% Correos (puedes modificar)
+\renewcommand\Authands{, }
+\date{}
+
+\begin{document}
+
+\twocolumn[
+\maketitle
+\begin{center}
+\small
+\textit{Correo institucional:} \href{mailto:{b.abello@uniandes.edu.co}}{b.abello@uniandes.edu.co} \\
+\end{center}
+
+\begin{abstract}
+\noindent
+
+\end{abstract}
+
+\noindent\textbf{Palabras clave:} 
+\vspace{0.5cm}
+]
+
+% ------------------ CONTENIDO ------------------
+
+\section{Introducción}
+
+El presente documento es un informe detallado de las lecturas y trabajos del autor sobre su descubrimiento del mundo de las 
+estrellas variables. Gracias al Atlas of Variable Star Light Curves, elaborado por Igor Soszynski y el trabajo sobre
+estrellas binarias eclipsantes de Dan Brutoni, se puede realizar una introducción bastante completa al conocimiento que 
+se tiene de estos fenómenos estelares. El único acercamiento práctico que se verá en este documento es la demostración 
+del valor del ángulo con respecto al plano de observación que han de tener dos estrellas binarias para que podamos observar
+su eclipsamiento.
+
+El trabajo presentado a continuación se realiza para poder tener el conocimiento necesario para poder realizar aplicaciones.
+Por ejemplo, se trabajará en la búsqueda de periodicidad y en la búsqueda de estrellas variables, a través de una serie de 
+5 informes, con este siendo el primero. 
+
+\subsection{Objetivos}
+
+Los objetivos que tenemos, en términos simples, son los siguientes:
+\begin{itemize}
+    \item Aprender a entender la información específica que se puede obtener de una estrella variables
+    \item Aprender a diferenciar los tipos de estrellas variables
+    \item Entender qué condiciones se tienen que dar para observar estrellas eclipsantes desde un punto del espacio
+\end{itemize}
+
+Las secciones de problemas presentados y procedimiento se obvian en este informe puesto que no hay mayores problemas que se 
+puedan presentar en la realización de este trabajo y no hay un procedimiento específico que se ha de seguir. Claro que vale 
+la pena aclarar que se fue leyendo el atlas subsección a subsección, y se fueron anotando las observaciones directamente en 
+este documento con el fin de estructurar todo a posteriori. 
+
+\section{Resultados}
+
+El lector se podrá preguntar por qué la definición de una estrella variable no se encuentra en la introducción de este documento.
+Lo cierto es que el autor no sabía qué era una estrella variable antes de empezar a investigar, por lo que tiene más sentido poner
+la definición de estrella variable como el primer resultado. 
+
+Tanto en clase como en una búsqueda rápida por internet, se puede encontrar que una estrella variable es aquella estrella cuya magnitud
+varía sistemáticamente con el tiempo. O sea, se le ve un cambio periódico y no aleatorio. No es difícil dar el salto de esto a que pueden 
+haber distintas maneras en las que una estrella puede presentar ese fenómeno. Por ende, se denomina como extrínseca a aquella estrella
+cuya magnitud varía debido a un agente externo, como una estrella binaria que a veces nos presenta toda su magnitud y a veces se eclipsa
+para mostrar su magnitud como la de una sola estrella. Por el contrario, una estrella intrínseca es la que varía su magnitud sin influencia
+externa. Puede, por ejemplo, estar titilando en tamaño, haciendo erupciones bruscas o estallando en una única y enorme explosión 
+(\cite{clase_presencial, wikipedia_variable_star}). 
+
+Evidentemente, la clasíficación se extiende más allá de esto. Revisaremos entonces los ejemplos estándar de estrellas variables.
+
+\subsection{Sistemas Binarios eclipsantes}
+
+Como dicho anteriormente, un tipo de estrella variable es aquella que es eclipsada por otro cuerpo celeste de manera periódica. 
+Empezaremos por revisar algunos tipos de estas estrellas.
+
+\subsubsection{Algol variables}
+
+Este tipo de estrellas son posiblemente los más sencillos; ambas estrellas, o al menos la más luminosa, son esféricas.
+Es sencillo imaginar que, debido a la distribución de estrellas eclipsantes en el universo, algunas van a tener sus 
+eclipses mucho más visibles que otras. Las tipo Algol, justamente, muestran su eclipse de manera muy clara a través del tiempo;
+su principio y su final. Al menos una a una. En la figura (Fig: ~\ref{NormalAlgol}) vemos un claro ejemplo de esto: un eclipse grande
+en fases 0 y 1, donde la estrella más luminosa es ocultada por la menos luminosa, y otro más pequeño en fase 0.5, donde ocurre lo contrario. 
+Esto es debido a que una estrella es más luminosa que otra, lo que ocurre en la  mayoría de los casos. El eclipse en fase 0.5 se puede 
+ver desplazado si las órbitas de las estrellas son excéntricas (Fig: ~\ref{EccentricAlgol}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../LightCurves/Algol/Normalita.png}
+    \caption{Curva de magnitud con respecto a fase de un sistema binario eclipsante tipo Algol natural}
+    \label{NormalAlgol}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../LightCurves/Algol/Excéntrica.png}
+    \caption{Curva de magnitud con respecto a fase de un sistema binario eclipsante tipo Algol con órbitas eccéntricas}
+    \label{EccentricAlgol}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../LightCurves/Algol/Aspidal.png}
+    \caption{Curva de magnitud con respecto a fase de un sistema binario eclipsante tipo Algol con movimiento aspidal. }
+    \label{AspidalAlgol}
+\end{figure} 
+
+Evidentemente, se complican más las curvas si la órbita, ya elíptica, de una de las estrellas, presenta movimiento aspidal, 
+es decir que va rotando en su propio plano. Esto se traduce por una curva de luz borrosa en los eclipses y menos lineal
+entre estos (Fig: ~\ref{AspidalAlgol}). Estas estrellas también presentan fenómenos más complejos, como el efecto de
+reflección, los discos de acreción o la doble periodicidad. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../LightCurves/Algol/Reflexión.png}
+    \caption{Curva de magnitud con respecto a fase de un sistema binario eclipsante tipo Algol con efecto de reflexión.
+    Se observa un efecto tan intenso que el eclipse secundario es prácticamente invisible.}
+    \label{ReflexiónAlgol}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../LightCurves/Algol/Accretion.png}
+    \caption{Curva de magnitud con respecto a fase de un sistema binario eclipsante tipo Algol en el que una estrella
+    posee un disco de acreción. Se observa como el eclipse primario es más largo que el secundario. }
+    \label{AccretionAlgol}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../LightCurves/Algol/Double.png}
+    \caption{Curva de magnitud con respecto a fase de un sistema binario eclipsante tipo Algol con doble periodicidad.
+    Se ve cómo la gráfica principal, a la izquierda, es la suma de dos variaciones periódicas, que se pueden separar. }
+    \label{DoubleAlgol}
+\end{figure}
+
+El primero ocurre cuando la diferencia en temperatura  de las estrellas es muy grande, y la luz de la estrella más 
+caliente es absorbida y reflejada por la más pequeña. En consecuencia, el brillo aumenta por fuera de los eclipses
+(Fig: ~\ref{ReflexiónAlgol}). Por otro lado, cuando una de las estrellas cuenta con un disco de acreción,
+el eclipse que provoca es más largo que el eclipse provocado por su compañera, lo que se ve claramente en el 
+gráfico (Fig: ~\ref{AccretionAlgol}). Por último, en 2003 (\cite{mennickent2003double}) se descubrió que podía
+existir un sistema periódico, con otro periodo entre 20 y 50 veces más largo que el primero, de origen aún desconocido. 
+En este caso, se pueden deconstruir los datos para obtener las gráficas de ambos fenómenos por separado(Fig: ~\ref{DoubleAlgol}).
+
+\subsubsection{Beta Lirae variables}
+
+El atlas describe a este tipo de estrellas como estrellas binarias cuya magnitud aparente cambia continuamente, y cuyos
+miembros cuentan con diferencias significativas en su temperatura. Como recordaremos del inciso anterior, esto significa 
+un cambio brusco entre el efecto del eclipse primario y el del eclipse secundario (Fig: ~\ref{NormalBLyrae}). Adicionalmente, estas estrellas tienen
+forma elipsoidal debido a laa fuerza de oleaje de su compañera, con el atlas diciendo que puede ser que una de sus estrellas
+llene su lóbulo de Roche \footnote{El lóbulo de Roche es la región del espacio alrededor de una estrella en un sistema 
+binario en la que el material orbitante está ligado gravitacionalmente a dicha estrella. Si la estrella se expande más 
+allá de su lóbulo de Roche entonces el material exterior al lóbulo es atraído por la otra estrella. \cite{wikipedia_lobulo_roche}}, 
+haciendo que se dé una transferencia de masa a su compañera; una binaria semi-desligada.
+
+Hay que notar que algunos de estos sistemas pueden verse afectados por el efecto O'Connell, probablemente asociado a la
+transferencia de masa entre estrellas, en el cual un máximo de magnitud entre eclipses es menor que el otro (Fig: ~\ref{OconBLyrae}). 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../LightCurves/BetaLyrae/Normal.png}
+    \caption{Curva de magnitud con respecto a fase de un sistema binario eclipsante tipo Beta Lyrae. Se nota, a 
+    comparación de un sistema Algol, que los eclipses y máximos se presentan como un continuo más que como dos 
+    funciones disyuntas.}
+    \label{NormalBLyrae}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../LightCurves/BetaLyrae/Ocon.png}
+    \caption{Curva de magnitud con respecto a fase de un sistema binario eclipsante tipo Beta Lyrea con efecto 
+    O'Connell. Se aprecia que el primer máximo en fase positiva es mayor al segundo, dando lugar a un efecto O'Connell
+    positivo. El negativo invierte el orden, y es mucho más raro.}
+    \label{OconBLyrae}
+\end{figure}
+
+\subsubsection{W Ursae Majoris}
+
+
+\section{Conclusiones}
+
+\section*{Comentarios al margen}
+
+\bibliographystyle{apalike}
+\bibliography{refs}
+\end{document}

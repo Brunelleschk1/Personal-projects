@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.25)  11 APR 2026 21:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.25)  12 APR 2026 23:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 4/Informe/main.tex"
-(c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 4/Informe/main.tex
+**"c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 6/Informe/main.tex"
+(c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 6/Informe/main.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
 (C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -456,43 +456,33 @@ Package color Info: Driver file: pdftex.def on input line 149.
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count345
 ) (main.aux
-LaTeX Info: Redefining \. on input line 11.
-LaTeX Info: Redefining \% on input line 11.
+LaTeX Info: Redefining \. on input line 13.
+LaTeX Info: Redefining \% on input line 13.
 Package babel Info: 'spanish' activates 'spanish' shorthands.
-(babel)             Reported on input line 11.
-
-
-LaTeX Warning: Label `19' multiply defined.
-
-
-LaTeX Warning: Label `20' multiply defined.
-
-
-LaTeX Warning: Label `44' multiply defined.
-
+(babel)             Reported on input line 13.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Info: Redefining \. on input line 39.
-LaTeX Info: Redefining \% on input line 39.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Info: Redefining \. on input line 40.
+LaTeX Info: Redefining \% on input line 40.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -549,249 +539,113 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 )) (C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex/latex/translations/dicts\translations-basic-dictionary-spanish.trsl
 File: translations-basic-dictionary-spanish.trsl (spanish translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `spanish'. on input line 39.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `spanish'. on input line 40.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 39.
+Package hyperref Info: Link coloring OFF on input line 40.
  (main.out) (main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 59.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 56.
  (C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 59.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 56.
  (C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 4819) has occurred while \output is active []
 
  [1{C:/Users/Bruno Abello/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}
 
 
 ]
-Underfull \hbox (badness 2635) in paragraph at lines 103--103
-|[]\T1/cmr/bx/n/12 Problemas pre-sen-ta-dos y so-lu-cio-nes
+<../LightCurves/Algol/Normalita.png, id=57, 264.99pt x 155.83218pt>
+File: ../LightCurves/Algol/Normalita.png Graphic file (type png)
+<use ../LightCurves/Algol/Normalita.png>
+Package pdftex.def Info: ../LightCurves/Algol/Normalita.png  used on input line 120.
+(pdftex.def)             Requested size: 200.74672pt x 118.05324pt.
+<../LightCurves/Algol/Excéntrica.png, id=59, 266.49562pt x 145.29282pt>
+File: ../LightCurves/Algol/Excéntrica.png Graphic file (type png)
+<use ../LightCurves/Algol/Excéntrica.png>
+Package pdftex.def Info: ../LightCurves/Algol/Excéntrica.png  used on input line 127.
+(pdftex.def)             Requested size: 200.74672pt x 109.45041pt.
+<../LightCurves/Algol/Aspidal.png, id=60, 277.78781pt x 146.79843pt>
+File: ../LightCurves/Algol/Aspidal.png Graphic file (type png)
+<use ../LightCurves/Algol/Aspidal.png>
+Package pdftex.def Info: ../LightCurves/Algol/Aspidal.png  used on input line 134.
+(pdftex.def)             Requested size: 200.74672pt x 106.08678pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+<../LightCurves/Algol/Reflexión.png, id=62, 259.7203pt x 144.54pt>
+File: ../LightCurves/Algol/Reflexión.png Graphic file (type png)
+<use ../LightCurves/Algol/Reflexión.png>
+Package pdftex.def Info: ../LightCurves/Algol/Reflexión.png  used on input line 146.
+(pdftex.def)             Requested size: 200.74672pt x 111.71957pt.
+<../LightCurves/Algol/Accretion.png, id=63, 260.47313pt x 138.5175pt>
+File: ../LightCurves/Algol/Accretion.png Graphic file (type png)
+<use ../LightCurves/Algol/Accretion.png>
+Package pdftex.def Info: ../LightCurves/Algol/Accretion.png  used on input line 154.
+(pdftex.def)             Requested size: 200.74672pt x 106.75601pt.
+<../LightCurves/Algol/Double.png, id=64, 548.0475pt x 109.1578pt>
+File: ../LightCurves/Algol/Double.png Graphic file (type png)
+<use ../LightCurves/Algol/Double.png>
+Package pdftex.def Info: ../LightCurves/Algol/Double.png  used on input line 162.
+(pdftex.def)             Requested size: 200.74672pt x 39.98466pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [2 <../LightCurves/Algol/Normalita.png> <../LightCurves/Algol/Excéntrica.png> <../LightCurves/Algol/Aspidal.png> <../LightCurves/Algol/Reflexión.png> <../LightCurves/Algol/Accretion.png>]
+<../LightCurves/BetaLyrae/Normal.png, id=87, 254.45062pt x 134.75343pt>
+File: ../LightCurves/BetaLyrae/Normal.png Graphic file (type png)
+<use ../LightCurves/BetaLyrae/Normal.png>
+Package pdftex.def Info: ../LightCurves/BetaLyrae/Normal.png  used on input line 192.
+(pdftex.def)             Requested size: 200.74672pt x 106.31627pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+<../LightCurves/BetaLyrae/Ocon.png, id=88, 255.20343pt x 134.00063pt>
+File: ../LightCurves/BetaLyrae/Ocon.png Graphic file (type png)
+<use ../LightCurves/BetaLyrae/Ocon.png>
+Package pdftex.def Info: ../LightCurves/BetaLyrae/Ocon.png  used on input line 201.
+(pdftex.def)             Requested size: 200.74672pt x 105.41153pt.
+ (main.bbl
+Underfull \hbox (badness 7030) in paragraph at lines 15--18
+[]\T1/cmr/m/n/10 Wikipedia con-tri-bu-tors
  []
 
-[2]
-Underfull \vbox (badness 4328) has occurred while \output is active []
 
- [3]
-<../ImagenesDeSolución/65.png, id=107, 568.0422pt x 711.8595pt>
-File: ../ImagenesDeSolución/65.png Graphic file (type png)
-<use ../ImagenesDeSolución/65.png>
-Package pdftex.def Info: ../ImagenesDeSolución/65.png  used on input line 256.
-(pdftex.def)             Requested size: 200.74672pt x 251.56593pt.
+Underfull \hbox (badness 5460) in paragraph at lines 20--23
+[]\T1/cmr/m/n/10 Wikipedia con-tri-bu-tors
+ []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../Mapas/441.png, id=109, 426.393pt x 354.123pt>
-File: ../Mapas/441.png Graphic file (type png)
-<use ../Mapas/441.png>
-Package pdftex.def Info: ../Mapas/441.png  used on input line 263.
-(pdftex.def)             Requested size: 200.74672pt x 166.7188pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../Mapas/443.png, id=112, 425.6703pt x 354.123pt>
-File: ../Mapas/443.png Graphic file (type png)
-<use ../Mapas/443.png>
-Package pdftex.def Info: ../Mapas/443.png  used on input line 271.
-(pdftex.def)             Requested size: 175.65195pt x 146.13156pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../ImagenesDeSolución/66.png, id=113, 568.0422pt x 711.8595pt>
-File: ../ImagenesDeSolución/66.png Graphic file (type png)
-<use ../ImagenesDeSolución/66.png>
-Package pdftex.def Info: ../ImagenesDeSolución/66.png  used on input line 279.
-(pdftex.def)             Requested size: 200.74672pt x 251.56593pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../Mapas/Global.png, id=114, 1003.8303pt x 570.933pt>
-File: ../Mapas/Global.png Graphic file (type png)
-<use ../Mapas/Global.png>
-Package pdftex.def Info: ../Mapas/Global.png  used on input line 287.
-(pdftex.def)             Requested size: 250.93245pt x 142.71547pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../ImagenesDeSolución/19.png, id=115, 568.0422pt x 711.8595pt>
-File: ../ImagenesDeSolución/19.png Graphic file (type png)
-<use ../ImagenesDeSolución/19.png>
-Package pdftex.def Info: ../ImagenesDeSolución/19.png  used on input line 294.
-(pdftex.def)             Requested size: 200.74672pt x 251.56593pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../ImagenesDeSolución/20.png, id=116, 568.0422pt x 711.8595pt>
-File: ../ImagenesDeSolución/20.png Graphic file (type png)
-<use ../ImagenesDeSolución/20.png>
-Package pdftex.def Info: ../ImagenesDeSolución/20.png  used on input line 303.
-(pdftex.def)             Requested size: 200.74672pt x 251.56593pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../ImagenesDeSolución/44.png, id=117, 567.3195pt x 711.8595pt>
-File: ../ImagenesDeSolución/44.png Graphic file (type png)
-<use ../ImagenesDeSolución/44.png>
-Package pdftex.def Info: ../ImagenesDeSolución/44.png  used on input line 312.
-(pdftex.def)             Requested size: 200.74672pt x 251.8918pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../ImagenesDeSolución/7.png, id=118, 568.0422pt x 711.8595pt>
-File: ../ImagenesDeSolución/7.png Graphic file (type png)
-<use ../ImagenesDeSolución/7.png>
-Package pdftex.def Info: ../ImagenesDeSolución/7.png  used on input line 321.
-(pdftex.def)             Requested size: 200.74672pt x 251.56593pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../ImagenesDeSolución/14.png, id=119, 568.0422pt x 711.8595pt>
-File: ../ImagenesDeSolución/14.png Graphic file (type png)
-<use ../ImagenesDeSolución/14.png>
-Package pdftex.def Info: ../ImagenesDeSolución/14.png  used on input line 330.
-(pdftex.def)             Requested size: 200.74672pt x 251.56593pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-File: ../ImagenesDeSolución/19.png Graphic file (type png)
-<use ../ImagenesDeSolución/19.png>
-Package pdftex.def Info: ../ImagenesDeSolución/19.png  used on input line 338.
-(pdftex.def)             Requested size: 200.74672pt x 251.56593pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-File: ../ImagenesDeSolución/20.png Graphic file (type png)
-<use ../ImagenesDeSolución/20.png>
-Package pdftex.def Info: ../ImagenesDeSolución/20.png  used on input line 346.
-(pdftex.def)             Requested size: 200.74672pt x 251.56593pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../ImagenesDeSolución/22.png, id=120, 568.0422pt x 711.8595pt>
-File: ../ImagenesDeSolución/22.png Graphic file (type png)
-<use ../ImagenesDeSolución/22.png>
-Package pdftex.def Info: ../ImagenesDeSolución/22.png  used on input line 355.
-(pdftex.def)             Requested size: 200.74672pt x 251.56593pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../ImagenesDeSolución/25.png, id=121, 568.0422pt x 711.8595pt>
-File: ../ImagenesDeSolución/25.png Graphic file (type png)
-<use ../ImagenesDeSolución/25.png>
-Package pdftex.def Info: ../ImagenesDeSolución/25.png  used on input line 363.
-(pdftex.def)             Requested size: 200.74672pt x 251.56593pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../ImagenesDeSolución/31.png, id=122, 568.0422pt x 711.8595pt>
-File: ../ImagenesDeSolución/31.png Graphic file (type png)
-<use ../ImagenesDeSolución/31.png>
-Package pdftex.def Info: ../ImagenesDeSolución/31.png  used on input line 371.
-(pdftex.def)             Requested size: 200.74672pt x 251.56593pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../ImagenesDeSolución/39.png, id=123, 568.0422pt x 711.8595pt>
-File: ../ImagenesDeSolución/39.png Graphic file (type png)
-<use ../ImagenesDeSolución/39.png>
-Package pdftex.def Info: ../ImagenesDeSolución/39.png  used on input line 379.
-(pdftex.def)             Requested size: 200.74672pt x 251.56593pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../ImagenesDeSolución/42.png, id=124, 568.0422pt x 711.8595pt>
-File: ../ImagenesDeSolución/42.png Graphic file (type png)
-<use ../ImagenesDeSolución/42.png>
-Package pdftex.def Info: ../ImagenesDeSolución/42.png  used on input line 387.
-(pdftex.def)             Requested size: 200.74672pt x 251.56593pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-File: ../ImagenesDeSolución/44.png Graphic file (type png)
-<use ../ImagenesDeSolución/44.png>
-Package pdftex.def Info: ../ImagenesDeSolución/44.png  used on input line 395.
-(pdftex.def)             Requested size: 200.74672pt x 251.8918pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../ImagenesDeSolución/47.png, id=125, 568.0422pt x 711.8595pt>
-File: ../ImagenesDeSolución/47.png Graphic file (type png)
-<use ../ImagenesDeSolución/47.png>
-Package pdftex.def Info: ../ImagenesDeSolución/47.png  used on input line 404.
-(pdftex.def)             Requested size: 200.74672pt x 251.56593pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../ImagenesDeSolución/48.png, id=126, 569.4876pt x 711.8595pt>
-File: ../ImagenesDeSolución/48.png Graphic file (type png)
-<use ../ImagenesDeSolución/48.png>
-Package pdftex.def Info: ../ImagenesDeSolución/48.png  used on input line 412.
-(pdftex.def)             Requested size: 200.74672pt x 250.92508pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../ImagenesDeSolución/51.png, id=127, 568.0422pt x 711.8595pt>
-File: ../ImagenesDeSolución/51.png Graphic file (type png)
-<use ../ImagenesDeSolución/51.png>
-Package pdftex.def Info: ../ImagenesDeSolución/51.png  used on input line 420.
-(pdftex.def)             Requested size: 200.74672pt x 251.56593pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../ImagenesDeSolución/52.png, id=128, 568.0422pt x 711.8595pt>
-File: ../ImagenesDeSolución/52.png Graphic file (type png)
-<use ../ImagenesDeSolución/52.png>
-Package pdftex.def Info: ../ImagenesDeSolución/52.png  used on input line 428.
-(pdftex.def)             Requested size: 200.74672pt x 251.56593pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../ImagenesDeSolución/62.png, id=129, 568.0422pt x 711.8595pt>
-File: ../ImagenesDeSolución/62.png Graphic file (type png)
-<use ../ImagenesDeSolución/62.png>
-Package pdftex.def Info: ../ImagenesDeSolución/62.png  used on input line 436.
-(pdftex.def)             Requested size: 200.74672pt x 251.56593pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[4 <../ImagenesDeSolución/65.png> <../Mapas/441.png>] [5 <../Mapas/443.png> <../ImagenesDeSolución/66.png> <../Mapas/Global.png> <../ImagenesDeSolución/19.png>] [6 <../ImagenesDeSolución/20.png> <../ImagenesDeSolución/44.png> <../ImagenesDeSolución/7.png> <../ImagenesDeSolución/14.png>] [7 <../ImagenesDeSolución/22.png> <../ImagenesDeSolución/25.png>] [8 <../ImagenesDeSolución/31.png> <../ImagenesDeSolución/39.png> <../ImagenesDeSolución/42.png>] [9 <../ImagenesDeSolución/47.png> <../ImagenesDeSolución/48.png> <../ImagenesDeSolución/51.png> <../ImagenesDeSolución/52.png>] [10
-
- <../ImagenesDeSolución/62.png>] (main.aux
-LaTeX Info: Redefining \. on input line 11.
-LaTeX Info: Redefining \% on input line 11.
+) [3 <../LightCurves/Algol/Double.png> <../LightCurves/BetaLyrae/Normal.png> <../LightCurves/BetaLyrae/Ocon.png>] (main.aux
+LaTeX Info: Redefining \. on input line 13.
+LaTeX Info: Redefining \% on input line 13.
 )
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
-
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 7A431F9AD558F1756F3DDC5BBDE70FAD;787.
+(rerunfilecheck)             Checksum: 867A6E3F522A820F96C7F9211F092CB4;1078.
  ) 
 Here is how much of TeX's memory you used:
- 18167 strings out of 467871
- 353259 string characters out of 5414952
- 764735 words of memory out of 5000000
- 46802 multiletter control sequences out of 15000+600000
- 639981 words of font info for 68 fonts, out of 8000000 for 9000
+ 18086 strings out of 467871
+ 351249 string characters out of 5414952
+ 755491 words of memory out of 5000000
+ 46734 multiletter control sequences out of 15000+600000
+ 643900 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,6n,80p,638b,1063s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0900.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk>
-Output written on main.pdf (10 pages, 3304156 bytes).
+ 75i,8n,80p,524b,1052s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0900.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk>
+Output written on main.pdf (3 pages, 189748 bytes).
 PDF statistics:
- 483 PDF objects out of 1000 (max. 8388607)
- 46 named destinations out of 1000 (max. 500000)
- 149 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 431 PDF objects out of 1000 (max. 8388607)
+ 25 named destinations out of 1000 (max. 500000)
+ 105 words of extra memory for PDF output out of 10000 (max. 10000000)
 
