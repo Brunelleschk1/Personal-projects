@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1776054124.1356 "main.aux" "main.bbl" "main" 1776054126.0205 0
+["bibtex main"] 1776219565.0877 "main.aux" "main.bbl" "main" 1776219593.90414 0
   "./refs.bib" 1776034375 1196 5880c5d59cf6bf62a3b52062c511427f ""
   "C:/Users/Bruno Abello/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/apalike.bst" 1291972791 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "main.aux" 1776054125 6068 cc330b530acffc2f055f8b316df5daa1 "pdflatex"
+  "main.aux" 1776219593 6729 50bb4edab40035c8a97fd2b6398c777e "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1776054124.41775 "c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 6/Informe/main.tex" "main.pdf" "main" 1776054126.02119 0
+["pdflatex"] 1776219592.43453 "c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 6/Informe/main.tex" "main.pdf" "main" 1776219593.90479 0
   "../LightCurves/Algol/Accretion.png" 1776019166 15692 fd4ccade12e1a52c92be412af92d4aff ""
   "../LightCurves/Algol/Aspidal.png" 1776018481 18202 7e2ddb56d6b65f024adcbcdc2414d890 ""
   "../LightCurves/Algol/Double.png" 1776019186 31024 d6f710edb41c7c933308d5a6165f98b3 ""
@@ -16,6 +16,7 @@
   "../LightCurves/Algol/Reflexión.png" 1776018457 14192 17d20fd575366983d026c3eb6fc2aad2 ""
   "../LightCurves/BetaLyrae/Normal.png" 1776034563 15405 68e35db8503d5b84377fbb696e133506 ""
   "../LightCurves/BetaLyrae/Ocon.png" 1776034698 14540 b2c0621ee1a70472bdfea27e707058e3 ""
+  "../LightCurves/WUrsaeMajoris/Normal.png" 1776219464 16084 06b96ab38e85847af8bc86d1f5eb6f32 ""
   "C:/Users/Bruno Abello/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1772925351 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Bruno Abello/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx0900.pk" 1772072797 22504 fbaaf10e1bdb092a1c81b6132fe10c79 ""
   "C:/Users/Bruno Abello/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1000.pk" 1772072796 25420 66cc0c35af24db263f1119579c5a9d8e ""
@@ -135,11 +136,11 @@
   "C:/Users/Bruno Abello/AppData/Local/Programs/MiKTeX/tex/latex/translations/dicts/translations-basic-dictionary-spanish.trsl" 1644048522 5850 2ef40dd7b6b9ada125cd1d90b7f7b307 ""
   "C:/Users/Bruno Abello/AppData/Local/Programs/MiKTeX/tex/latex/translations/translations.sty" 1644048522 44247 2188b95d0ee74e31eca4d316263c58a7 ""
   "C:/Users/Bruno Abello/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 6/Informe/main.tex" 1776054121 11524 8926149d239563c05f2397d3c0940cbb ""
-  "main.aux" 1776054125 6068 cc330b530acffc2f055f8b316df5daa1 "pdflatex"
-  "main.bbl" 1776054124 888 b8bd432db90c5c2c8fdcc286ca6431aa "bibtex main"
-  "main.out" 1776054125 1078 867a6e3f522a820f96c7f9211f092cb4 "pdflatex"
-  "main.tex" 1776054121 11524 8926149d239563c05f2397d3c0940cbb ""
+  "c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 6/Informe/main.tex" 1776219591 12326 cac6bc1a998a64c78722c5b1c74cb95b ""
+  "main.aux" 1776219593 6729 50bb4edab40035c8a97fd2b6398c777e "pdflatex"
+  "main.bbl" 1776219565 888 b8bd432db90c5c2c8fdcc286ca6431aa "bibtex main"
+  "main.out" 1776219593 1078 867a6e3f522a820f96c7f9211f092cb4 "pdflatex"
+  "main.tex" 1776219591 12326 cac6bc1a998a64c78722c5b1c74cb95b ""
   (generated)
   "main.aux"
   "main.log"

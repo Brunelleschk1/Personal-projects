@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.25)  12 APR 2026 23:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.2.25)  14 APR 2026 21:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -613,7 +613,12 @@ File: ../LightCurves/BetaLyrae/Ocon.png Graphic file (type png)
 <use ../LightCurves/BetaLyrae/Ocon.png>
 Package pdftex.def Info: ../LightCurves/BetaLyrae/Ocon.png  used on input line 201.
 (pdftex.def)             Requested size: 200.74672pt x 105.41153pt.
- (main.bbl
+<../LightCurves/WUrsaeMajoris/Normal.png, id=90, 257.46187pt x 137.7647pt>
+File: ../LightCurves/WUrsaeMajoris/Normal.png Graphic file (type png)
+<use ../LightCurves/WUrsaeMajoris/Normal.png>
+Package pdftex.def Info: ../LightCurves/WUrsaeMajoris/Normal.png  used on input line 216.
+(pdftex.def)             Requested size: 200.74672pt x 107.42027pt.
+ (main.bbl [3 <../LightCurves/Algol/Double.png> <../LightCurves/BetaLyrae/Normal.png> <../LightCurves/BetaLyrae/Ocon.png> <../LightCurves/WUrsaeMajoris/Normal.png>]
 Underfull \hbox (badness 7030) in paragraph at lines 15--18
 []\T1/cmr/m/n/10 Wikipedia con-tri-bu-tors
  []
@@ -623,7 +628,9 @@ Underfull \hbox (badness 5460) in paragraph at lines 20--23
 []\T1/cmr/m/n/10 Wikipedia con-tri-bu-tors
  []
 
-) [3 <../LightCurves/Algol/Double.png> <../LightCurves/BetaLyrae/Normal.png> <../LightCurves/BetaLyrae/Ocon.png>] (main.aux
+) [4
+
+] (main.aux
 LaTeX Info: Redefining \. on input line 13.
 LaTeX Info: Redefining \% on input line 13.
 )
@@ -635,17 +642,17 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 867A6E3F522A820F96C7F9211F092CB4;1078.
  ) 
 Here is how much of TeX's memory you used:
- 18086 strings out of 467871
- 351249 string characters out of 5414952
- 755491 words of memory out of 5000000
- 46734 multiletter control sequences out of 15000+600000
+ 18096 strings out of 467871
+ 351607 string characters out of 5414952
+ 755764 words of memory out of 5000000
+ 46742 multiletter control sequences out of 15000+600000
  643900 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,8n,80p,524b,1052s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,8n,80p,524b,1144s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0900.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk> <C:\Users\Bruno Abello\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk>
-Output written on main.pdf (3 pages, 189748 bytes).
+Output written on main.pdf (4 pages, 199171 bytes).
 PDF statistics:
- 431 PDF objects out of 1000 (max. 8388607)
- 25 named destinations out of 1000 (max. 500000)
- 105 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 439 PDF objects out of 1000 (max. 8388607)
+ 27 named destinations out of 1000 (max. 500000)
+ 110 words of extra memory for PDF output out of 10000 (max. 10000000)
 
