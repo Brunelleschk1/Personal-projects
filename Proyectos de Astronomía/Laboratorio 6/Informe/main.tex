@@ -25,7 +25,7 @@
 \titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{1em}{}
 
 % ------------------ TÍTULO ------------------
-\title{\textbf{Aproximación inicial a las estrellas variables}\\Estudio del atlas de curvas lúminicas de estrellas variables elaborado por Igor Soszynski\\Entre otros}
+\title{\textbf{Aproximación inicial a las estrellas variables}\\Estudio del atlas de curvas lúminicas de estrellas variables elaborado por Igor Soszynski}
 
 
 % ------------------ AUTORES ------------------
@@ -48,10 +48,15 @@
 
 \begin{abstract}
 \noindent
+El siguiente informe trata sobre las particularidades de algunos tipos de estrellas variables, tanto eclipsantes como 
+pulsantes. Se detalla qué las diferencia entre sí, así como algunos fenónemos físicos especiales que ocurren para
+algunas de estas. Además, se demostró la condición que deben seguir las estrellas binarias para ser observadas como 
+eclipsantes y no como sistemas binarios tradicionales. Evidentemente, la condición corresponde al ángulo al que 
+está el plano en el que se observan las estrellas: algo sumamente ligado a nuestra posición en el universo. 
 
 \end{abstract}
 
-\noindent\textbf{Palabras clave:} 
+\noindent\textbf{Palabras clave: Estrellas variables, eclipsantes, pulsantes, condición de eclipse, curvas de luz} 
 \vspace{0.5cm}
 ]
 
@@ -395,15 +400,38 @@ encontrar binarias "parciales".
 Por ende, vamos a imaginar un universo sencillo: o la primera estrella está en frente nuestro y siempre se mantiene en ese 
 plano y en esa posición(adelante de su compañera), o la primera estrella está atrás de su compañera, pero siempre en el plano 
 de observación. Es decir, en vez de necesitar que el ángulo Phi al que estamos observando sea el ángulo al que están las dos
-estrellas, tenemos un poco más de margen: tenemos un ángulo $\Phi \pm \Theta$. La mala noticia es que a menos que cambiemos 
+estrellas, tenemos un poco más de margen: tenemos un ángulo $\Phi \pm \phi$. La mala noticia es que a menos que cambiemos 
 nuestra posición, estas estrellas eclipsantes seguirán siendo parciales, ya que ellas no cambiarán su posición en el plano
 perpendicular al de observación. En definitiva, mientras una estrella se ubique en el plano de observación orientado a Phi 
-grados, necesitamos que la otra estrella se encuentre en un plano $\Phi \pm \Theta$. 
+grados, necesitamos que la otra estrella se encuentre en un plano $\Phi \pm \phi$. 
 
 Existe además el caso en el que este Theta sea a veces demasiado grande pero que a veces cumpla con nuestras necesidades.
-Pero entonces, ¿cómo son estos ángulos tales que la estrella sea eclipsante?
+Pero entonces, ¿cómo son estos ángulos tales que la estrella sea eclipsante? 
 
+Tras un cálculo manual, realizado en la imagen (Fig: ~\ref{demostracion}), se llega a la conclusión de que $\phi = arcsin(\frac{r+R}{D})$,
+donde r y R son los radios de cada estrella y D es la distancia a la estrella por fuera del plano original de visión. Evidentemente, como 
+el lector podrá notar, se asumió que en un triángulo rectángulo formado entre las estrellas y el plano de visión del observador, el lado  
+entre la segunda estrella y el plano medía la suma de los radios de ambas estrellas. Esto, evidentemente, no es del todo correcto, pero 
+como son objetos estelares muy lejanos, podemos interpretar así la geometría; la diferencia con el resultado real sería, esperamos, muy pequeña.
+Además, suponemos que, para que un sistema sea binario, la distancia entre la tierra y una y la tierra y la otra es relativamente similar. 
+O sea, $D=L$. Además, estas distancias son mucho mayores que la suma de radios de las estrellas, por lo que el argumento del arcoseno, que 
+es la inversa del seno, es muy pequeño. Entonces, se aproxima el seno como el valor de su argumento, y se obtiene que: 
 
+\begin{equation}
+    \phi \leq \frac{r+R}{D}
+\end{equation}
+
+Según entiende el autor, encontrar el radio de las estrellas de un sistema binario no es complicado, ya que hay métodos de determinarlo 
+mediante la órbita de las estrellas entre sí, encontrando su masa, y computando esto con ecuaciones que relacionan sus colores, masas y 
+brillos con su radio.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{../demostracion.jpg}
+    \caption{Demostración manual del ángulo de separación entre los planos de observación de dos estrellas de un sistema binario 
+    para que el observador las considere eclipsantes.}
+    \label{demostracion}
+\end{figure}
 
 \section{Conclusiones}
 
@@ -414,7 +442,10 @@ humano, ya que muchas veces la diferencia entre dos tipos de estrellas variables
 del científico, al momento de la vida de la estrella o, tal vez, a la necesidad de clasificación metódica y definitiva 
 del científico humano. 
 
-\section*{Comentarios al margen}
+Se dijo, además, que existen unas condiciones muy específicas para hacer de un sistema binario un sistema eclipsante, principalmente
+debido a la posición del ser humano en el cosmos. Vemos, entonces, que la clasificación de las estrellas en el cosmos está supremamente
+ligada a lo que observamos desde nuestro planeta: la ciencia sigue siendo, ante todo, la observación de los fenómenos del universo por parte 
+del ser humano.
 
 \bibliographystyle{apalike}
 \bibliography{refs}
