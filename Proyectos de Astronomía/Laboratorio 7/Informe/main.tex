@@ -78,355 +78,146 @@ Los objetivos que tenemos, en términos simples, son los siguientes:
 
 \section{Procedimiento}
 
-Teniendo en cuenta estos objetivos, proceder fue bastante directo: al hablar con la clase, se determinó 
-que se podía cortar el cielo en 64 porciones iguales y analizar cada una por separado. Resulta que
-HDBSCAN tiene un crecimiento altísimo en tiempo con la cantidad de datos que se le proporcionan, por lo que
-analizar pequeñas celdas de 5000-10000 estrellas es mucho mejor que analizar todo el cielo al tiempo. 
+El proceder de este laboratorio fue relativamente sencillo: Primero, se trabajaron las estrellas OGLE, mirando lentamente
+cómo hacer para construir funciones que permitieran, primero, obtener resultados con Lomb Scargle, y luego con Lomb Scargle 
+y mínima entropía. Luego, se adaptó el código para utilizarlo con las estrellas de VVV. Los datos se guardaron en sus propias 
+carpetas. El análisis de las gráficas, por ende, se hizo aparte del desarrollo del código. 
 
-Acto seguido, se empezaron a implementar cortes y restricciones a la función de análisis, de manera que 
-no se tuviera que graficar todo el cielo por un falso cúmulo de 30000 estrellas. Además, se realizó a posteriori
-una gráfica de todo el cielo, en ascención recta contra declinación, para ver en dónde y qué forma tienen los 
-cúmulos detectados. 
-
-El como se llegó a la función final y el cómo se resolvió hacer todo esto pertenece a la sección siguiente.
+El código hace lo mejor que puede para tener una selección de estrellas diversa. 
 
 \section{Problemas presentados y soluciones aplicadas}
 
 \begin{enumerate}
-  \item  Uno de los primeros problemas encontrados fue qué presentar como resultado. 
-  Se resolvió que lo mejor era presentar dos CMDs y dos VPDs, unos sin silueta y otros dos con ella, 
-  además de un histograma con la distribución de miembros por cluster encontrado sobre la distancia. 
-  \item El segundo problema fue darse cuenta de que hay muchos cúmulos encontrados por HDBSCAN que son, 
-  de alguna manera, basura. Tienen 60, o 20000 miembros, y están muy lejos de ser un cúmulo real. 
-  La solución, sencilla, es cortar cúmulos con menos de 90 miembros o más de unos 1050 miembros, 
-  para conservar los que, al menos, tienen un semblante real. 
-  \item Posteriormente, se encuentra el siguiente problema, y es que muchos cúmulos encontrados
-  no se comportan, en su extensión, como un cúmulo real: son enormes. Por ende, se elimina un cúmulo
-  que tenga más de 34 pársecs de extensión. 
-  \item Además de los problemas anteriores, un problema más elusivo se puede encontrar en la forma de la distribución 
-  del cúmulo. Se espera que sea gaussiano, pero la mayoría del tiempo se obtiene una pendiente creciente, que asumimos
-  infinita en el espacio más allá de los 100 clusters: un cono de estrellas hacia el infinito. Para eliminar estos cúmulos, 
-  se implementó un corte un poco curioso: calcular la pendiente de los datos y, si supera un threshold, eliminar el cúmulo. 
-  \item El lector podrá comprender que esto no elimina todos los cúmulos como se quiere, y se siguen obteniendo datos. 
-  Sin embargo, resultó que, para el estudiante, implementar cortes automáticos correctos empezó a resultar complicado
-  y poco fructífero. Por ende, decidió que iba a realizar un ajuste gaussiano a cada cúmulo restante, para luego revisar 
-  manualmente qué tan convincente era el ajuste. 
-  \item Por aparte, también hay que notar algo muy importante, y es que los datos que se utilizaron no incluían las regiones
-  de Coma y Hyades. Por ende, estos datos se volvieron a añadir gracias a un código de python, y se sumaron al análisis. 
-  De esta manera, se sabe cómo debería lucir un cúmulo real con la presentación que se instauró para hacer el análisis. 
+    \item El estudiante tuvo problemas para aplicar Lomb Scargle y entender su funcionamiento. Esto se resolvío mediante varias sesiones
+    de clase y mucha revisión de código.
+    \item El estudiante tuvo problemas para entenderel concepto y la aplicación del método de mínima entropía. Ninguno de los dos 
+    problemas se resolvió del todo, pero mediante preguntas a los compañeros y construcción de código realizada por inteligencia artificial, 
+    se obtienen resultados coherentes con lo que se esperaba del método.
+    \item La organización del código, debido a la extensión que empezó a presentar, resultó siendo un invonceniente para el estudiante, que 
+    en últimas resolvió dejar de preocuparse por lo que el código decía y empezó a mirar los resultados. Será un reto para el estudiante 
+    regresar a su código y entender lo que hizo más adelante. 
+    \item La realización de este trabajo fue pospuesta una y otra vez debido a problemas personales del estudiante y a su 
+    incapacidad de ordenar correctamente sus prioridades.
+    \item Mientras se realizaba el análisis textual de las estrellas, se observó un problema de visualización de los gráficos de Mínima 
+    Entropía. Al arreglar el problema, se volvieron a guardar las 50 estrellas de cada base de datos. Por ende, algunos análisis pueden 
+    parecer un poco lejanos a la muestra que se tiene. Se recuperaron las imágenes que se podían recuperar y algunas siguen en el 
+    análisis. El estudiante siente que la segunda oleada de estrellas es menos interesante que la primera, pero no tiene manera de 
+    volver a esa primera iteración. 
 \end{enumerate}
 
-Nótese, primeramente, que el volver a añadir los datos de Hyades y Coma resultó en la superposición de regiones en el mapa.
-Por ende, se ven en el mapa dos regiones especiales, lo que no es muy grave pero si amerita una explicación previa al análisis
-serio de los datos. 
-Por otro lado, y como dato o consejo para el lector, se ha de entender que los pasos propuestos en la lista anterior están aplicados 
-en el código en ese orden exactamente. Esto es debido a que los cortes fuertes eliminan lo realmente innecesario, y lo difícil de procesar, 
-como un cúmulo muy extenso o un cúmulo con 20000 miembros, dejando así los métodos más exigentes, como el cálculo de pendiente o el 
-ajuste de gaussiana, a una serie reducida, y más real, de cúmulos. Así, el código es mucho más rápido. 
 
 \section{Resultados}
 
-Como podrá entender el lector, los resultados de este informe son, en cierta medida, subjetivos. Sí, hay muchos criterios 
-que nos permiten decidir si algo es o no es un cúmulo de manera objetiva, pero lo cierto es que no todo se resuelve con código. 
-Esta sección es, entonces, una presentación sucinta, comparativamente hablando, de los resultados encontrados. 
-O sea, de lo más prometedor. 
+Debido a que las estrellas analizadas son 100, sólo se discutirán algunos ejemplos en este informe. El resto de los resultados se encuentran 
+en las carpetas VVVResults y OGLE Results de esta carpeta del repositorio. Para que este análisis sea más ameno, hablaremos primero de estrellas analizadas por lomb scargle, y luego de estrellas corroboradas con
+mínima entropía. Además, empezaremos por las de OGLE, para luego ir a las de VVV, en ambos casos. Tomaremos entre 3 y 5 estrellas de cada 
+caso. 
 
-Primeramente, observemos los resultados de los clusters conocidos: Coma y Hyades. Los resultados obtenidos se presentan en 
-(Figs: ~ \ref{Hyades}, \ref{COMA}). Son, adicionalmente, las regiones especiales del cielo en la figura (Fig: ~ \ref{MapaGlobal}). 
-Se observa de los CMDs, VPDs y distribuciones de distancia el comportamiendo estándar de un cúmulo bajo
-las condiciones impuestas por el código. Los comportamientos de la distribución del cúmulo en función de la distancia son 
-normales, se observa muy poco ruido en los CMDs, y una región bien comportada en los VPDs. Curiosamente, en el estudio de 
-COMA, se obtiene un cúmulo más pequeño. Sin embargo, por el número de miembros encontrado eb este, es probable que dicho
-cumulito haga parte del cúmulo más grande ya conocido.
+\subsection{Lomb-Scargle}
 
-El trabajo más importante, sin embargo, es preguntarnos si existen cúmulos en esta esfera alrededor del sol que no conocemos.
-Ya se explicaron los cortes automáticos a los cúmulos encontrados por machine learning, y ahora toca explicar aquellos que 
-se juzgan manualmente. Nótese que de 64 regiones, las regiones 2, 7, 14, 19, 20, 22, 25, 31, 39, 42, 44, 47, 48, 51, 52 y 62 
-son las únicas que presentan algún tipo de resultado medianamente coherente. O sea 16 regiones de 64. De estas 16 regiones, visibles
-en la figura (Fig: ~ \ref{MapaGlobal}), varias pueden ser descartadas por una u otra razón. 
+Haciendo un barrido rápido de los resultados de OGLE, entre las estrellas 21 y 50, encontramos una serie de resultados
+muy buenos; Las estrellas 30 a 50 no muestran nada extraño, excepto una que otra con una curva de luz gruesa. La 
+estrella 29 (Fig: ~\ref{STAR29OGLE}) tiene una curva de luz gruesa, pero se notan sus disminuciones en magnitud, 
+aunque no siempre sean consistentes. Es posible que esto se deba por las pausas que se hicieron en la toma de datos de la estrella. 
+Este fenómeno se vuelve a repetir, agravado, en la estrella 23, donde ahora no tenemos un pico claro en en análisi de 
+LS, y la curva de luz creada parece ser un continuo con ruido de magnitud mayor(Fig: ~\ref{STAR23OGLE}). Este fenómeno se repite para la estrella 21.
 
-Hay que empezar estos descartes por notar que a excepción de Coma y Hyades, ninguno de los cúmulos encontrados tienen una distribución en 
-RA y DEC similar a la de un cúmulo. Todas las estrellas están dispersas a lo largo de la celda, por lo que primero hablaremos de las anomalías
-de este estilo: Las regiones 19, 20 y 44. La concentración de estrellas en 19 está acumulada hacia la celda 20, por lo que juntos podrían
-ser un semblante de cúmulo. Sin embargo, no se encuentran en el mismo punto del espacio, ya que uno está centrado hacia los 62 pársecs 
-y otro hacia los 85 (Figs: ~ \ref{19}, \ref{20}). Además, el cúmulo en la celda 19 es más extenso que 30 pársecs, y su CMD tiene mucho
-ruido en la zona inferior, junto con una secuencia principal pobre.  Sumado a esto, la distribución en el mapa estelar de la celda 20 
-no tiene coherencia con la de la celda 19. En definitiva, juntas no forman un cúmulo, y por separado 19 tiene demasiado ruido y 20 
-tiene una mala distribución en distancia, sin hablar de que la mayoría parece ser ruido de GAIA, puesto que si fuera un cúmulo joven,
-no estaría tan esparcido en el mapa estelar. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{../OGLE_Results/Star_29.png}
+    \caption{Estrella 29 de las analizadas en OGLE. Se nota ruido alrededor de la frecuencia real de la estrella, y se ven 
+    caídas en la curva de luz que no parecen ser consistentes sobre todo el periodo de observación de la estrella.}
+    \label{STAR29OGLE}
+\end{figure}
 
-La celda 44 muestra, por su parte, una acumulación de estrellas enorme cerca a las celdas 41, 53 y 52. Sin embargo, estas celdas no tienen cúmulos
-coherentes con los de la celda 44. Además, el cúmulo 3 encontrado en esta celda es enorme(Fig: ~ \ref{44}), con una mala distribución en 
-distancia y muchísimo ruido en el CMD, el primer cúmulo no es muy diferente: es casi demasiado pequeño, pero está muy bien distribuido 
-en distancia y en el VPD. Además, (Fig: ~ \ref{441}), la distribución de este cúmulo en el mapa espacial es demasiado 
-extensa para un  cúmulo recién nacido. Es decir, la celda 44 sólo contiene ruido y ni la celda 44, ni la 19 ni la 20 encontraron
-algún cúmulo prometedor. Con eso, podemos movernos a las siguientes 13 regiones, todas mal distribuidas en el mapa estelar.
-
-Empezemos esta siguiente parte por la celda número 7(Fig: ~ \ref{7}). Ambos tienen ruido en el CMD, pero una buena secuencia principal. 
-El cúmulo 1 presenta huecos en su secuencia, pero no tiene una mala extensión en distancia. Sin embargo, entre el ruido y los huecos 
-en la secuencia principal, este no parece cúmulo. Por otro lado, el cúmulo 0 no presenta problemas en el CMD, y tiene un buen VPD. 
-Sin embargo, es relativamente pequeño en extensión y si es un cúmulo, se necesitaría expandir la búsqueda en ese sector a más de
-100 pársecs para estar seguros. A su lado, el cúmulo de la región 14 tiene mucho ruido(Fig: ~ \ref{14}), huecos en su secuencia principal 
-y una distribución de distancia poco coherente para un cúmulo, debido a sus varios picos locales. 
-Por ende, la región 14 no es un cúmulo real. A excepción de los comentarios sobre el VPD, se pueden aplicar los mismos comentarios
-a la sección 19(Fig: ~ \ref{19}), que además resulta más extenso que 30 parsecs. Los mismos comentarios de antes se pueden aplicar
-al sector 20 (Fig: ~ \ref{20}). Con esto, hemos eliminado 6 zonas de manera definitiva, y una zona tiene un semblante de cúmulo.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{../OGLE_Results/Star_23.png}
+    \caption{Estrella 23 de las analizadas en OGLE. Se observa el ruido en las frecuencias del análisis de LS, 
+    así como una curva plegada poco clara y que parece más ruido que una verdadera estrella variable. }
+    \label{STAR23OGLE}
+\end{figure}
 
 
-La celda 22 parece otra historia (Fig: ~ \ref{22}): poco ruido en el CMD, un VPD relativamente centrado, y una distribución en extensión decente.
-Probablemente, ir a más de 100 parsecs complete el VPD , aunque dejaría algunos huecos curiosos en la distribución de extensión. 
-Se encuentra algo prometedor en esta región, y los mismos comentarios se podrían aplicar a la región 25, de no ser por sus huecos
-en la distribución de distancia, y sus picos regionales en 92 y 99 pársecs (Fig: ~ \ref{25}). Se podría pensar que la 31 
-también es prometedora, pero tiene unos huecos importantes en su distribución espacial, por lo que no la vamos a tener en cuenta (Fig: ~ \ref{31}). 
-Por último, la región 39 tiene poco ruido y una buena distribución general en VPD y en distancia, aunque sea pequeño en extensión (Fig: ~ \ref{39}).
-Esta región entrega algo prometedor. Recapitulando, las celdas 7-0, 22 y 39 muestran algo prometedor, entre las 10 zonas comentadas.
+Volteando a ver a las estrellas de VVV, nos encontramos con la estrella 41, llamada en la imagen estrella 30, 
+que llama la atención debido a su 
+curva de luz inusual. Probablemente incompleta, tiene subidas en magnitud, pero no bajadas. Vemos que, a lo largo
+de unos dos mil días, su magnitud sólo aumentó: Esta estrella está entrando en una nueva etapa evolutiva. Según 
+el autor, esta estrella no puede estar siguiendo el proceso de oscilación que encuentra el método, puesto 
+que entonces no tendría una magnitud consistentemente creciente a lo largo de 2000 días pero sí tendría 
+una caida visible en la curva de luz plegada(Fig: ~\ref{STAR41VVV}).
 
-La celda 42 es un caso similar al de los demás: todo muy suave, y la extensión en distancia parece mostrar que un poco más allá de los 
-100 parsecs encontraremos el resto del cúmulo (Fig: ~ \ref{42}). La celda 44 es todo lo contrario: demasiado ruido y poco espacio para argumentar que existe
-un cúmulo real (Fig: ~ \ref{44}). Con solo el ruido en el CMD y la distribución en distancia del cúmulo 3 ya se puede decir que no es real, y si el cúmulo 1
-no pareciera ser solo ruido, se podría argumentar que es un cúmulo joven con pocas estrellas, aún en formación. Sin embargo, es poco probable
-que sea el caso, por lo que se descarta totalmente esta región. 
+Las demás estrellas, es decir de la 1 a la 20(aunque las estrellas 18, 19 y 20 están en un intermedio),
+ya que de las estrellas 21 en adelante todo está muy bien hecho, 
+sufren del mismo problema: falta de datos. No importa si la curva plegada parece un tablero con puntos aleatorios, 
+como en la estrella 12(Fig: ~\ref{STAR12VVV}) o una serie de puntos que parecen periodicos como la estrella 
+14(Fig: ~\ref{STAR14VVV}), el barrido de frecuencias de Lomb-Scargle presenta una cantidad de ruido muy alta, 
+lo que nos lleva a pensar que la falta de datos visible en la primera curva de luz lleva a que sea difícil de 
+detectar un periodo para la estrella. 
 
-Siguiendo con la región 47, esta parece presentar un cúmulo tentador, si no fuera porque tiene dos picos en su distribución en distancia (Fig: ~ \ref{47}). 
-Tanto su CMD como su VPD son buenos y presentan una estructura adecuada para lo que es un cúmulo como lo hemos encontrado por este método. 
-Asimismo, la celda 48 podría tener el resto de su cúmulo, que completaría sus pequeños huecos en el CMD y en el VPD, por encima de los 
-100 pársecs (Fig: ~ \ref{48}). Sin embargo, es una distribución poco convincente en distancia, debido a los valles inusuales que presenta. Por ende, 
-nos quedamos con estos para una discusión posterior.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{../VVVResults/LS_Star_41.png}
+    \caption{Esta estrella, a lo largo de 2000 días, sólo aumentó en magnitud. LS le encuentra un periodo de un día, 
+    y pretende que su magnitud oscila. }
+    \label{STAR41VVV}
+\end{figure}
 
-La celda 51 es un caso particular, ya que presenta dos cúmulos que, de no ser por su separación en el VPD, podrían constituir uno solo(Fig: ~ \ref{51}). 
-Debido a que no consideramos que dos cúmulos distintos puedan existir en el mismo espacio, no consideramos estos datos como un cúmulos reales.
-Misma conclusión para la región 52, debido a su VPD disperso, sus huecos en su CMD y su distribución en distancia poco coherente(Fig: ~ \ref{52}). 
-Para finalizar la revisión general de los cúmulos, la región 62 nos deja con un amargo sabor de boca, ya que a pesar de su buena forma
-de distribución en distancia, no tiene la extensión adecuada como para ocultarnos algo después del corte de los datos, 
-tiene un VPD disperso y un CMD entrecortado y con una buena cantidad de ruido(Fig: ~ \ref{62}). Nos quedamos con las regiones 
-7-0, 22, 39, 47 y 48, cinco regiones de las 16 iniciales. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{../VVVResults/LS_Star_12.png}
+    \caption{Estrella con una búsqueda de frecuencias llena de ruido, en la que no se puede discernir mucho. 
+    Su curva de luz plegada no dice nada sobre la estrella, y su curva de luz observada parece falta de datos.}
+    \label{STAR12VVV}
+\end{figure}
 
-Pero entonces, ¿Qué podemos hacer para decidir si son buenos cúmulos o no? Primero, veamos por qué siguen acá:
-En las regiones 7, 22, 47 y 48 dijimos que podrían ser bien completados con datos a más de 100 pársecs(Figs: ~ \ref{7}, 
-\ref{22}, \ref{39}, \ref{47}, \ref{48}). 
-Hablemos entonces del 39, puesto que es el único sin este problema. A pesar de un hueco en la secuencia principal,
-cerca a (1.25, 12), el poco ruido del CMD y la consistencia del VPD nos hacen considerar esto como un verdadero cúmulo,
-incluso aunque parezca que los valores de silueta descartan el brazo derecho que aparece en el VPD. 
-Nos quedamos con este cúmulo.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{../VVVResults/LS_Star_14.png}
+    \caption{Estrella con muy pocos datos de inicio. La búsqueda de LS es prácticamente solo ruido, ya que 
+    tiene picos de potencia similares en distintas partes del espectro de frecuencias. Su curva plegada parece coherente, 
+    pero viendo los resultados de LS, otro periodo hubiera hecho algo muy similar.}
+    \label{STAR14VVV}
+\end{figure}
 
-Ahora tenemos que hablar de los otros 5. Es cierto que podríamos descargar más datos y verificar que estos datos
-corresponden efectivamente a un cúmulo. Sin embargo, para hacer aprender a ejercer criterio propio sobre los resultados, 
-analizaremos esto sin descargas extra. El cúmulo 0 de la región 7 tiene todo para ser un cúmulo de verdad: no tiene huecos 
-en su secuencia principal, el ruido del CMD es mínimo, tiene un VPD compacto y una distribución en distancia lo suficientemente
-corta(menor a 15 pársecs) que deja pensar que del otro lado se encuentran unos 15 pársecs de cúmulo. También nos quedamos con este. 
-Los comentarios para la celda 22 son levemente distintos. Aunque tenga buenos CMD y VPD, su distribución disminuye mucho para tener
-algo por detrás de los 100 pársecs. Además, parece tener dos picos, debido a un valle entre los 90 y los 94 pársecs, por lo que no nos
-quedaremos con este cúmulo. 
+En general, las primeras 20 estrellas de VVV son estrellas complicadas de resolver, mientras que OGLE tiene un cuerpo de estrellas
+mucho más limpias. El autor no conoce mucho la diferencia, pero una búsqueda rápida en internet muestra que, mientras que OGLE
+trabaja en el óptico, VVV trabaja en el infrarrojo, y que VVV mapea el bulbo de la vía láctea en conjunto mientras que OGLE 
+puede observar la misma región del cielo por años y años. No es sorprendente que sus datos aparezcan más finos, entonces. 
 
-Por otro lado, no conservaríamos la celda 47. Aunque tenga unos
-buenos diagramas, su distribución en distancia simplemente no es convincente. Tiene un pico en 85 pársecs y otro cerca de los 97, con un valle
-en el medio. Si aumentamos la distancia visible, no se completaría una forma gaussiana aceptable. Por último, la sección 48 tiene un problema similar.
-Presenta picos y valles poco convincentes, sumado a su rápido descenso en miembros cerca de los 100 parsecs. Es decir, no parece tener miembros más allá. 
-Tampoco lo conservamos. 
+Por otro lado, podemos corroborar lo que se ha dicho en informes anteriores: al tratar con métodos computacionales, siempre
+se obtendrán resultados aunque no exista nada real de por medio. Las primeras 20 estrellas de VVV confirman que, aún con
+sets de datos débiles, el computador va a dar un resultado. Es posible que, tras volver a correr el código, se encuentre
+otro periodo para la misma estrella, puesto que pocos datos y una periodicidad poco clara llevan a que el computador no 
+pueda separar una frecuencia satisfactoriamente y con seguridad: el ruido es dominante, especialmente al compararlo con 
+estrellas mucho más limpias. 
 
-Vemos entonces que de 16 regiones, con poco más de 16 cúmulos posibles, nos quedamos con las regiones 39 y 7 es decir dos de dieciseis (Figa: ~ \ref{39}, \ref{7}). 
+Esta primera parte del análisis nos deja ver que Lomb Scargle es un buen método para distinguir una estrella variable de una 
+no variable, ya que es capaz de separar muy bien una frecuencia y una curva de luz coherente con los datos que se le proporcionan.
+Si los datos no tienen nada, lo que muestre LS no tendrá nada tampoco, cosa que también aplica para la cantidad de datos. Si 
+tenemos pocos datos, LS encontrará el resultado más coherente para lo que le demos, pero será evidente que los datos son 
+insufucientes por el ruido que muestra el método y por las curvas de luz que encuentra. Es decir, la astrofísica observacional
+toma años en dar resultados, puesto que no se puede ser mucho más efectivo que esto para encontrar resultados con un tamaño de 
+datos determinado. Solo se puede ser más refinado con el método. 
+
+\subsection{Mínima Entropía}
+
+Con la manera de visualizar resultados de Lomb Scargle ya vista, podemos hablar de mínima entropía. Este método no es un 
+método que se encuentre en alguna librería; es de implementación personal. Es mucho más demandante computacionalmente, 
+y es más complejo en general. 
+
+En términos generales, es una gran confirmación para Lomb-Scargle, ya que, al menos en los resultados encontrados, 
+llega a replicar perfectamente los resultados de este. Por esto mismo nos vamos a centrar en los resultados un poco más extraños 
+que llegamos a encontrar: las estrellas 4, 8, 10, 14 y 17, así como un caso curioso que se repite en las estrellas 
+3, 4, 6, 7, 11, 12, 13, 15, 16, 18, 19 y 20.
+
+Nótense dos cosas: La estrella 4 está repetida, y en iteraciones anteriores(que tenían una visualización incómoda de M.E)
+se encontraron curvas plegadas ordenadas por bloques y no como un continuo
 
 \section{Conclusiones}
 
-En conclusión, este ejercicio de exploración nos permitió entender mucho mejor cómo funcionan los resultados encontrados por métodos de 
-machine learning en el dominio de la astrofísica. Además, se pudo realizar un buen trabajo de ejercicio del criterio del científico, 
-puesto que cada resultado encontrado vino acompañado de un análisis detallado para la determinación adecuada de su significado. 
-
-El método encontró, al final, dos posibles cúmulos en la región de 100 pársecs alrededor de nuestro sol, aunque sea suponiendo 
-que la distribución de los resultados en el mapa estelar no son tan importantes. Sin embargo, el objetivo de esta eploración siendo 
-aprender del análisis de resultados de Machine Learning más que de estar seguros de que lo encontrado es sí o sí un cúmulo, se puede 
-concluir que este ejercicio fue exitoso. 
 
 \section*{Comentarios al margen}
 
-El envío de este documento se realiza algunos minutos tarde debido a que no se habían organizado correctamente todas las imágenes.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/65.png}
-    \caption{Resultados obtenidos para Hyades. Se observan una excelente distribución en distancia, una buena secuencia principal de CMD y una buena distribución de VPD}
-    \label{Hyades}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../Mapas/441.png}
-    \caption{Distribución espacial en el mapa estelar del cúmulo 1 de la celda 44. Se observa una población repandida, como una
-    simulación pequeña del cúmulo 3, encontrado más atrás en el espacio de esta misma celda. (Fig: ~ \ref{443})}
-    \label{441}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.7\linewidth]{../Mapas/443.png}
-    \caption{Distribución espacial en el mapa estelar del cúmulo 3 de la celda 44. Se observa una población compacta cerca a la esquina 
-    inferior izquierda, con algunos miembros perdidos hacia el centro de la celda. Cabe destacar que esta acumulación de estrellas se 
-    encuentra en la línea de la vía láctea, por lo cual la posibilidad de que se trate de un falso positivo aumenta considerablemente.}
-    \label{443}
-\end{figure}
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/66.png}
-    \caption{Resultados obtenidos para COMA(cluster 0). Se observan una excelente distribución en distancia, una buena secuencia principal de CMD y una buena distribución de VPD.
-    Asimismo, se observa un segundo cluster que podría ser parte de COMA.}
-    \label{COMA}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=1\linewidth]{../Mapas/Global.png}
-    \caption{Mapa estelar en ascención recta y declinación. Las regiones 65 y 66 corresponden a Hyades y COMA, donde se observan unos cúmulos bien definidos.}
-    \label{MapaGlobal}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/19.png}
-    \caption{Resultados obtenidos en el cuadrante 19. Se ve una gran cantidad de ruido e el CMD, así como una secuencia principal
-    con muchos vacíos, pero una buena coherencia en el VPD. La distribución en distancia no tiene la forma gaussiana esperada,
-    y supera los 30 parsecs de extensión. Está centrado cerca a los 85 parsecs de distancia.}
-    \label{19}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/20.png}
-    \caption{Resultados obtenidos en el cuadrante 20. Se observa una gran cantidad de ruido en el CMD, con pocos miembros que parecen
-    reales, un VPD muy disperso y una distribución espacial de dos picos diferentes, poco coherentes para la distribución esperada de 
-    un cúmulo real. Está centrado hacia los 62 parsecs de distancia del sol.}
-    \label{20}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/44.png}
-    \caption{Resultados obtenidos en el cuadrante 44. Se observa una gran cantidad de ruido en el CMD para ambos cúmulos, aunque 
-    tienen una distribución coherente en el VPD. Sin embargo, el cúmulo 3 tiene una mala distribución en distancia, con muchos 
-    picos y valles, mientras que el primero goza de una distribución mejor. }
-    \label{44}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/7.png}
-    \caption{Resultados obtenidos en el cuadrante 7. Vemos secuencias principales completas, con VPDs compactos. Sin embargo, es notable que 
-    el primer cúmulo presenta una buena distribución en distancia mientras que el cúmulo 0 parece estar esperando a la otra mitad de su población
-    por fuera de los 100 pársecs.}
-    \label{7}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/14.png}
-    \caption{Resultados obtenidos para la región 14. Vemos un cúmulo con mucho ruido y huecos en la secuencia principal,
-    un VPD compacto y una distribución en distancia con varios picos locales.}
-    \label{14}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/19.png}
-    \caption{Resultados obtenidos para la región 19. Se observa un CMD con mucho ruido y una secuencia principal poco poblada, 
-    así como una distribución en distancia superior a 30 pársecs con un par de picos locales cerca de los 95 y los 80 pársecs. }
-    \label{19}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/20.png}
-    \caption{Resultados obtenidos para el cuadrante 20. Se observa una gran cantidad de ruido en el CMD, un VPD poco poblado y 
-    diversos picos en la distribución en distancia, cada vez mayores mientras crece la distancia.}
-    \label{20}
-\end{figure} 
-
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/22.png}
-    \caption{Resultados obtenidos para el cuadrante 22. Se observa poco ruido en el CMD, con una buena secuencia principal,
-    un VPD relativamente centrado, y una buena distribución en extensión, pegada a los 100 pársecs.}
-    \label{22}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/25.png}
-    \caption{Resultados obtenidos para el cuadrante 25. El CMD tiene poco ruido, pero una secuencia principal gruesa. El VPD es disperso 
-    y la distribución en distancia es ascendente con algunos vacíos.}
-    \label{25}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/31.png}
-    \caption{Resultados obtenidos para el cuadrante 31. El CMD tiene muy poco ruido, y la secuencia principal es coherente, 
-    pero tiene picos locales y huecos en su distribución en distancia.}
-    \label{31}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/39.png}
-    \caption{Resultados obtenidos para el cuadrante 39. Su CMD presenta poco ruido y una buena secuencia principal, con un VPD compacto
-    y una distribución en distancia cercana a los 100 pársecs pero coherente con la de un cúmulo real. }
-    \label{39}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/42.png}
-    \caption{Resultados obtenidos para el cuadrante 42. De secuencia principal gruesa y CMD con poco ruido, un VPD disperso pero coherente y 
-    una distribución en distancia que parece ser el principio de un cúmulo. }
-    \label{42}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/44.png}
-    \caption{Resultados obtenidos para el cuadrante 44. Dos cúmulos que parecen estar compuestos por puro ruido e el CMD, aunque tengas VPDs 
-    compactos. La distribución en distancia del cúmulo 3 muestra una estructura con muchos picos y valles, mientras que la del primero muestra 
-    un histograma más coherente con el de un cúmulo real. }
-    \label{44}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/47.png}
-    \caption{Resultados obtenidos para el cuadrante 47. Con un poco de ruido, una secuencia principal gruesa y un VPD compacto. La distribución 
-    en distancia parece tener dos regiones principales de picos, en 85 y 97 pársecs. }
-    \label{47}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/48.png}
-    \caption{Resultados obtenidos para el cuadrante 48. una secuencia principal fina, con un VPD compacto y coherente, y una distribución 
-    en distancia con do regiones de picos , sobre 92 y 96 pársecs, con un valle entre medias. }
-    \label{48}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/51.png}
-    \caption{Resultados obtenidos para el cuadrante 51. Presenta dos cúmulos que podrían ser uno de no ser por su separación en el VPD.
-    Ambos tienen buen CMD y una distribución buena en distancia.}
-    \label{51}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/52.png}
-    \caption{Resultados obtenidos para el cuadrante 52. Con una secuencia principal poco poblada, pero con muy poco ruido en el CMD. 
-    Un VPD disperso y una distribución en distancia con valles y picos. }
-    \label{52}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\linewidth]{../ImagenesDeSolución/62.png}
-    \caption{Resultados obtenidos para el cuadrante 62. Presenta una secuencia principal con muchos huecos y un CMD con una cantidad 
-    de ruido no menor. Su VPD es medianamente compacto, y su distribución en distancia es muy buena.}
-    \label{62}
-\end{figure}
 
 \end{document}
