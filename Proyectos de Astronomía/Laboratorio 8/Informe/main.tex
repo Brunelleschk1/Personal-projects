@@ -1,0 +1,117 @@
+\documentclass[10pt,twocolumn]{article}
+
+% ------------------ PAQUETES ------------------
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{siunitx}
+\usepackage{authblk}
+\usepackage{abstract}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{currfile}
+\usepackage{float}
+
+\geometry{margin=1.8cm}
+
+% ------------------ FORMATO DE SECCIONES ------------------
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+% ------------------ TÍTULO ------------------
+\title{\textbf{Aproximación a las estrellas variables}\\Trabajo con métodos de machine learning para análisis de periodicidad\\Segundo trabajo práctico de la serie}
+
+
+% ------------------ AUTORES ------------------
+\author[1]{Bruno Abello Laurent}
+
+\affil[1]{Universidad de Los Andes, Departamento de Física, Colombia}
+
+% Correos (puedes modificar)
+\renewcommand\Authands{, }
+\date{}
+
+\begin{document}
+
+\twocolumn[
+\maketitle
+\begin{center}
+\small
+\textit{Correo institucional:} \href{mailto:{b.abello@uniandes.edu.co}}{b.abello@uniandes.edu.co} \\
+\textit{Repositorio de GitHub: } \href{https://github.com/Brunelleschk1/Personal-projects/tree/main/Proyectos\%20de\%20Astronom\%C3\%ADa/Laboratorio\%208}{Repositorio del laboratorio}
+\end{center}
+
+\begin{abstract}
+\noindent
+El presente informe es el tercero del autor con respecto a las estrellas variables. Se centra en el análisis de dos tipos de estrellas, 
+las estrellas variables de largo periodo tipo Mira y las estrellas irregulares T Tauri. El propósito de este documento es explicar 
+los métodos utilizados por el autor para encontrar los periodos de las estrellas MIRA, y para encontrar la frecuencia envolvente de 
+la T Tauri. Se procedió seleccionando una cantidad pequeña de estrellas Mira, unas 5 estrellas del catálogo de OGLE, y trabajando 
+con los resultados del catálogo y los propios del autor. De igual manera, de los resultados conocidos de la estrella T Tauri(Su periodo
+principal), se procedió a encontrar el periodo de bombeo o pulso de la misma. 
+\end{abstract}
+
+\noindent\textbf{Palabras clave:}
+\vspace{0.5cm}
+]
+
+% ------------------ CONTENIDO ------------------
+
+\section{Introducción}
+
+Este trabajo es sumamente breve en esencia: hablar de 6 estrellas es, en esencia, sencillo, por lo cual este es un documento
+más centrado a la discusión de métodos computacionales que de estrellas como tal. 
+
+\subsection{Objetivos}
+
+Los objetivos que tenemos, en términos simples, son los siguientes:
+\begin{itemize}
+    \item Implementar un método conocido para encontrar el periodo de las estrellas MIRA
+    \item Implementar un método desconocido para encontrar el periodo de las estrellas MIRA
+    \item Corroborar los datos mostrados en la página de OGLE para las estrellas MIRA seleccionadas
+    \item Corroborar, con métodos conocidos, los datos entregados al autor sobre la estrella T Tauri
+    \item Implementar maneras de encontrar el periodo de pulsación de la estrella T Tauri
+\end{itemize}
+
+\section{Procedimiento}
+
+El proceder para este laboratorio, igual que el anterior, se realizó por partes y sobre una extensión de tiempo considerable. 
+Se trabajó en el esqueleto de ambas implementaciones, y más adelante se regresó a completar lo que hacía falta. Contrariamente a
+los casos anteriores, este laboratorio conoció un proceder mucho más explorativo: una vez aplicada una solución, se notaban fallos 
+y se buscaba una mejor aplicación. Así, se realizaron diversas implementaciones, cada una con un grado de éxito variado. 
+
+\section{Problemas presentados y soluciones aplicadas}
+
+\begin{enumerate}
+    \item 
+\end{enumerate}
+
+
+\section{Resultados}
+
+
+
+\subsection{Lomb-Scargle}
+
+(Fig: ~\ref{STAR29OGLE}) 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{../OGLE_Results/Star_29.png}
+    \caption{Estrella 29 de las analizadas en OGLE. Se nota ruido alrededor de la frecuencia real de la estrella, y se ven 
+    caídas en la curva de luz que no parecen ser consistentes sobre todo el periodo de observación de la estrella.}
+    \label{STAR29OGLE}
+\end{figure}
+
+\section{Conclusiones}
+
+
+\section*{Comentarios al margen}
+
+
+\end{document}
