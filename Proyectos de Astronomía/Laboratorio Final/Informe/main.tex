@@ -122,8 +122,9 @@ el método final.
     \item La feature de periodo presentó problemas con las estrellas eclipsantes, que tienen dos picos de distinta intensidad, y con las LPVs, que tienen un rango enorme de periodos. 
     No hay una solución clara al respecto, puesto que para corregir el error hay que saber que se trata de una estrella de este tipo, así que se esperan más confusiones
     en estas categorías que en las demás. 
-    \item Las iteraciones e intentos en el código lo volvieron bastante lento. Se puede optimizar, pero no es necesario por ahora, puesto que, dentro de todo, random forest es de las 
-    partes más rápidas del código. 
+    \item Las iteraciones e intentos en el código lo volvieron bastante lento. El proceso de optimización fue demorado y muy encimado
+    al tiempo de escritura de este informe, y algunas cosas quedaron evidenciadas de esto, como el hecho de que, cuando no se 
+    realiza una búsqueda especializada para el periodo de cada tipo de estrella, esta feature pasa a ser mucho menos importante. 
 \end{enumerate}
 
 \section{Resultados}
@@ -206,6 +207,9 @@ particularmente para conocer sus características, como el doble pico en color, 
 
 \subsection{Machine Learning}
 
+Buscando cómo implementar un código que no demorara una hora corriendo, se realizaron bastantes recortes, notablemente 
+ya ninguna estrella tenía una búsqueda de periodo especializada, por lo que esta feature dejó de ser importante y es posible 
+que varias de estas estrellas tengan un periodo incorrecto. Lo principal, sin embargo, 
 
 \section{Conclusiones}
 
