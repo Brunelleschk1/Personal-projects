@@ -209,7 +209,26 @@ particularmente para conocer sus características, como el doble pico en color, 
 
 Buscando cómo implementar un código que no demorara una hora corriendo, se realizaron bastantes recortes, notablemente 
 ya ninguna estrella tenía una búsqueda de periodo especializada, por lo que esta feature dejó de ser importante y es posible 
-que varias de estas estrellas tengan un periodo incorrecto. Lo principal, sin embargo, 
+que varias de estas estrellas tengan un periodo incorrecto. Lo principal, sin embargo, es que los resultados con un dataset de 
+entrenamiento grande, o sea 5364 estrellas de entrenamiento de las 6705, se obtienen resultados supremamente positivos: 
+92.17 porciento de predicción correcta, con el más bajo, de 85 porciento, en las Others. La matriz de confusión muestra que 
+lo más complejo fue predecir las binarias, ya que unas 45 fueron mal clasificadas, mientras que las pulsantes y LPVs cuentan 
+con 10 o menos errores. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{../ImagenesJupyter/CMcon80train20test.png}
+    \caption{Matriz de confusión del testeo de un grupo de poco más de mil estrellas después de un entrenamiento Con
+    más de cinco mil. Vemos que la predicción que más errores dió fue predecir que era una Other cuando se trataba de 
+    una binaria, y que las pulsantes y LPVs fueron muy bien predichas.}
+    \label{CM8020}
+\end{figure}
+
+Lo más notable de estos intentos es, como ya se mencionó anteriormente, que el periodo disminuyó ampliamente en su importancia. 
+Esto se ve reflejado en que la categoría más difícil de clasificar resulta ser la clase binaria: no es de sorprendernos, ya que 
+al ser víctima de alias y de problemas de caracterización con Lomb Scargle, puesto que este no distingue sus eclipses como diferentes, 
+simplemente como oscilaciones de diferente amplitud pero que corresponden al mismo fenómeno, el periodo que se encuentra para una binaria
+es posiblemente incorrecto. 
 
 \section{Conclusiones}
 
