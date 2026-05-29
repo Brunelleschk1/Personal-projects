@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1780086086.04061 "c:/Users/Bruno/Desktop/Personal-projects-1/Proyectos de Astronomía/Laboratorio Final/Informe/main.tex" "main.pdf" "main" 1780086090.11576 0
+["pdflatex"] 1780086440.13628 "c:/Users/Bruno/Desktop/Personal-projects-1/Proyectos de Astronomía/Laboratorio Final/Informe/main.tex" "main.pdf" "main" 1780086443.4225 0
   "../ImagenesJupyter/CMcon80train20test.png" 1780085115 25206 47e5b321e859c68cdb4029c6e0353077 ""
   "../ImagenesJupyter/Colores.png" 1780064362 20028 6fdfce9d3c63a440d8ebf80c366901ed ""
   "../ImagenesJupyter/HistogramaClases1.png" 1780063417 37757 c10d61b3aa3a0123f98175a482794610 ""
@@ -118,10 +118,10 @@
   "C:/Users/Bruno/AppData/Local/Programs/MiKTeX/tex/latex/translations/dicts/translations-basic-dictionary-spanish.trsl" 1644048522 5850 2ef40dd7b6b9ada125cd1d90b7f7b307 ""
   "C:/Users/Bruno/AppData/Local/Programs/MiKTeX/tex/latex/translations/translations.sty" 1644048522 44247 2188b95d0ee74e31eca4d316263c58a7 ""
   "C:/Users/Bruno/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "c:/Users/Bruno/Desktop/Personal-projects-1/Proyectos de Astronomía/Laboratorio Final/Informe/main.tex" 1780086081 14565 f7d546ba10832cbb2c8489a65d2c82c3 ""
-  "main.aux" 1780086089 6018 7358008837886828618a31c99d90ad27 "pdflatex"
-  "main.out" 1780086089 1024 d4726c20bb33e4dfd5b77b23010768a1 "pdflatex"
-  "main.tex" 1780086081 14565 f7d546ba10832cbb2c8489a65d2c82c3 ""
+  "c:/Users/Bruno/Desktop/Personal-projects-1/Proyectos de Astronomía/Laboratorio Final/Informe/main.tex" 1780086438 14571 553a5526a96ded7cc876c6f9a2cbf187 ""
+  "main.aux" 1780086442 6018 7358008837886828618a31c99d90ad27 "pdflatex"
+  "main.out" 1780086442 1024 d4726c20bb33e4dfd5b77b23010768a1 "pdflatex"
+  "main.tex" 1780086438 14571 553a5526a96ded7cc876c6f9a2cbf187 ""
   (generated)
   "main.aux"
   "main.log"
