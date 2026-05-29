@@ -1,6 +1,6 @@
-PWD c:\Users\Bruno Abello\Desktop\Personal-projects\Proyectos de Astronomía\Laboratorio 8\Informe
+PWD c:\Users\Bruno Abello\Desktop\Personal-projects\Proyectos de Astronomía\Laboratorio Final\Informe
 INPUT C:\Users\Bruno Abello\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\Bruno Abello\Desktop\Personal-projects\Proyectos de Astronomía\Laboratorio 8\Informe\main.tex
+INPUT c:\Users\Bruno Abello\Desktop\Personal-projects\Proyectos de Astronomía\Laboratorio Final\Informe\main.tex
 OUTPUT main.log
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
@@ -147,9 +147,6 @@ INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex\latex\graphics\mat
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex\latex\graphics\mathcolor.ltx
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
-INPUT .\main.aux
-INPUT .\main.aux
-INPUT main.aux
 OUTPUT main.aux
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\Bruno Abello\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii

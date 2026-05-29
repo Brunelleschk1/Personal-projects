@@ -1,0 +1,152 @@
+\documentclass[10pt,twocolumn]{article}
+
+% ------------------ PAQUETES ------------------
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{siunitx}
+\usepackage{authblk}
+\usepackage{abstract}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{currfile}
+\usepackage{float}
+
+\geometry{margin=1.8cm}
+
+% ------------------ FORMATO DE SECCIONES ------------------
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+% ------------------ TÍTULO ------------------
+\title{\textbf{Estrellas variables y Machine Learning}\\Trabajo con métodos de machine learning para la correcta identificación de estrellas variables\\Proyecto final del curso}
+
+
+% ------------------ AUTORES ------------------
+\author[1]{Bruno Abello Laurent}
+
+\affil[1]{Universidad de Los Andes, Departamento de Física, Colombia}
+
+% Correos (puedes modificar)
+\renewcommand\Authands{, }
+\date{}
+
+\begin{document}
+
+\twocolumn[
+\maketitle
+\begin{center}
+\small
+\textit{Correo institucional:} \href{mailto:{b.abello@uniandes.edu.co}}{b.abello@uniandes.edu.co} \\
+\textit{Repositorio de GitHub: } \href{https://github.com/Brunelleschk1/Personal-projects/tree/main/Proyectos\%20de\%20Astronom\%C3\%ADa/Laboratorio\%20Final}{Repositorio del laboratorio}
+\end{center}
+
+\begin{abstract}
+\noindent
+
+\end{abstract}
+
+\noindent\textbf{Palabras clave:}
+\vspace{0.5cm}
+]
+
+% ------------------ CONTENIDO ------------------
+
+\section{Introducción}
+
+La astrofísica observacional moderna es probablemente una de las ramas de la física que menos se parece a lo que era hace cien años.
+Hoy en día, la mayor parte del tiempo de un astrofísico corriente transcurre frente a una pantalla con un proyecto de Machine learning 
+en curso. Aunque sea un método extremadamente popular actualmente, lo cierto es que esta es una de las herramientas más confiables del 
+físico, ya que dada la lógica correcta, esta es la manera más rápida y más efectiva de tratar los miles de datos que capturan los telescopios
+modernos, y que se hacen públicos gracias al formato informático. 
+
+Este es el último en una serie de once informes planeados sobre la astrofísica. La idea de esta serialización es servir de aproximación 
+a todo lo que hace un astrofísico moderno, desde las implementaciones de cómputo más básicas hasta los ejercicios de pensamiento más 
+complejos que se tienen en el dominio. Después de pasar unas semanas hablando de cúmulos globulares, y utilizando un poco de machine learning
+para buscar cúmulos nuevos en la vecindad del Sol, pasamos a trabajar las estrellas variables: un análisis básico de algunos tipos de estrellas 
+variables fue uno de los once trabajos realizados. 
+
+En este orden de ideas, este proyecto final trata las estrellas variables desde una perspectiva que no se había planteado en trabajos anteriores: 
+¿Y si no sabemos qué tipo de estrella tenemos en los datos? A esto se enfrentan los astrofísicos muy a menudo, puesto que un telescopio no puede 
+decirnos qué es una estrella, sólo cómo se comporta. El trabajo de encontrar qué tipo de estrella tenemos es algo tedioso, en teoría. Ver su curva 
+de luz, su comportamiento, pensar en si encontramos su periodo correcto o si se trata solamente de un error de la máquina, son cosas que nunca 
+vamos a poder solucionar del todo. 
+
+Lo que sí podemos hacer es enseñarle a una máquina cómo se comportan las estrellas reales y decirle que 
+clasifique una serie de datos por nosotros. Este es precisamente nuestro trabajo, entre estrellas eclipsantes, pulsantes, de largo periodo y estrellas
+no clasificadas. Gracias al algoritmo de Random Forests, y a unas 6000 estrellas
+repartidas entre set de entrenamiento y de clasificación, este trabajo presenta ventajas y desventajas del machine learning aplicado a la 
+astrofísica observacional.
+
+\subsection{Objetivos}
+
+Los objetivos propuestos para este informe son los siguientes:
+\begin{itemize}
+    \item Aprender a implementar un método de machine learning con datos etiquetados.
+    \item Aprender a leer los resultados de dicho método.
+    \item Aprender a interpretar los resultados con el objetivo claro de mejorar la calidad de la información que trabaja el método.
+    \item Aprender a pensar como astrofísico antes de implementar alguna función o método computacional para el análisis de datos.
+    \item Entender por qué el conocimiento adquirido como físico es tan importante para el uso del machine learning y demás métodos computacionales.
+\end{itemize}
+
+\section{Procedimiento}
+
+Este trabajo tuvo un proceder distinto a los anteriores. De las tres semanas que se trabajó, solo en los últimos días se hizo algo de 
+machine learning. Las primeras dos semanas fueron de revisión de datos y de ideación de features para el método. Hacer un trabajo de estos 
+no es una tarea sencilla, ya que se requiere de un gran conocimiento para entender qué es una buena feature independiente para un 
+dataset específico. En este caso, todos los estudiantes empezamos con periodo, que luego se cambió por logaritmo de periodo, que parece
+separar mejor las estrellas, y luego tomamos color V-I. Adicionalmente, muchos optamos por utilizar skewness, ya que presenta 
+mejores resultados que la kurtosis, y a modo personal se escogió la diferencia de fase entre un máximo y el siguiente mínimo. 
+
+Cada una de estas features se estudió cuidadosamente y se realizaron extensivas gráficas y comparaciones para determinar si 
+eran features dignas de ser usadas. Esto sucedió principalmente con la feature personal, ya que la idea provino de que algunas
+estrellas variables tienen una curva de luz en dientes de sierra, y otras son más sinusoidales: si se pudiera capturar esta diferencia
+mediante el offset de la curva, tendríamos una feature potente. Sin embargo, se terminó tomando únicamente la separación entre un 
+máximo y su siguiente mínimo ya que el contrario, y la diferencia entre mínimos para detectar estrellas binarias, no mostraron separación
+significativa entre las clases de estrellas.
+
+Se realizaron gráficos 3D para comparar separaciones de estrellas según features, y se intentaron varias features que no se incluyeron en 
+el método final. 
+
+\section{Problemas presentados y soluciones aplicadas}
+
+\begin{enumerate}
+    \item Entender por qué algunas features son mejores que otras resultó bastante complicado, especialmente entender por qué features que parecen tan evidentes en una gráfica no se 
+    traducen a algo en el código.
+    \item Como se dijo, algunas features que parecían prometedoras no fueron utilizadas porque, a la hora de la verdad, no representaban en números lo que se ve en un gráfico. 
+    \item La feature de periodo presentó problemas con las estrellas eclipsantes, que tienen dos picos de distinta intensidad, y con las LPVs, que tienen un rango enorme de periodos. 
+    No hay una solución clara al respecto, puesto que para corregir el error hay que saber que se trata de una estrella de este tipo, así que se esperan más confusiones
+    en estas categorías que en las demás. 
+    \item Las iteraciones e intentos en el código lo volvieron bastante lento. Se puede optimizar, pero no es necesario por ahora, puesto que, dentro de todo, random forest es de las 
+    partes más rápidas del código. 
+\end{enumerate}
+
+
+\section{Resultados}
+
+Puesto que este es un trabajo extenso, esta sección se divide en la parte del trabajo sobre features y el trabajo sobre los resultados.
+
+\subsection{Lomb-Scargle}
+
+(Fig: ~\ref{STAR29OGLE}) 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{../OGLE_Results/Star_29.png}
+    \caption{Estrella 29 de las analizadas en OGLE. Se nota ruido alrededor de la frecuencia real de la estrella, y se ven 
+    caídas en la curva de luz que no parecen ser consistentes sobre todo el periodo de observación de la estrella.}
+    \label{STAR29OGLE}
+\end{figure}
+
+\section{Conclusiones}
+
+
+\section*{Comentarios al margen}
+
+
+\end{document}

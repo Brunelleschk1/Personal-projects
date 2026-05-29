@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1779733985.8576 "c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 8/Informe/main.tex" "main.pdf" "main" 1779733986.98308 2
+["pdflatex"] 1780024389.39764 "c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio Final/Informe/main.tex" "main.pdf" "main" 1780024390.37099 2
   "../OGLE_Results/Star_29.png" 0 -1 0 ""
   "C:/Users/Bruno Abello/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1772925351 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Bruno Abello/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx0900.pk" 1772072797 22504 fbaaf10e1bdb092a1c81b6132fe10c79 ""
@@ -114,10 +114,10 @@
   "C:/Users/Bruno Abello/AppData/Local/Programs/MiKTeX/tex/latex/translations/dicts/translations-basic-dictionary-spanish.trsl" 1644048522 5850 2ef40dd7b6b9ada125cd1d90b7f7b307 ""
   "C:/Users/Bruno Abello/AppData/Local/Programs/MiKTeX/tex/latex/translations/translations.sty" 1644048522 44247 2188b95d0ee74e31eca4d316263c58a7 ""
   "C:/Users/Bruno Abello/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio 8/Informe/main.tex" 1779733983 5687 62d03dbdd1110726abc5f692f690d272 ""
-  "main.aux" 1779733986 1852 b4bd242365a0b44b601e8450f0fd8d65 "pdflatex"
-  "main.out" 1779733986 904 6f68ac7ef6c3415fc0fd759c9ee93120 "pdflatex"
-  "main.tex" 1779733983 5687 62d03dbdd1110726abc5f692f690d272 ""
+  "c:/Users/Bruno Abello/Desktop/Personal-projects/Proyectos de Astronomía/Laboratorio Final/Informe/main.tex" 1780024387 8375 b399609a78fe7b045a34fbe9119ef0f9 ""
+  "main.aux" 1780024390 1852 4d1acbdc89ee80630a58dd69b0c75a60 "pdflatex"
+  "main.out" 1780024390 904 6f68ac7ef6c3415fc0fd759c9ee93120 "pdflatex"
+  "main.tex" 1780024387 8375 b399609a78fe7b045a34fbe9119ef0f9 ""
   (generated)
   "main.aux"
   "main.log"
