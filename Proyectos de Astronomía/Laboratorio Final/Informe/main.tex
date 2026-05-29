@@ -126,22 +126,86 @@ el método final.
     partes más rápidas del código. 
 \end{enumerate}
 
-
 \section{Resultados}
 
-Puesto que este es un trabajo extenso, esta sección se divide en la parte del trabajo sobre features y el trabajo sobre los resultados.
+Puesto que este es un trabajo extenso, esta sección se divide en la parte del trabajo sobre features y el trabajo sobre los 
+resultados.
 
-\subsection{Lomb-Scargle}
+\subsection{Features}
 
-(Fig: ~\ref{STAR29OGLE}) 
+Empezamos el trabajo por filtrar algunas estrellas que representan clases muy marginales(Fig: ~\ref{HistogramaClases}). Luego,
+En vez de tomar el periodo que da OGLE para cada estrella, lo calculamos con Lomb Scargle y lo comparamos con el que da OGLE. 
+Se ve que el 80 porciento de las estrellas responde bien a este ajuste, mientras que el resto, especialmente estrellas 
+eclipsantes y de periodo largo, no están dentro de un margen de aceptabilidad correcto. 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1\linewidth]{../OGLE_Results/Star_29.png}
-    \caption{Estrella 29 de las analizadas en OGLE. Se nota ruido alrededor de la frecuencia real de la estrella, y se ven 
-    caídas en la curva de luz que no parecen ser consistentes sobre todo el periodo de observación de la estrella.}
-    \label{STAR29OGLE}
+    \includegraphics[width=1\linewidth]{../ImagenesJupyter/HistogramaClases1.png}
+    \caption{Histograma con la repartición de clases del dataset. De este ya se quitaron las cefeidas de tipo 2 y las anómalas, 
+    cada una con 5 y 2 miembros respectivamente. Estas clases luego se agruparon en binarias(eclipsantes y elipoidales), 
+    Long Period Variables, Pulsadoras radiales(RR Lyrae, Delta Scuti, D cepheid).}
+    \label{HistogramaClases}
 \end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{../ImagenesJupyter/MinMax.png}
+    \caption{Histograma mostrando la distribución de diferencias promedio entre mínimos y máximos de las estrellas. No hay ningún pico distinto de los demás, 
+    por lo que esta feature no nos conviene}
+    \label{MinMax}
+\end{figure}
+
+Acto seguido, buscando solucionar el problema de estas estrellas por otros medios, se extrae la diferencia entre mínimos
+y la distancia entre mínimos y máximos(Fig: ~\ref{MinMax},~\ref{MaxMin},~\ref{MinMin}). Los resultados, bastante pobres, nos dicen que podemos usar la diferencia entre 
+un máximo y el siguiente mínimo para separar las estrellas pulsantes del resto, pero que ningún otro feature va a ser 
+importante saliendo de estos cálculos.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{../ImagenesJupyter/MaxMin.png}
+    \caption{Histograma mostrando la distribución de diferencias promedio en fase entre máximos y mínimos de las estrellas. Se ve que el pico de estrellas pulsantes 
+    difiere del resto, por lo que esta feature, aunque no sea tan definitiva como otras. nos puede servir.}
+    \label{MaxMin}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{../ImagenesJupyter/MinDiff.png}
+    \caption{Histograma mostrando la distribución de diferencias promedio en magnitud entre mínimos. Aún con la escala logarítmica se aprecia que ninguna clase está 
+    por fuera del pico de las demás, por lo que esta feature tampoco sirve. El resultado entre máximos es muy similar a este.}
+    \label{MinMin}
+\end{figure}
+
+Por otro lado, la skewness de las clases nos permite diferenciar las estrellas binarias del resto(Fig: ~\ref{Skew}).
+Con el color, las cosas cambian, ya que cada clase tiene un pico de color definido, y la clase others, aunque tenga miembros en todo el
+espectro, no emborrona mucho a ninguna de las clases bien definidas(Fig: ~\ref{Colores}). Comparándolas en gráficos de 3 dimensiones, 
+que se ve mucho mejor en el código subido al repositorio, vemos que cada clase está bien separada, mientras que las Other sangran entre 
+las clases. Con todo esto, aplicar machine learning es posible, ya que tenemos como diferenciar binarias y pulsantes de manera
+especializada, y gracias al periodo y al color, las LPV se diferencian de estas. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{../ImagenesJupyter/Skewness.png}
+    \caption{Histograma mostrando la distribución de skeeness por clase. Aunque la mayoría son similares, se nota que 
+    las estrellas binarias destacan del resto.}
+    \label{Skew}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{../ImagenesJupyter/Colores.png}
+    \caption{Histograma mostrando la distribución de color por clase. Se ve que ninguna clase es igual, y que Others, aunque 
+    sangre a las demás clases, tiene su propio pico. Aunque no sea ideal que tenga varios, esto puede permitirnos pensar en las
+    clases subyacentes de Others. }
+    \label{Colores}
+\end{figure}
+
+Queda claro, por último, que separar las Others va a ser complejo y que van a ser la clase más problemática. Más que preocuparnos por esto, 
+nos tenemos que preocupar por que el trabajo funcione correctamente con las demás clases y luego empezar a revisar la clase Others
+particularmente para conocer sus características, como el doble pico en color, y poder clasificar sus estrellas de mejor manera. 
+
+\subsection{Machine Learning}
+
 
 \section{Conclusiones}
 
