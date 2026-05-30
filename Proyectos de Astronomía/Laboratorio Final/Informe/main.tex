@@ -48,10 +48,16 @@
 
 \begin{abstract}
 \noindent
-
+El siguiente informe presenta un trabajo de desarrollo de features y clases para un análisis de datos de OGLE etiquetados. Se detallan
+el proceso y las razones de uso de las mismas, así como su introducción al algoritmo de Random Forests para obtener datos numéricos 
+sobre la clasificación aprendida de estas estrellas. Se obtiene un porcentaje de predicción acertada del 92.17 porciento, y se discuten 
+las razones por las que las features fallaron o cumplieron, así como los caminos que puede tomar un trabajo futuro, enfocado especialmente
+en la aclaración de lo que se encuentra en la etiqueta que OGLE pone sobre un gran número de estrellas: Others.
+Al ser un cierre de ciclo académico, este informe presenta una mirada hacia el futuro más propositiva que en otras entregas debido a los
+intereses personales del autor y a su periodo de entrenamiento en la Astrofísica Observacional.
 \end{abstract}
 
-\noindent\textbf{Palabras clave:}
+\noindent\textbf{Palabras clave: Estrellas variables, Random Forests, Dataset etiquetado, Features no correlacionadas, Matrices de confusión}
 \vspace{0.5cm}
 ]
 
@@ -139,31 +145,26 @@ En vez de tomar el periodo que da OGLE para cada estrella, lo calculamos con Lom
 Se ve que el 80 porciento de las estrellas responde bien a este ajuste, mientras que el resto, especialmente estrellas 
 eclipsantes y de periodo largo, no están dentro de un margen de aceptabilidad correcto. 
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{../ImagenesJupyter/HistogramaClases1.png}
+    \includegraphics[width=0.8\linewidth]{../ImagenesJupyter/HistogramaClases1.png}
     \caption{Histograma con la repartición de clases del dataset. De este ya se quitaron las cefeidas de tipo 2 y las anómalas, 
     cada una con 5 y 2 miembros respectivamente. Estas clases luego se agruparon en binarias(eclipsantes y elipoidales), 
     Long Period Variables, Pulsadoras radiales(RR Lyrae, Delta Scuti, D cepheid).}
     \label{HistogramaClases}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{../ImagenesJupyter/MinMax.png}
+    \includegraphics[width=0.8\linewidth]{../ImagenesJupyter/MinMax.png}
     \caption{Histograma mostrando la distribución de diferencias promedio entre mínimos y máximos de las estrellas. No hay ningún pico distinto de los demás, 
     por lo que esta feature no nos conviene}
     \label{MinMax}
 \end{figure}
 
-Acto seguido, buscando solucionar el problema de estas estrellas por otros medios, se extrae la diferencia entre mínimos
-y la distancia entre mínimos y máximos(Fig: ~\ref{MinMax},~\ref{MaxMin},~\ref{MinMin}). Los resultados, bastante pobres, nos dicen que podemos usar la diferencia entre 
-un máximo y el siguiente mínimo para separar las estrellas pulsantes del resto, pero que ningún otro feature va a ser 
-importante saliendo de estos cálculos.
-
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1\linewidth]{../ImagenesJupyter/MaxMin.png}
+    \includegraphics[width=0.8\linewidth]{../ImagenesJupyter/MaxMin.png}
     \caption{Histograma mostrando la distribución de diferencias promedio en fase entre máximos y mínimos de las estrellas. Se ve que el pico de estrellas pulsantes 
     difiere del resto, por lo que esta feature, aunque no sea tan definitiva como otras. nos puede servir.}
     \label{MaxMin}
@@ -171,11 +172,33 @@ importante saliendo de estos cálculos.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1\linewidth]{../ImagenesJupyter/MinDiff.png}
+    \includegraphics[width=0.8\linewidth]{../ImagenesJupyter/MinDiff.png}
     \caption{Histograma mostrando la distribución de diferencias promedio en magnitud entre mínimos. Aún con la escala logarítmica se aprecia que ninguna clase está 
     por fuera del pico de las demás, por lo que esta feature tampoco sirve. El resultado entre máximos es muy similar a este.}
     \label{MinMin}
 \end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../ImagenesJupyter/Skewness.png}
+    \caption{Histograma mostrando la distribución de skewness por clase. Aunque la mayoría son similares, se nota que 
+    las estrellas binarias destacan del resto.}
+    \label{Skew}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../ImagenesJupyter/Colores.png}
+    \caption{Histograma mostrando la distribución de color por clase. Se ve que ninguna clase es igual, y que Others, aunque 
+    sangre a las demás clases, tiene su propio pico. Aunque no sea ideal que tenga varios, esto puede permitirnos pensar en las
+    clases subyacentes de Others. }
+    \label{Colores}
+\end{figure}
+
+Acto seguido, buscando solucionar el problema de estas estrellas por otros medios, se extrae la diferencia entre mínimos
+y la distancia entre mínimos y máximos(Fig: ~\ref{MinMax},~\ref{MaxMin},~\ref{MinMin}). Los resultados, bastante pobres, nos dicen que podemos usar la diferencia entre 
+un máximo y el siguiente mínimo para separar las estrellas pulsantes del resto, pero que ningún otro feature va a ser 
+importante saliendo de estos cálculos.
 
 Por otro lado, la skewness de las clases nos permite diferenciar las estrellas binarias del resto(Fig: ~\ref{Skew}).
 Con el color, las cosas cambian, ya que cada clase tiene un pico de color definido, y la clase others, aunque tenga miembros en todo el
@@ -183,23 +206,6 @@ espectro, no emborrona mucho a ninguna de las clases bien definidas(Fig: ~\ref{C
 que se ve mucho mejor en el código subido al repositorio, vemos que cada clase está bien separada, mientras que las Other sangran entre 
 las clases. Con todo esto, aplicar machine learning es posible, ya que tenemos como diferenciar binarias y pulsantes de manera
 especializada, y gracias al periodo y al color, las LPV se diferencian de estas. 
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=1\linewidth]{../ImagenesJupyter/Skewness.png}
-    \caption{Histograma mostrando la distribución de skeeness por clase. Aunque la mayoría son similares, se nota que 
-    las estrellas binarias destacan del resto.}
-    \label{Skew}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=1\linewidth]{../ImagenesJupyter/Colores.png}
-    \caption{Histograma mostrando la distribución de color por clase. Se ve que ninguna clase es igual, y que Others, aunque 
-    sangre a las demás clases, tiene su propio pico. Aunque no sea ideal que tenga varios, esto puede permitirnos pensar en las
-    clases subyacentes de Others. }
-    \label{Colores}
-\end{figure}
 
 Queda claro, por último, que separar las Others va a ser complejo y que van a ser la clase más problemática. Más que preocuparnos por esto, 
 nos tenemos que preocupar por que el trabajo funcione correctamente con las demás clases y luego empezar a revisar la clase Others
@@ -213,27 +219,121 @@ que varias de estas estrellas tengan un periodo incorrecto. Lo principal, sin em
 entrenamiento grande, o sea 5364 estrellas de entrenamiento de las 6705, se obtienen resultados supremamente positivos: 
 92.17 porciento de predicción correcta, con el más bajo, de 85 porciento, en las Others. La matriz de confusión muestra que 
 lo más complejo fue predecir las binarias, ya que unas 45 fueron mal clasificadas, mientras que las pulsantes y LPVs cuentan 
-con 10 o menos errores. 
+con 10 o menos errores(Fig: ~\ref{CM8020}). 
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{../ImagenesJupyter/CMcon80train20test.png}
+    \includegraphics[width=0.8\linewidth]{../ImagenesJupyter/CMcon80train20test.png}
     \caption{Matriz de confusión del testeo de un grupo de poco más de mil estrellas después de un entrenamiento Con
     más de cinco mil. Vemos que la predicción que más errores dió fue predecir que era una Other cuando se trataba de 
     una binaria, y que las pulsantes y LPVs fueron muy bien predichas.}
     \label{CM8020}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../ImagenesJupyter/CM2080.png}
+    \caption{Matriz de confusión del testeo de un grupo de más de cinco mil estrellas, con un entrenamiento de unas mil. Una vez más, es de resultados 
+    bastante lineares, donde lo más notable es la confusión entre binarias y others, y las confusiones de varios tipos con binarias.}
+    \label{CM2080}
+\end{figure}
+
+Luego, se invirtieron los roles, y se entrenó con 20 porciento del dataset. Esta vez, el porcentaje de predicción fue del 90.81, y de nuevo la precisión 
+más baja se la llevan las Others con 83 porciento. La matriz de confusión, igual que antes, muestra que las binarias fueron las más complejas de 
+predecir, las pulsantes las más sencillas, y que binarias y others son las que más se confunden(Fig: ~\ref{CM2080}). 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../ImagenesJupyter/Importancia8020.png}
+    \caption{Importancia de cada feature en la clasificación del testing de 1000 estrellas. Se ve una clara dominación del color, y vemos que el 
+    periodo no resulta ser tan efectivo como lo esperábamos al iniciar el laboratorio. Con nuestras espectativas después de calcularlo sin discriminación, 
+    este resultado es más lógico.}
+    \label{Imp8020}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../ImagenesJupyter/Importancia2080.png}
+    \caption{Importancia de cada feature en la clasificación del testing de 5000 estrellas. Skewness y La diferencia entre máximos y mínimos cobra mucha importancia
+    cuando el modelo no sabe a ciencia cierta que con color puede discernir los grupos mucho mejor. Se ve que la idea original del autor sirve un propósito, aunque este
+    decaiga con el entrenamiento correcto del modelo.}
+    \label{Imp2080}
+\end{figure}
+
 Lo más notable de estos intentos es, como ya se mencionó anteriormente, que el periodo disminuyó ampliamente en su importancia. 
 Esto se ve reflejado en que la categoría más difícil de clasificar resulta ser la clase binaria: no es de sorprendernos, ya que 
 al ser víctima de alias y de problemas de caracterización con Lomb Scargle, puesto que este no distingue sus eclipses como diferentes, 
 simplemente como oscilaciones de diferente amplitud pero que corresponden al mismo fenómeno, el periodo que se encuentra para una binaria
-es posiblemente incorrecto. ......
+es posiblemente incorrecto. Sin embargo, este no es el único fenómeno interesante. Al invertir los porcentajes, y entrenar con menos estrellas, 
+todas las features se encuentran en el mismo nivel de importancia(Fig: ~\ref{Imp2080}), mientras que para un algoritmo mejor entrenado 
+había una clara victoria del color sobre las demás features(Fig: ~\ref{Imp2080}). Esto sucede porque el color es el discriminador más drástico,
+como habíamos predicho, mientras que la skewness y el MaxMin son más tajantes cuando hay ruido o no se ha aprendido a discriminar tan correctamente.
+
+Cabe destacar, evidentemente, que estos son los resultados de una repetición del experimento, y que los resultados pueden variar ligeramente. 
+Es importante también ver que la distribución de confianza de clasificación es bastante extensa, pero que muestra una dominancia robusta de 
+la confianza casi absoluta(Fig: ~\ref{Conf8020}, ~\ref{Conf2080}). Como es de esperar, se nota que un modelo menos entrenado confía menos en sus 
+resultados que uno bien entrenado, y se nota que el set menos entrenado clasifica más datos. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../ImagenesJupyter/confianza8020.png}
+    \caption{Distribución de confianza de la clasificación de 1000 estrellas testeadas, en escala logarítmica vertical. Se ve una clara tendencia a tener estrellas
+    con una clasificación de alta confianza. }
+    \label{Conf8020}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../ImagenesJupyter/confianza2080.png}
+    \caption{Distribución de confianza de la clasificación de 5000 estrellas testeadas, en escala logarítmica vertical. Se ve una tendencia hacia las probabilidades
+    altas de buena clasificación, aunque la cola de probabilidades inferiores se empieza a llenar bastante. }
+    \label{Conf2080}
+\end{figure}
+
+\subsection{Comentarios sobre los resultados}
+
+Más allá de la exposición de los resultados obtenidos, está claro que las cosas se hicieron bien a nivel astrofísico. Agrupando las estrellas en estos cuatro grupos, 
+y tomando features no correlacionadas, de mucho impacto y pocas en cantidad, tenemos resultados sencillos de leer, confiables y, en su mayoría, correctos. Si bien los 
+números no son del 99.99 porciento, y no se hizo un trabajo sobre cada tipo de estrella y cada feature posible, este trabajo demuestra que, a pesar de que el machine 
+learning pueda parecer una caja negra que resuelve problemas, la única manera de presentar resultados comprensibles y fundamentados es pensando más en cómo alimentar
+a la máquina que en cómo interpretar lo que dice. 
+
+Dejando esta nota positiva al margen, quedan un par de reflexiones por hacerse. Lo primero es que sí, el machine learning funcionó 
+muy bien para clasificar estrellas, pero para poner una etiqueta en un dataset lo mejor es que siempre lo revise un humano. De lo contrario, esas 33 binarias 
+clasificadas como Others se van convirtiendo en más y más binarias que terminan en Others, y al final nuestro dataset está compuesto por Otro Tipo de Estrellas, 
+algo que no va a tener sentido físico y que va a ser un lío de desenmarañar. 
+
+Seguido a esto: ¿Cómo clasificamos las Others? Está claro que no necesitamos periodo para clasificar binarias, y que con un par de features todo queda más o menos guardadito.
+Las Others siguen siendo un problema, ya que plagan nuestros datasets, al no pertenecer a ninguna categoría, todas son bienvenidas. En ese sentido, solo hay un camino a seguir, 
+y es responder más preguntas: ¿Qué son las estrellas Others mal clasificadas? ¿Actúan de verdad como lo hace esta clase? Aquí, se puede aplicar un análisis especializado para 
+dicha clase y encontrar una solución: Sí, son este tipo de estrellas, o no, por aquí no es el camino. ¿Y con las Others que quedan? Bueno, o son grupos de una, o cinco estrellas, 
+va a ser difícil que la máquina aprenda a clasificarlas con argumentos físicos razonables. O realizamos machine learning no supervisado para que las separe en grupos y las analizemos 
+por grupos, o las revisamos una a una buscándoles un sentido y una pertenencia. Eso si queremos clasificarlas todas.
+
+Si preferimos buscar un tipo de estrellas(el lector está familiarizado con las estrellas Be de sobremanera), podemos buscar algunos comportamientos selectivamente, como la forma de 
+su curva de luz, o superposiciones de periodos, entre la formación de su disco de material, su interacción con su estrella hermana si la tiene, y sus oscilaciones rapidísimas. 
+En nuestro caso, podríamos pensar en explorar la separación de color tan curiosa que se vió(Fig: ~\ref{Colores}). Seguramente ahí hay dos grupos discernibles, y de esos dos grupos 
+podemos explorar subgrupos con menos ruido alrededor. 
 
 \section{Conclusiones}
 
+Este estudio marca el final de una etapa: las conjeturas del autor dejan de ser conjeturas y pasan a tomar un valor físico relevante en las discusiones sobre el tema. Por mucho que se 
+quiera seguir en etapa de entrenamiento, lo cierto es que el bagaje adquirido y la curiosidad humana se tienen que juntar para pensar, seriamente, en qué hay más allá de lo que unas 
+ruedas de entrenamiento permiten ver. 
+
+Sí, los números de confianza y de correlación obtenidos son buenos, y sí, las features y clases pensadas a través de discusiones en el aula y conversaciones con uno mismo funcionaron, 
+pero eso no significa que podamos quedarnos tranquilos, ya que aún no sabemos qué son las Others, por qué actúan así, qué features nos permiten atacar sus particularidades, y ¿cómo 
+hacer, si no es mediante el ensayo y el error, para estar seguros de que nuestras conjeturas sobre lo que hay ahí son correctas?. Además, sin ir tan lejos podemos preguntarnos si 
+los resultados obtenidos no podrían ir más allá, si confiar en el etiquetado de OGLE o no, y si no hay maneras de convertir el periodo en una feature más relevante. 
+
+Lo cierto es que todo apunta a que hay que seguir adelante. Solo ir a observar las estrellas nos puede confirmar que esas 33 Others son binarias particulares, y solo ir a 
+molestar a los datos y a intentar clasificarlos nos puede revelar la verdadera naturaleza de esas estrellas, ya sea con machine learning o con análisis humano extensivo. 
+De cualquier forma, solo se puede concluir que un trabajo mal hecho invita a rearmarlo, y un trabajo bien hecho invita a profundizarlo. 
 
 \section*{Comentarios al margen}
 
+Mientras realizaba el análisis, recordé una discusión en el aula: el machine learning nos sirve para aprender una situación, y al cambiar el dataset y el entorno, no va a servir de 
+nuevo. Eso, entonces, ¿implica que el estudiante podría descargar gigas de datos de OGLE y pasarlas por este algoritmo? ¿Sería esto positivo para esclarecer quiénes están en Others 
+mediante un machine learning no etiquetado?
 
 \end{document}
